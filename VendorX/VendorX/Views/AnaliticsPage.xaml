@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Views.AnaliticsPage"
+    xmlns:vm="clr-namespace:Vendor.ViewModels"
+    x:DataType="vm:AnaliticsViewModel"
+    xmlns:fa="clr-namespace:FontAwesome"
+    xmlns:res="clr-namespace:VendorX.Resources"
+    Title="Аналитика"
+    Shell.NavBarIsVisible="False"
+    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms">
+
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ShowReportViewCommand}">
+            <ToolbarItem.IconImageSource>
+              <FontImageSource
+                FontFamily="FAS"
+                Glyph="{x:Static fa:FontAwesomeIcons.Bars}"
+                Size="Title" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem >
+            
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>-->
+
+
+    <ScrollView>
+        <StackLayout   Padding="10" Spacing="10">
+
+            <!--<StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Padding="25" Spacing="10">
+                <Button Text="ReportSalesLabel}" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="FillAndExpand" 
+                           Command="{Binding SalesReportCommand}"/>
+                <Button Text="ReportReportsLabel}" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="FillAndExpand" 
+                           Command="{Binding ReturnReportCommand}"/>
+
+                <Button Text="ReportComercialLabel}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="FillAndExpand"
+                           Command="{Binding CommercialReportCommand}"/>
+
+                <Button Text="ReportStockLabel}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="FillAndExpand"
+                           Command="{Binding StockReportCommand}"/>
+
+                <Button Text="PriceListLabel}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="FillAndExpand"   
+                           Command="{Binding PriceReportCommand}"/>
+            </StackLayout>-->
+
+            <Frame >
+                <StackLayout   Padding="15"  VerticalOptions="Center"  Spacing="5" >
+                    <Label Text="{x:Static res:AppResources.Period}" Margin="0,0,0,10" FontSize="Default" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
+                        <Frame Grid.Column="0"  BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},Light={StaticResource BackgroundColorLight}}">
+                            <DatePicker Date="{Binding StartDate}" MaximumDate="{Binding EndDate}" FontAttributes="Bold" TranslationY="{OnPlatform iOS=0, Android=5}"  />
+                        </Frame>
+                        <Frame Grid.Column="1" 
+                               BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},Light={StaticResource BackgroundColorLight}}">
+                            <DatePicker Date="{Binding EndDate}" MaximumDate="{Binding EndDate}"  FontAttributes="Bold"  TranslationY="{OnPlatform iOS=0, Android=5}" />
+                        </Frame>
+                    </Grid>
+
+                
+               
+                </StackLayout>
+            </Frame>
+            <!-- Краткая аналитика -->
+            <Grid RowDefinitions="75,75"  ColumnDefinitions="*,*" >
+               <Frame Margin="0,2.5,2.5,2.5" Padding="10" >
+                  <StackLayout>
+                        <Grid  HorizontalOptions="FillAndExpand" >
+                            <Label  FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{StaticResource Primary}" FontSize="Default" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="$"  />
+                                        <Span Text=" " />
+                                        <Span Text="{x:Static res:AppResources.SalesLabel}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="{x:Static fa:FontAwesomeIcons.ArrowUpRightFromSquare}" FontFamily="FAS"  FontAttributes="Bold" HorizontalTextAlignment="End" TextColor="{StaticResource Primary}" Margin="-2" FontSize="Micro"/>
+                        </Grid>
+                        <Label Text="0" FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{StaticResource Primary}" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding PriceSumm,StringFormat='{0:N2}', Mode=OneWay}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding WalletTag}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                 </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SalesReportCommand}"/>
+                </Frame.GestureRecognizers>
+               </Frame>
+               <Frame Grid.Column="1" Margin="2.5,2.5,0,2.5" Padding="10" >
+                 <StackLayout>
+                        <Grid  HorizontalOptions="FillAndExpand" >
+                            <Label  FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{StaticResource RedButton}" FontSize="Default" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static fa:FontAwesomeIcons.Reply}" FontFamily="FAS"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{x:Static res:AppResources.RefundLabel}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="{x:Static fa:FontAwesomeIcons.ArrowUpRightFromSquare}" FontFamily="FAS" FontAttributes="Bold" HorizontalTextAlignment="End" TextColor="{StaticResource RedButton}" Margin="-2" FontSize="Micro"/>
+                        </Grid>
+                        <Label Text="0" FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{StaticResource RedButton}" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <!--<Span Text="{Binding ReturnCount}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="шт"/>
+                                    <Span Text=" / "/>-->
+                                    <Span Text="{Binding ReturnSumm,StringFormat='{0:N2}', Mode=OneWay}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding WalletTag}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                 </StackLayout>
+                   <Frame.GestureRecognizers>
+                       <TapGestureRecognizer Command="{Binding ReturnReportCommand}"/>
+                   </Frame.GestureRecognizers>
+               </Frame>
+               <Frame Grid.Row="1" Margin="0,2.5,2.5,2.5" Padding="10" >
+                  <StackLayout>
+                        <Grid  HorizontalOptions="FillAndExpand" >
+                            <Label  FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColorLight}}" FontSize="Default" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static fa:FontAwesomeIcons.Coins}" FontFamily="FAS"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{x:Static res:AppResources.RevenueLabel}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="{x:Static fa:FontAwesomeIcons.ArrowUpRightFromSquare}" FontFamily="FAS" FontAttributes="Bold" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColorLight}}" Margin="-2" FontSize="Micro"/>
+                        </Grid>
+                        <Label Text="0" FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColorLight}}" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Revenue,StringFormat='{0:N2}', Mode=OneWay}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding WalletTag}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                 </StackLayout>
+                    <Frame.GestureRecognizers>
+                       <TapGestureRecognizer Command="{Binding CommercialReportCommand}"/>
+                   </Frame.GestureRecognizers>
+               </Frame>
+               <Frame Grid.Column="1" Grid.Row="1" Margin="2.5,2.5,0,2.5" Padding="10" >
+                  <StackLayout>
+                        <Grid  HorizontalOptions="FillAndExpand" >
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{x:Static fa:FontAwesomeIcons.ChartLine}" FontFamily="FAS" FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{StaticResource GreenButton}" FontSize="Default" >
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsProfit}" Value="False">
+                                            <Setter Property="TextColor" Value="Red" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                
+                                </Label>
+
+                                <Label Text="{x:Static res:AppResources.ProfitLabel}" FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{StaticResource GreenButton}" FontSize="Default" >
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsProfit}" Value="False">
+                                            <Setter Property="Text" Value="{x:Static res:AppResources.LossLabel}" />
+                                            <Setter Property="TextColor" Value="Red" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                
+                                </Label>
+
+                            </StackLayout>
+                            
+                            <Label Text="{x:Static fa:FontAwesomeIcons.ArrowUpRightFromSquare}" FontFamily="FAS" FontAttributes="Bold" HorizontalTextAlignment="End" TextColor="{StaticResource GreenButton}" Margin="-2" FontSize="Micro">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding IsProfit}" Value="False">
+                                        <Setter Property="TextColor" Value="Red" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </Grid>
+                        <Label Text="0" FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{StaticResource GreenButton}" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Profit,StringFormat='{0:N2}', Mode=OneWay}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding WalletTag}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                            <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding IsProfit}" Value="False">
+                                        <Setter Property="TextColor" Value="Red" />
+                                    </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                 </StackLayout>
+                   <Frame.GestureRecognizers>
+                       <TapGestureRecognizer Command="{Binding CommercialReportCommand}"/>
+                   </Frame.GestureRecognizers>
+               </Frame>
+               <Frame Grid.Row="2" Margin="0,2.5,2.5,2.5" Padding="10" >
+                  <StackLayout>
+                        <Grid  HorizontalOptions="FillAndExpand" >
+                            <Label FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{StaticResource Yellow100Accent}" FontSize="Default" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static fa:FontAwesomeIcons.BoxesStacked}" FontFamily="FAS" /> 
+                                        <Span Text=" " />
+                                        <Span Text="{x:Static res:AppResources.InStockLabel}"  /> 
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="{x:Static fa:FontAwesomeIcons.ArrowUpRightFromSquare}" FontFamily="FAS" FontAttributes="Bold" HorizontalTextAlignment="End" TextColor="{StaticResource Yellow100Accent}" Margin="-2" FontSize="Micro"/>
+                        </Grid>
+                        <Label Text="0" FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{StaticResource Yellow100Accent}" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding StockCount}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{x:Static res:AppResources.ShtLabel}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                 </StackLayout>
+                    <Frame.GestureRecognizers>
+                       <TapGestureRecognizer Command="{Binding StockReportCommand}"/>
+                   </Frame.GestureRecognizers>
+               </Frame>
+               <Frame Grid.Column="1" Grid.Row="2" Margin="2.5,2.5,0,2.5" Padding="10" >
+                  <StackLayout>
+                        <Grid  HorizontalOptions="FillAndExpand" >
+                            <Label  FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{StaticResource Blue100Accent}" FontSize="Default" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static fa:FontAwesomeIcons.ClipboardList}" FontFamily="FAS"/> 
+                                        <Span Text=" "/> 
+                                        <Span Text="{x:Static res:AppResources.PriceListLabel}"/> 
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="{x:Static fa:FontAwesomeIcons.ArrowUpRightFromSquare}" FontFamily="FAS" FontAttributes="Bold" HorizontalTextAlignment="End" TextColor="{StaticResource Blue100Accent}" Margin="-2" FontSize="Micro"/>
+                        </Grid>
+                        <!--<Label Text="0" FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="{StaticResource Blue100Accent}" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="0"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding WalletTag}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>-->
+                 </StackLayout>
+                   <Frame.GestureRecognizers>
+                       <TapGestureRecognizer Command="{Binding PriceReportCommand}"/>
+                   </Frame.GestureRecognizers>
+               </Frame>
+
+
+            </Grid>
+            <!-- Краткая аналитика -->
+
+             <!-- Графики -->
+            <ScrollView Orientation="Horizontal" Padding="0,10" Margin="0,-10" HorizontalScrollBarVisibility="Always">
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <!--<Frame Padding="10" Margin="10,0,5,0" >
+                        <microcharts:ChartView x:Name="chartView" Chart="{Binding Chart}" HeightRequest="150" Margin="0,0"   />
+                        <microcharts:ChartView  Chart="{Binding IncomeChart}" WidthRequest="{Binding ConteinerWidth}" HeightRequest="220" Margin="0,0"   />
+
+                    </Frame>-->
+                    <Frame Padding="10"  >
+                        <microcharts:ChartView  Chart="{Binding DonatChart}" WidthRequest="{Binding ConteinerWidth}"  Margin="0,0"   />
+
+                    </Frame>
+                    <Frame Padding="10" >
+                        <microcharts:ChartView  Chart="{Binding CoolChart}" WidthRequest="{Binding ConteinerWidth}" HeightRequest="220" Margin="0,0"   />
+
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+             <!-- Графики -->
+
+             <!-- Общий отчёт аналитики -->
+             <Frame Margin="0,2.5">
+                
+                    <Grid RowDefinitions="40,40,40,40,40,40,40,40,40,40" Grid.Row="1" ColumnDefinitions="*,.7*" Padding="20,20,20,10">
+                       
+
+                        <Grid  Grid.ColumnSpan="3" Padding="10,0,0,0" ColumnDefinitions="*,.9*" BackgroundColor="Transparent" >
+                        <Label Text="{x:Static res:AppResources.Sales}" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="Center"/>
+                            <Label Grid.Column="1" FontAttributes="Bold" FontSize="Medium"
+                                   HorizontalTextAlignment="End" VerticalOptions="Center" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding PriceSumm,StringFormat='{0:N2}', Mode=OneWay}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding WalletTag}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                        </Grid>
+                        <Grid Grid.Row="1"  Grid.ColumnSpan="3" Padding="10,0,0,0" ColumnDefinitions="*,.9*" BackgroundColor="Transparent" >
+                        <Label Text="{x:Static res:AppResources.Revenue}" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="Center"/>
+                            <Label Grid.Column="1" FontAttributes="Bold" FontSize="Medium"
+                                   HorizontalTextAlignment="End" VerticalOptions="Center" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Revenue,StringFormat='{0:N2}', Mode=OneWay}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding WalletTag}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                        </Grid>
+                        <Grid Grid.Row="2"  Grid.ColumnSpan="3" Padding="10,0,0,0" ColumnDefinitions="*,.9*" BackgroundColor="Transparent" >
+                        <Label Text="{x:Static res:AppResources.Profit}" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="Center">
+                                   <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsProfit}" Value="False">
+                                    <Setter Property="Text" Value="{x:Static res:AppResources.Loss}" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                            </Label>
+                            <Label Grid.Column="1" FontAttributes="Bold" FontSize="Medium"
+                                   HorizontalTextAlignment="End" VerticalOptions="Center" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Profit,StringFormat='{0:N2}', Mode=OneWay}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding WalletTag}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                        </Grid>
+                        <Grid Grid.Row="3"  Grid.ColumnSpan="3" Padding="10,0,0,0" ColumnDefinitions="*,.9*" BackgroundColor="Transparent" >
+                        <Label Text="{x:Static res:AppResources.Refund}" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="Center"/>
+                            <Label Grid.Column="1" FontAttributes="Bold" FontSize="Medium"
+                                   HorizontalTextAlignment="End" VerticalOptions="Center" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding ReturnSumm,StringFormat='{0:N2}', Mode=OneWay}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding WalletTag}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                        </Grid>
+
+                        <Grid Grid.Row="4"  Grid.ColumnSpan="3" Padding="10,0,0,0" ColumnDefinitions="*,.9*" BackgroundColor="Transparent" >
+                        <Label Text="{x:Static res:AppResources.CostPrice}" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="Center"/>
+                            <Label Grid.Column="1" FontAttributes="Bold" FontSize="Medium"
+                                   HorizontalTextAlignment="End" VerticalOptions="Center" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding CostSumm,StringFormat='{0:N2}', Mode=OneWay}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding WalletTag}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                        </Grid>
+                        
+                        <Grid Grid.Row="5"  Grid.ColumnSpan="3" Padding="10,0,0,0" ColumnDefinitions="*,.9*" BackgroundColor="Transparent" >
+                        <Label Text="{x:Static res:AppResources.ProfitabilityLabel}" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="Center"/>
+                            <Label Grid.Column="1" FontAttributes="Bold" FontSize="Medium"
+                                   HorizontalTextAlignment="End" VerticalOptions="Center" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Profitability}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="%"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                        </Grid>
+                        <Grid Grid.Row="6"  Grid.ColumnSpan="3" Padding="10,0,0,0" ColumnDefinitions="*,.9*" BackgroundColor="Transparent" >
+                        <Label Text="{x:Static res:AppResources.CheckCount}" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="Center"/>
+                            <Label Grid.Column="1" FontAttributes="Bold" FontSize="Medium"
+                                   HorizontalTextAlignment="End" VerticalOptions="Center" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding CheckCount}"/>
+                                        <Span Text=" "/>
+                                    <Span Text="{x:Static res:AppResources.ShtLabel}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                        </Grid>
+                        <Grid Grid.Row="7"  Grid.ColumnSpan="3" Padding="10,0,0,0" ColumnDefinitions="*,.9*" BackgroundColor="Transparent" >
+                        <Label Text="{x:Static res:AppResources.AverageCheck}" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="Center"/>
+                            <Label Grid.Column="1" FontAttributes="Bold" FontSize="Medium"
+                                   HorizontalTextAlignment="End" VerticalOptions="Center" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding MidlChek,StringFormat='{0:N2}', Mode=OneWay}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding WalletTag}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                        </Grid>
+                        <Grid Grid.Row="8"  Grid.ColumnSpan="3" Padding="10,0,0,0" ColumnDefinitions="*,.9*" BackgroundColor="Transparent" >
+                        <Label Text="{x:Static res:AppResources.AveragePriceOfItem}" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="Center"/>
+                            <Label Grid.Column="1" FontAttributes="Bold" FontSize="Medium"
+                                   HorizontalTextAlignment="End" VerticalOptions="Center" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding MidlPrice,StringFormat='{0:N2}', Mode=OneWay}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding WalletTag}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                        </Grid>
+                        <Grid Grid.Row="9"  Grid.ColumnSpan="3" Padding="10,0,0,0" ColumnDefinitions="*,.3*" BackgroundColor="Transparent" >
+                        <Label Text="{x:Static res:AppResources.AverageCountOfItems}" FontAttributes="Bold" FontSize="Medium"  VerticalOptions="Center"/>
+                            <Label Grid.Column="1" FontAttributes="Bold" FontSize="Medium"
+                                   HorizontalTextAlignment="End" VerticalOptions="Center" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding MidlCount,StringFormat='{0:N0}', Mode=OneWay}"/>
+                                        <Span Text=" "/>
+                                    <Span Text="{x:Static res:AppResources.ShtLabel}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                        </Grid>
+                        
+                        
+                    </Grid>
+               
+             </Frame>
+             <!-- Общий отчёт аналитики -->
+
+        </StackLayout>
+
+    </ScrollView>
+
+
+
+
+</ContentPage>
+

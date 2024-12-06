@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Views.TransactionsDetailPage"
+     xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:fa="clr-namespace:FontAwesome"
+    xmlns:models="clr-namespace:Vendor.Models"
+    xmlns:helpers="clr-namespace:Vendor.Helpers"
+    x:DataType="vm:TransactionsDetailViewModel"
+    Title="{Binding Title}"
+     xmlns:res="clr-namespace:VendorX.Resources"
+    xmlns:vm="clr-namespace:Vendor.ViewModels">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <toolkit:ListIsNullOrEmptyConverter x:Key="IsListNullOrEmptyConverter"/>
+            <toolkit:IsNullOrEmptyConverter x:Key="IsStringNullOrWhiteSpaceConverter"/>
+            <toolkit:IsNotNullOrEmptyConverter x:Key="IsStringNotNullOrWhiteSpaceConverter"/>
+            <toolkit:IntToBoolConverter x:Key="IntToBoolConverter"/>
+            <helpers:DoubleToBoolConverter x:Key="DoubleToBoolConverter"/>
+            <helpers:InvertedDoubleToBoolConverted x:Key="InvertedDoubleToBoolConverted"/>
+            <toolkit:DoubleToIntConverter x:Key="DoubleToIntConverter"/>
+            <helpers:ProfileImageSourceConverter x:Key="ProfileImageSourceConverter"/>
+            <helpers:ImageSourceConverter x:Key="ImageSourceConverter"/>
+            <helpers:UsedPriceNotEqualPriceConverter x:Key="UsedPriceNotEqualPriceConverter"/>
+            <helpers:TransactionStatusColorConverter x:Key="TransactionStatusColorConverter"/>
+            <DataTemplate x:Key="TransactiontemTamplate">
+                <Grid ColumnDefinitions="60,*,*" x:DataType="models:TransactionItem" Padding="2" ColumnSpacing="1"
+                      BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBarBackgroundColorDark}, Light={StaticResource HeaderBarBackgroundColorLight}}"
+                          toolkit:CornerRadiusEffect.CornerRadius="18">
+
+                    <Image HeightRequest="75" Aspect="AspectFill" BackgroundColor="{StaticResource TransperentDark}"
+                           Source="{Binding PhotoUrl, Converter={StaticResource ImageSourceConverter}, Mode=OneTime}">
+                        <Image.Clip>
+                            <RoundRectangleGeometry CornerRadius="18" Rect="0,0,60,75"   />
+                        </Image.Clip>
+                    </Image>
+
+                    <StackLayout  Grid.Column="1" Padding="10,0"   Spacing="0" >
+                        <Label IsVisible="{Binding Discount , Converter={StaticResource IntToBoolConverter},Mode=OneWay}" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static res:AppResources.DiscountLabel}" FontSize="Micro"/>
+                                    <Span Text="{Binding Discount, StringFormat=' {0}% ',Mode=OneWay}"  FontSize="Micro"  FontAttributes="Bold" TextColor="White" BackgroundColor="Red" />
+                                </FormattedString>
+                            </Label.FormattedText>
+
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsDetailViewModel}}, Path=Transaction.StateCode}" Value="Reserve">
+                                    <Setter Property="IsVisible" Value="False"/>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <Label IsVisible="{Binding Markup , Converter={StaticResource IntToBoolConverter},Mode=OneWay}" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="c" FontSize="Micro"/>
+                                    <Span Text="{Binding Markup, StringFormat=' {0}% ',Mode=OneWay}"  FontSize="Micro"  FontAttributes="Bold"
+                                          TextColor="White" BackgroundColor="{StaticResource GreenButton}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsDetailViewModel}}, Path=Transaction.StateCode}" Value="Reserve">
+                                    <Setter Property="IsVisible" Value="False"/>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <Label   Text="{Binding ItemName,Mode=OneTime}" LineBreakMode="TailTruncation"  FontSize="Default" />
+                        <Label   Opacity="0.3"
+                               IsVisible="{Binding IsItemPriceNotEqualsPrice,Mode=OneWay}"
+                               FontSize="Default" FontAttributes="Bold">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding ItemPrice,Mode=OneWay, StringFormat='{0:N2}'}" TextDecorations="Strikethrough"/>
+                                    <Span Text=" " />
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsDetailViewModel}}, Path=WalletTag,Mode=OneWay}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label FontSize="Default" FontAttributes="Bold"  IsVisible="{ Binding Price,Converter={StaticResource DoubleToBoolConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Price,Mode=OneWay}"   />
+                                    <Span Text="" />
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsDetailViewModel}}, Path=WalletTag,Mode=OneWay}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label FontSize="Default" FontAttributes="Bold"  IsVisible="{ Binding Price,Converter={StaticResource InvertedDoubleToBoolConverted}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Cost,Mode=OneWay}"   />
+                                    <Span Text="" />
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsDetailViewModel}}, Path=WalletTag,Mode=OneWay}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+
+
+
+                    <Frame Grid.Column="2" VerticalOptions="Start" HorizontalOptions="Start" BackgroundColor="{StaticResource RedButton}"
+                            IsVisible="{Binding ReturnedCount, Converter={StaticResource IntToBoolConverter}}" CornerRadius="8">
+                        <StackLayout Orientation="Horizontal"  Spacing="5"  Padding="5,2">
+                            <Label Text="{x:Static res:AppResources.ReturnLabel}" VerticalOptions="Center" TextColor="White" FontAttributes="Bold"/>
+                            <Label Text="{Binding ReturnedCount,Mode=OneWay, StringFormat='{0:N2}'}" TextColor="White"
+                             HorizontalOptions="Center" VerticalOptions="Center"
+                              FontAttributes="Bold"  >
+
+                            </Label>
+
+                        </StackLayout>
+                        <Frame.Triggers>
+                            <DataTrigger TargetType="Frame" Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsDetailViewModel}}, Path=Transaction.StateCode}" Value="Reserve">
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </Frame.Triggers>
+                    </Frame>
+                    
+                    <Frame IsVisible="false" Grid.Column="2" VerticalOptions="Start" HorizontalOptions="Start" BackgroundColor="{StaticResource RedButton}"
+                             CornerRadius="8">
+                        <StackLayout Orientation="Horizontal"  Spacing="5"  Padding="5,2">
+                            <Label Text="В Резерве" VerticalOptions="Center" TextColor="White" FontAttributes="Bold"/>
+                           
+
+                        </StackLayout>
+                        <Frame.Triggers>
+                            <DataTrigger TargetType="Frame" Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsDetailViewModel}}, Path=Transaction.StateCode}" Value="Reserve">
+                                <Setter Property="IsVisible" Value="True"/>
+                            </DataTrigger>
+                        </Frame.Triggers>
+                    </Frame>
+
+                    <StackLayout Grid.Column="2" Spacing="5"  HorizontalOptions="End" VerticalOptions="Center" Margin="10,0">
+                        <Label Text="{Binding Count,Mode=OneWay, StringFormat='{0:N2}'}" 
+                             HorizontalOptions="Center" VerticalOptions="Center"
+                             FontSize="Subtitle" FontAttributes="Bold"  >
+
+                        </Label>
+                        <Label  VerticalOptions="End" HorizontalOptions="End" VerticalTextAlignment="End" 
+                                IsVisible="{ Binding FinalPrice,Converter={StaticResource DoubleToBoolConverter}}"
+                             FontSize="Default">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding FinalPrice,Mode=OneWay, StringFormat='{0:N2}'}"  FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsDetailViewModel}}, Path=WalletTag,Mode=OneTime}"  FontAttributes="Bold"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label  VerticalOptions="End" HorizontalOptions="End" VerticalTextAlignment="End" 
+                                IsVisible="{ Binding FinalPrice,Converter={StaticResource InvertedDoubleToBoolConverted}}"
+                             FontSize="Default">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding FinalCost,Mode=OneWay, StringFormat='{0:N2}'}"  FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsDetailViewModel}}, Path=WalletTag,Mode=OneTime}"  FontAttributes="Bold"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="SaleTransactionTamplate">
+                <Frame  x:DataType="models:Transaction" HeightRequest="80" Margin="5,1" BackgroundColor="{Binding StateCode,Converter={StaticResource TransactionStatusColorConverter}}">
+                    <Grid ColumnDefinitions="30,*,*,30" RowDefinitions="*,*,*,*" Padding="0">
+                        <Frame Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="4"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource HeaderBarBackgroundColorLight}, Dark={StaticResource HeaderBarBackgroundColorDark}}"/>
+
+                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding Number,StringFormat='№: {0}'}" FontSize="Medium" FontAttributes="Bold" Margin="5,0"  VerticalOptions="Center"/>
+                        <Label Text="{x:Static res:AppResources.AuthorLabel} " FontSize="Micro"  Grid.Column="1" Grid.Row="1" Margin="5,0" VerticalOptions="End" />
+                        <Label Text="{Binding AutorName}" FontSize="Small" FontAttributes="Bold" Grid.Column="1" Grid.Row="2" Margin="5,0" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                        <Label Grid.Column="1" Grid.Row="3" Text="{Binding CreateDate, StringFormat='{0: d.mm.yyyyy HH:mm}'}" Margin="5,0"  FontSize="Micro"  VerticalOptions="Center"/>
+
+                        <Label Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Margin="5" VerticalOptions="End" HorizontalOptions="End" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static res:AppResources.SummLabel} " FontSize="Micro" />
+                                    <Span Text="{Binding Price, StringFormat='{0:N2}'}" FontSize="Medium" FontAttributes="Bold" />
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=WalletTag}" FontSize="Small" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" HorizontalOptions="Start" LineBreakMode="TailTruncation"
+                                IsVisible="{Binding ContactName, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.User}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactName}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="1"  VerticalOptions="Center" HorizontalOptions="Start"
+                               IsVisible="{Binding ContactPhone, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.Phone}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactPhone}" FontSize="Micro" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=GoToDetailsCommand}"
+                                                CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </DataTemplate>
+            <DataTemplate x:Key="AdmissionTransactionTamplate">
+                <Frame  x:DataType="models:Transaction" HeightRequest="80"  Margin="5,1" BackgroundColor="{Binding StateCode,Converter={StaticResource TransactionStatusColorConverter}}">
+                    <Grid ColumnDefinitions="30,*,*,30" RowDefinitions="*,*,*,*" Padding="0">
+                        <Frame Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource HeaderBarBackgroundColorLight}, Dark={StaticResource HeaderBarBackgroundColorDark}}"/>
+
+                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding Number,StringFormat='№: {0}'}" FontSize="Medium" FontAttributes="Bold" Margin="5,0" VerticalOptions="Center"/>
+                        <Label Text="{x:Static res:AppResources.AuthorLabel}" FontSize="Micro" Grid.Column="1" Grid.Row="1" Margin="5,0" VerticalOptions="End" />
+                        <Label Text="{Binding AutorName}" FontSize="Small" FontAttributes="Bold" Grid.Column="1" Grid.Row="2" Margin="5,0" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                        <Label Grid.Column="1" Grid.Row="3" Text="{Binding CreateDate, StringFormat='{0: d.mm.yyyyy HH:mm}'}" Margin="5,0" FontSize="Micro" VerticalOptions="Center"/>
+
+                        <Label Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Margin="5" VerticalOptions="End" HorizontalOptions="End" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static res:AppResources.SummLabel} " FontSize="Micro" />
+                                    <Span Text="{Binding Price, StringFormat='{0:N2}'}" FontSize="Medium" FontAttributes="Bold" />
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=WalletTag}" FontSize="Small" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" HorizontalOptions="Start" LineBreakMode="TailTruncation"
+                                IsVisible="{Binding ContactName, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.User}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactName}" FontSize="Micro" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="1"  VerticalOptions="Center" HorizontalOptions="Start"
+                               IsVisible="{Binding ContactPhone, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.Phone}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactPhone}" FontSize="Micro" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=GoToDetailsCommand}"
+                                                CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </DataTemplate>
+            <DataTemplate x:Key="ReturnTransactionTamplate">
+                <Frame  x:DataType="models:Transaction" HeightRequest="80" Margin="5,1" BackgroundColor="{Binding StateCode,Converter={StaticResource TransactionStatusColorConverter}}">
+                    <Grid ColumnDefinitions="15,*,*,15" RowDefinitions="*,*,*,*" Padding="0">
+                        <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource HeaderBarBackgroundColorLight}, Dark={StaticResource HeaderBarBackgroundColorDark}}"/>
+                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding Number,StringFormat='№: {0}'}" FontSize="Subtitle" FontAttributes="Bold" Margin="5,0" VerticalOptions="Center"/>
+                        <Label Text="{x:Static res:AppResources.AuthorLabel}" FontSize="Micro" Grid.Column="1" Grid.Row="1" Margin="5,0" VerticalOptions="End" />
+                        <Label Text="{Binding AutorName}" FontSize="Small" FontAttributes="Bold" Grid.Column="1" Grid.Row="2" Margin="5,0" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                        <Label Grid.Column="1" Grid.Row="3" Text="{Binding CreateDate, StringFormat='{0: d.mm.yyyyy HH:mm}'}" Margin="5,0" FontSize="Micro"  VerticalOptions="Center"/>
+
+                        <Label Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Margin="5" VerticalOptions="End" HorizontalOptions="End" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static res:AppResources.SummLabel} " FontSize="Micro" />
+                                    <Span Text="{Binding Price, StringFormat='{0:N2}'}" FontSize="Medium" FontAttributes="Bold" />
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=WalletTag}" FontSize="Small" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" HorizontalOptions="Start" LineBreakMode="TailTruncation"
+                                IsVisible="{Binding ContactName, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.User}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactName}" FontSize="Micro" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="1"  VerticalOptions="Center" HorizontalOptions="Start"
+                               IsVisible="{Binding ContactPhone, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.Phone}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactPhone}" FontSize="Micro" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=GoToDetailsCommand}"
+                                                CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </DataTemplate>
+            <helpers:TransactionDataTemplateSelector x:Key="TransactionDataTemplateSelector"
+                                                     SaleTemplate="{StaticResource SaleTransactionTamplate}"
+                                                     AdmissionTemplate="{StaticResource AdmissionTransactionTamplate}"
+                                                     ReturnTemplate="{StaticResource ReturnTransactionTamplate}"
+                                                     EditTemplate="{StaticResource SaleTransactionTamplate}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*,auto" >
+        <CollectionView x:Name="ItemsCollection" ItemsSource="{Binding Transaction.TransactionItems}" Margin="5,10" ItemTemplate="{StaticResource Key=TransactiontemTamplate}" >
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"  VerticalItemSpacing="5"  />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+
+        <StackLayout Padding="5,10" Spacing="5" Grid.Row="1"  >
+            <Frame Padding="8">
+                <Grid RowDefinitions="auto,auto,auto,auto,auto,auto" ColumnDefinitions=".7*,*" Padding="5,0">
+                    <Label Text="{x:Static res:AppResources.TotalLabel}" FontAttributes="Bold" FontSize="Subtitle" />
+                    <Label Grid.Column="1"  HorizontalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Total,StringFormat='{0:N2}', Mode=OneWay} " FontAttributes="Bold" FontSize="Subtitle"/>
+                                <Span Text=" " />
+                                <Span Text="{Binding  WalletTag, Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Grid.Row="1" Text="{Binding TotalDicsountOrMarkup,Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle" TextColor="{StaticResource Primary}"
+                               IsVisible="{Binding Transaction.Discount, Converter={StaticResource IntToBoolConverter}, Mode=OneWay}">
+
+                    </Label>
+
+                    <Label Grid.Row="1" Text="{Binding TotalDicsountOrMarkup,Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle" TextColor="{StaticResource Primary}"
+                               IsVisible="{Binding Transaction.Markup, Converter={StaticResource IntToBoolConverter}, Mode=OneWay}"/>
+
+
+
+
+                    <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End" 
+                               IsVisible="{Binding Transaction.Discount , Mode=OneWay}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Transaction.Discount,StringFormat='{0:N2}', Mode=OneWay} " FontAttributes="Bold" FontSize="Subtitle" TextColor="{StaticResource Primary}" />
+                                <Span Text=" " />
+                                <Span Text="{Binding  WalletTag, Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeTransactionTotalDiscountCommand, Mode=OneTime}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+                    <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End" 
+                               IsVisible="{Binding Transaction.Markup , Mode=OneWay}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Transaction.Markup,StringFormat='{0:N2}', Mode=OneWay} " FontAttributes="Bold" FontSize="Subtitle" TextColor="{StaticResource Primary}" />
+                                <Span Text=" " />
+                                <Span Text="{Binding  WalletTag, Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+
+
+
+
+                    <Label Grid.Row="3" Text="{x:Static res:AppResources.InPayLabel}" FontAttributes="Bold" FontSize="Subtitle"  />
+                    <Label Grid.Row="3" Grid.Column="1" FontAttributes="Bold"  HorizontalOptions="End" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding TotalPrice,StringFormat='{0:N2}', Mode=OneWay} " FontAttributes="Bold" FontSize="Subtitle" />
+                                <Span Text=" " />
+                                <Span Text="{Binding  WalletTag, Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Grid.Row="4" Text="{x:Static res:AppResources.ContributedLabel}" FontAttributes="Bold" FontSize="Subtitle"  />
+                    <Label Grid.Row="4" Grid.Column="1"   HorizontalOptions="End" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding DepSumm,StringFormat='{0:N2}', Mode=OneWay} " FontAttributes="Bold" FontSize="Subtitle" />
+                                <Span Text=" " />
+                                <Span Text="{Binding  WalletTag, Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Grid.Row="5" Text="{Binding SummDiffirenceText,Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle" TextColor="{Binding SummDiffirenceColor}"
+                               IsVisible="{Binding SummDiffirence , Converter={StaticResource DoubleToIntConverter}, Mode=OneWay}"/>
+                    <Label Grid.Row="5" Grid.Column="1"  HorizontalOptions="End"
+                               IsVisible="{Binding SummDiffirence, Converter={StaticResource DoubleToIntConverter}, Mode=OneWay}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding SummDiffirence,StringFormat='{0:N2}', Mode=OneWay} " FontAttributes="Bold" FontSize="Subtitle" TextColor="{Binding SummDiffirenceColor}"/>
+                                <Span Text=" " />
+                                <Span Text="{Binding  WalletTag, Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label Grid.Row="2" Text="{x:Static res:AppResources.ReturnLabel}" FontAttributes="Bold" FontSize="Subtitle" TextColor="{StaticResource RedButton}"
+                               IsVisible="{Binding Returnprice , Converter={StaticResource DoubleToIntConverter}, Mode=OneWay}"/>
+                    <Label Grid.Row="2" Grid.Column="1"  HorizontalOptions="End"
+                            IsVisible="{Binding Returnprice, Converter={StaticResource DoubleToIntConverter}, Mode=OneWay}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Returnprice,StringFormat='{0:N2}', Mode=OneWay} " FontAttributes="Bold" FontSize="Subtitle" TextColor="{StaticResource RedButton}"/>
+                                <Span Text=" " />
+                                <Span Text="{Binding  WalletTag, Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                </Grid>
+                <Frame.Triggers>
+                    <DataTrigger TargetType="Frame" Binding="{Binding Transaction.StateCode}" Value="Reserve">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Frame.Triggers>
+            </Frame>
+
+
+            <Frame Padding="8" IsVisible="false">
+                <Grid RowDefinitions="auto,auto,auto,auto,auto,auto" ColumnDefinitions=".7*,*" Padding="5,0">
+                    <Label Text="{x:Static res:AppResources.TotalLabel}" FontAttributes="Bold" FontSize="Subtitle" />
+                    <Label Grid.Column="1"  HorizontalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Total,StringFormat='{0:N2}', Mode=OneWay} " FontAttributes="Bold" FontSize="Subtitle"/>
+                                <Span Text=" " />
+                                <Span Text="{Binding  WalletTag, Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                </Grid>
+
+                <Frame.Triggers>
+                    <DataTrigger TargetType="Frame" Binding="{Binding Transaction.StateCode}" Value="Reserve">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </Frame.Triggers>
+            </Frame>
+
+
+            <Button Text="{x:Static res:AppResources.CheckLabel}" TextTransform="Uppercase" FontAttributes="Bold" FontSize="Medium" BackgroundColor="{StaticResource GreenButton}" HeightRequest="50" Command="{Binding CheckTransactionCommand}" />
+            <Frame >
+                <toolkit:Expander x:Name="Paementslist"  >
+                    <toolkit:Expander.Header>
+                        <Frame BackgroundColor="{AppThemeBinding Light={StaticResource ButtonBackgroundColorLight}, Dark={StaticResource ButtonBackgroundColorDark}}" HeightRequest="50">
+                            <Grid MinimumHeightRequest="50">
+                                <Label Text="{x:Static res:AppResources.PaymentsLabel}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" TextTransform="Uppercase" FontAttributes="Bold" FontSize="Medium"/>
+
+                                <Label Text="{x:Static fa:FontAwesomeIcons.AngleDown}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="End" TextColor="White" Margin="20,0">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference Paementslist}, Path=IsExpanded }" Value="true">
+                                            <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.AngleUp}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </toolkit:Expander.Header>
+
+                    <StackLayout Padding="5" Spacing="10"  >
+                        <ScrollView  Orientation="Vertical" HeightRequest="250" VerticalOptions="Center">
+                            <StackLayout BindableLayout.ItemsSource="{Binding Transaction.Payments}" Spacing="5">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame MinimumHeightRequest="50" x:DataType="models:Payment"
+                                                    >
+                                            <Grid>
+                                                <Label Text="{Binding Date, StringFormat='{0:d.MMM.yyyy HH:mm}'}" Margin="10,3" VerticalOptions="Center" HorizontalOptions="Start" />
+                                                <Label  Margin="10,3" VerticalOptions="Center" HorizontalOptions="End" >
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Summ, StringFormat='{0:N2}'}" FontAttributes="Bold" FontSize="Subtitle"/>
+                                                            <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsDetailViewModel}}, Path=WalletTag}" FontAttributes="Bold" FontSize="Subtitle"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </ScrollView>
+                        <Button Text="{x:Static res:AppResources.AddLabel}" BackgroundColor="{StaticResource GreenButton}" HorizontalOptions="Center" Padding="40,0"
+                                        TextTransform="Uppercase" FontAttributes="Bold" FontSize="Medium" IsVisible="{Binding IsAddPaymentButtonVisible}"
+                                        Command="{Binding AddPaymentsCommand}"/>
+                    </StackLayout>
+
+                </toolkit:Expander>
+
+                <Frame.Triggers>
+                    <DataTrigger TargetType="Frame" Binding="{Binding Transaction.StateCode}" Value="Reserve">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Frame.Triggers>
+            </Frame>
+            <Frame IsVisible="{Binding IsReturnTransactionListVisible}" >
+                <toolkit:Expander x:Name="ReturnTransactionBox"  >
+                    <toolkit:Expander.Header>
+                        <Frame BackgroundColor="{AppThemeBinding Light={StaticResource ButtonBackgroundColorLight}, Dark={StaticResource ButtonBackgroundColorDark}}">
+                            <Grid HeightRequest="50">
+                                <Label Text="{x:Static res:AppResources.RelatedTransactionLabel}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" TextTransform="Uppercase" FontAttributes="Bold" FontSize="Medium"/>
+
+                                <Label Text="{x:Static fa:FontAwesomeIcons.AngleDown}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="End" TextColor="White" Margin="20,0">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference ReturnTransactionBox}, Path=IsExpanded }" Value="true">
+                                            <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.AngleUp}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </toolkit:Expander.Header>
+                    <Frame >
+                        <ScrollView  Orientation="Vertical" HeightRequest="250" VerticalOptions="Center">
+                            <StackLayout BindableLayout.ItemsSource="{Binding ReturnedTransactions}" Spacing="5"
+                                                     BindableLayout.ItemTemplateSelector="{StaticResource TransactionDataTemplateSelector}"  >
+
+                            </StackLayout>
+                        </ScrollView>
+                    </Frame>
+                </toolkit:Expander>
+
+                <Frame.Triggers>
+                    <DataTrigger TargetType="Frame" Binding="{Binding Transaction.StateCode}" Value="Reserve">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Frame.Triggers>
+            </Frame>
+            <Button Text="{x:Static res:AppResources.ReturnLabel}" 
+                    BackgroundColor="{StaticResource RedButton}" TextTransform="Uppercase" FontAttributes="Bold" FontSize="Medium" MinimumHeightRequest="50"
+                         IsVisible="{Binding IsReturnButtonVisible}" Command="{Binding MakeReturnCommand}">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding Transaction.StateCode}" Value="Reserve">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+        </StackLayout>
+
+
+    </Grid>
+
+</ContentPage>
+

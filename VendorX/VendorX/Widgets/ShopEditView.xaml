@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Widgets.ShopEditView"
+    xmlns:rg="http://rotorgames.com"
+    xmlns:vm="clr-namespace:Vendor.ViewModels"
+    xmlns:helpers="clr-namespace:Vendor.Helpers"
+    xmlns:fa="clr-namespace:FontAwesome"
+
+     xmlns:res="clr-namespace:VendorX.Resources">
+    <rg:PopupPage.BindingContext>
+        <vm:ShopEditViewModel/>
+    </rg:PopupPage.BindingContext>
+
+    <rg:PopupPage.Resources>
+        <ResourceDictionary>
+            <helpers:ShopImageSourceConverter x:Key="ShopImageSourceConverter"/>
+        </ResourceDictionary>
+    </rg:PopupPage.Resources>
+
+    <rg:PopupPage.Animation>
+        <rg:MoveAnimation PositionIn="Center" PositionOut="Center" />
+    </rg:PopupPage.Animation>
+
+    <Frame Margin="20" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="100" MinimumWidthRequest="200" CornerRadius="22"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},Light={StaticResource BackgroundColorLight}}">
+       <ScrollView>
+            <StackLayout   Padding="10"  VerticalOptions="Center" >
+                <Grid ColumnDefinitions="150" RowDefinitions="150,auto"  HorizontalOptions="Center" Margin="0,30,0,0">
+                    <Frame  HeightRequest="150" WidthRequest="150" VerticalOptions="End" CornerRadius="75"  >
+
+                    </Frame>
+                    <Image  Aspect="AspectFill" Source="{Binding Photo, Converter={StaticResource ShopImageSourceConverter}}"
+                            HeightRequest="140" WidthRequest="140" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image.Clip>
+                            <EllipseGeometry RadiusX="70" RadiusY="70" Center="70,70"/>
+                        </Image.Clip>
+                    </Image>
+                    <Frame  BackgroundColor="#648bbb" CornerRadius="20"
+                                VerticalOptions="End" HorizontalOptions="End" TranslationY="0">
+                        <Label Margin="10"  Text="{x:Static fa:FontAwesomeIcons.Pen}" TextColor="White" FontFamily="FAS"   FontSize="Subtitle"
+                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </Frame>
+                    <!--<Label Grid.Row="1" Text="{Binding User.Profile.Email}" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="End" />-->
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TakePhotoCommand}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <Frame Margin="0,10"  Padding="5" CornerRadius="22">
+                    <StackLayout>
+                        <Entry Text="{Binding Name}" Margin="10,0" HeightRequest="50" FontSize="Default" HorizontalTextAlignment="Center" Placeholder="{x:Static res:AppResources.NameLabel}"/>
+                        <BoxView HeightRequest="1" Margin="10,0" Opacity=".3"/>
+                         <!-- Контроль сотатков -->
+                        <Grid   Padding="10,5" HeightRequest="50" ColumnDefinitions="auto,*" RowSpacing="0"  >
+                            <Frame  Grid.Column="0" Padding="10,0,0,0" BackgroundColor="Transparent">
+
+                                <Label Text="{x:Static res:AppResources.ControlLeftoversStockLabel}" FontSize="Medium" FontAttributes="None" VerticalOptions="Center"/>
+
+
+                            </Frame>
+                            <Label Grid.Column="1" Text="{x:Static fa:FontAwesomeIcons.Circle}" FontFamily="FAR"
+                                       HorizontalOptions="Center" VerticalOptions="Center" FontSize="Title" TextColor="{StaticResource Primary}">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding IsStrict}" Value="true">
+                                        <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.CircleCheck}" />
+                                        <Setter Property="TextColor" Value="{StaticResource GreenButton}"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding StockControlCommand}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Margin="10,0" Opacity=".3"/>
+
+                        <!-- Валюта -->
+                        <Grid   Padding="10,0" HeightRequest="50" ColumnDefinitions="auto,*" RowSpacing="0"  >
+                            <Frame  Grid.Column="0" Padding="10,0,0,0" BackgroundColor="Transparent">
+                                <Label Text="{x:Static res:AppResources.CurrencyStoreLabel}" FontSize="Medium" FontAttributes="None" VerticalOptions="Center"/>
+                            </Frame>
+                            <Picker x:Name="WalletPicker" ItemsSource="{Binding Currencys}" Grid.Column="1" FontSize="Default" FontAttributes="None" Margin="30,0" HorizontalOptions="End" SelectedItem="{Binding SelectedCurrency}"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                        <!-- Валюта -->
+                    </StackLayout>
+                </Frame>
+
+                <!--<Label  Text="Название" FontSize="Micro" FontAttributes="Bold" Margin="10,0"/>
+                <Frame >
+                    <Entry Text="{Binding Name}" Margin="10,0"/>
+                </Frame>
+
+                <Label  Text="Управление складом" FontSize="Micro" FontAttributes="Bold" Margin="10,10,0,0"/>
+                <Frame >
+                    <Grid ColumnDefinitions="*,.2*" HeightRequest="50" Margin="10,0">
+                        <Label Text="Контроль остатков" VerticalOptions="Center"/>
+                        <Switch Grid.Column="1" IsToggled="{Binding IsStrict}" VerticalOptions="Center"/>
+                    </Grid>
+                </Frame>
+
+                <Label  Text="Валюта магазина" FontSize="Micro" FontAttributes="Bold" Margin="10,10,0,0"/>
+                <Frame MinimumHeightRequest="40">
+                    <Picker ItemsSource="{Binding Currencys}" Margin="10,0"  SelectedItem="{Binding SelectedCurrency}"/>
+                </Frame>-->
+
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="5" Margin="30" HorizontalOptions="Center">
+                    <Button Text="{x:Static res:AppResources.CancelLabel}" Command="{Binding CloseTappedCommand}" />
+                    <Button Text="{x:Static res:AppResources.SaveLabel}" Command="{Binding SaveChangeCommand}" Grid.Column="1" BackgroundColor="{StaticResource GreenButton}" />
+
+                </Grid>
+
+            </StackLayout>
+
+       </ScrollView>
+    </Frame>
+</rg:PopupPage>
+

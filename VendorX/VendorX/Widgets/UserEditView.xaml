@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Widgets.UserEditView"
+    xmlns:rg="http://rotorgames.com"
+    xmlns:vm="clr-namespace:Vendor.ViewModels"
+    x:DataType="vm:UserEditViewModel"
+    xmlns:mcu="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:fa="clr-namespace:FontAwesome"
+
+     xmlns:res="clr-namespace:VendorX.Resources"
+
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+
+    xmlns:helpers="clr-namespace:Vendor.Helpers">
+
+    <rg:PopupPage.BindingContext>
+        <vm:UserEditViewModel/>
+    </rg:PopupPage.BindingContext>
+
+    <rg:PopupPage.Animation>
+        <rg:MoveAnimation PositionIn="Center" PositionOut="Center" />
+    </rg:PopupPage.Animation>
+
+    <rg:PopupPage.Resources>
+        <ResourceDictionary>
+            <helpers:ShopImageSourceConverter x:Key="ShopImageSourceConverter"/>
+            <xct:IsNullOrEmptyConverter x:Key="IsNullOrEmptyConverter"/>
+            <helpers:ProfileImageSourceConverter x:Key="ProfileImageSourceConverter"/>
+            <helpers:ImageSourceConverter x:Key="ImageSourceConverter"/>
+            <mcu:IsNotNullOrEmptyConverter x:Key="IsStringNotNullOrWhiteSpaceConverter"/>
+
+        </ResourceDictionary>
+    </rg:PopupPage.Resources>
+
+    <Grid >
+        <Frame Margin="20,0" MinimumHeightRequest="100" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" MinimumWidthRequest="200"  CornerRadius="22"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},Light={StaticResource BackgroundColorLight}}">
+            <ScrollView >
+                <StackLayout   Padding="10"  >
+
+                     <!-- фото профиля -->
+                                <Grid ColumnDefinitions="150" RowDefinitions="150,auto"  HorizontalOptions="Center" Margin="0,30,0,0" >
+                                    <Frame  HeightRequest="150" WidthRequest="150" VerticalOptions="End"  CornerRadius="75"   >
+
+                                    </Frame>
+                                    <Image  Aspect="AspectFill" Source="{Binding Photo,Converter={StaticResource ImageSourceConverter} }"  
+                                            HeightRequest="140" WidthRequest="140" VerticalOptions="Center" HorizontalOptions="Center">
+                                        <Image.Clip>
+                                            <EllipseGeometry RadiusX="70" RadiusY="70" Center="70,70"/>
+                                        </Image.Clip>
+                                    </Image>
+
+                                    <Label Text="{x:Static fa:FontAwesomeIcons.User}" FontFamily="FAS" FontSize="60" Grid.RowSpan="2" VerticalOptions="Center" HorizontalOptions="Center"
+                                        IsVisible="{Binding Photo, Converter={xct:IsNullOrEmptyConverter}}" TextColor="{StaticResource Primary}"/>
+                    
+                                    <Frame CornerRadius="20" HeightRequest="40" WidthRequest="40" Margin="5" BackgroundColor="{StaticResource Primary}"
+                                                VerticalOptions="End" HorizontalOptions="End" TranslationY="0">
+                                        <Label Margin="10"  Text="{x:Static fa:FontAwesomeIcons.Pen}" TextColor="White" FontFamily="FAS"   FontSize="Subtitle"
+                                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                    </Frame>
+
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding TakePhotoCommand}" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+
+                    
+
+                    <Frame Margin="0,10"  Padding="5" CornerRadius="20">
+                            <StackLayout>
+                            <Entry Text="{Binding Fname}" Margin="10,0" FontSize="Default" HorizontalTextAlignment="Center" Placeholder="{x:Static res:AppResources.FirstNameLabel}"/>
+                                <BoxView HeightRequest="1" Margin="10,0" Opacity=".3"/>
+                            <Entry Text="{Binding Lname}" Margin="10,0" FontSize="Default" HorizontalTextAlignment="Center" Placeholder="{x:Static res:AppResources.LastNameLabel}" />
+                            </StackLayout>
+                    </Frame>
+
+                    
+
+                    <Grid ColumnDefinitions="120,120" ColumnSpacing="5" Margin="30" HorizontalOptions="Center">
+                        <Button Text="{x:Static res:AppResources.CancelLabel}"  Command="{Binding CloseTappedCommand}" FontAttributes="Bold" />
+                        <Button Text="{x:Static res:AppResources.SaveLabel}"  Command="{Binding SaveChangeCommand}" Grid.Column="1"
+                                BackgroundColor="{StaticResource GreenButton}"  FontAttributes="Bold" />
+
+                    </Grid>
+
+                </StackLayout>
+
+            </ScrollView>
+
+        </Frame>
+
+
+    </Grid>
+
+</rg:PopupPage>
+

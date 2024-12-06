@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VendorX.Widgets.ChoiceDateView"
+             xmlns:vm="clr-namespace:Vendor.ViewModels"
+             xmlns:fa="clr-namespace:FontAwesome"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:helpers="clr-namespace:Vendor.Helpers"
+             xmlns:local="clr-namespace:Vendor.Models"
+             x:DataType="vm:ChoiceDateViewModel"
+             xmlns:models="clr-namespace:Vendor.Models"
+             xmlns:rg="http://rotorgames.com"
+               xmlns:res="clr-namespace:VendorX.Resources"
+             >
+
+
+    <rg:PopupPage.BindingContext>
+        <vm:ChoiceDateViewModel/>
+    </rg:PopupPage.BindingContext>
+
+    <rg:PopupPage.Animation>
+        <rg:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+             ScaleIn="1"
+             ScaleOut="1.2"
+            DurationIn="400"
+            DurationOut="100"
+            EasingIn="SinOut"
+            EasingOut="SinIn" 
+            HasBackgroundAnimation="True" />
+    </rg:PopupPage.Animation>
+
+    <rg:PopupPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertBool" />
+        </ResourceDictionary>
+    </rg:PopupPage.Resources>
+
+
+
+    <Frame Margin="50" VerticalOptions="Center" HorizontalOptions="Center" CornerRadius="22"
+            MinimumHeightRequest="100" MinimumWidthRequest="200" 
+            >
+        <StackLayout   Padding="20"  VerticalOptions="Center" Spacing="5" >
+            <Label Text="{x:Static res:AppResources.EnterPeriodLabel}" Margin="0,0,0,15" FontSize="Default" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
+                <Frame Grid.Column="0" BorderColor="Transparent"
+                       BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},Light={StaticResource BackgroundColorLight}}">
+                    <DatePicker Date="{Binding StartDate}" MaximumDate="{Binding EndDate}" FontAttributes="Bold"  />
+                </Frame>
+                <Frame Grid.Column="1" BorderColor="Transparent"
+                       BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},Light={StaticResource BackgroundColorLight}}">
+                    <DatePicker Date="{Binding EndDate}" MaximumDate="{Binding EndDate}"  FontAttributes="Bold"  />
+                </Frame>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="5" Margin="0,15" HorizontalOptions="CenterAndExpand">
+                <Button Text="{x:Static res:AppResources.CancelLabel}" Command="{Binding CloseCommand}"/>
+                <Button Text="{x:Static res:AppResources.SendLabel}" Command="{Binding OkCommand}"   Grid.Column="1" BackgroundColor="{StaticResource GreenButton}"  />
+
+            </Grid>
+
+        </StackLayout>
+    </Frame>
+</rg:PopupPage>

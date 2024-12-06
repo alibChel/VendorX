@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Views.OrderDetailPage"
+     xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:fa="clr-namespace:FontAwesome"
+    xmlns:models="clr-namespace:Vendor.Models"
+    xmlns:modelx="clr-namespace:VendorX.Models"
+    xmlns:helpers="clr-namespace:Vendor.Helpers"
+    x:DataType="vm:OrderDetailViewModel"
+    Title="{Binding Title}"
+     xmlns:res="clr-namespace:VendorX.Resources"
+    xmlns:vm="clr-namespace:Vendor.ViewModels">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <toolkit:ListIsNullOrEmptyConverter x:Key="IsListNullOrEmptyConverter"/>
+            <toolkit:IsNullOrEmptyConverter x:Key="IsStringNullOrWhiteSpaceConverter"/>
+            <toolkit:IsNotNullOrEmptyConverter x:Key="IsStringNotNullOrWhiteSpaceConverter"/>
+            <toolkit:IntToBoolConverter x:Key="IntToBoolConverter"/>
+            <helpers:DoubleToBoolConverter x:Key="DoubleToBoolConverter"/>
+            <helpers:InvertedDoubleToBoolConverted x:Key="InvertedDoubleToBoolConverted"/>
+            <toolkit:DoubleToIntConverter x:Key="DoubleToIntConverter"/>
+            <helpers:ProfileImageSourceConverter x:Key="ProfileImageSourceConverter"/>
+            <helpers:ImageSourceConverter x:Key="ImageSourceConverter"/>
+            <helpers:UsedPriceNotEqualPriceConverter x:Key="UsedPriceNotEqualPriceConverter"/>
+            <helpers:TransactionStatusColorConverter x:Key="TransactionStatusColorConverter"/>
+            <DataTemplate x:Key="OrderItemTemplate">
+                <Grid ColumnDefinitions="60,*,*" x:DataType="modelx:OrderItem" Padding="2" ColumnSpacing="1"
+                      BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBarBackgroundColorDark}, Light={StaticResource HeaderBarBackgroundColorLight}}"
+                          toolkit:CornerRadiusEffect.CornerRadius="18">
+
+                    <Image HeightRequest="75" Aspect="AspectFill" BackgroundColor="{StaticResource TransperentDark}"
+                           Source="{Binding PhotoUrl, Converter={StaticResource ImageSourceConverter}, Mode=OneTime}">
+                        <Image.Clip>
+                            <RoundRectangleGeometry CornerRadius="18" Rect="0,0,60,75"   />
+                        </Image.Clip>
+                    </Image>
+
+                    <StackLayout  Grid.Column="1" Padding="10,0"   Spacing="0" >
+
+                        <Label   Text="{Binding ItemName,Mode=OneTime}" LineBreakMode="TailTruncation"  FontSize="Default" />
+                        <Label   
+                               FontSize="Default" FontAttributes="Bold">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding ItemPrice,Mode=OneWay, StringFormat='{0:N2}'}" />
+                                    <Span Text=" " />
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:OrderDetailViewModel}}, Path=WalletTag,Mode=OneWay}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label FontSize="Default" FontAttributes="Bold"  IsVisible="{ Binding Price,Converter={StaticResource InvertedDoubleToBoolConverted}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Temp1"   />
+                                    <Span Text="" />
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:OrderDetailViewModel}}, Path=WalletTag,Mode=OneWay}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+
+
+
+
+
+                    <StackLayout Grid.Column="2" Spacing="5"  HorizontalOptions="End" VerticalOptions="Center" Margin="10,0">
+                        <Label Text="{Binding Count,Mode=OneWay, StringFormat='{0:N2}'}" 
+                             HorizontalOptions="Center" VerticalOptions="Center"
+                             FontSize="Subtitle" FontAttributes="Bold"  >
+
+                        </Label>
+                        <Label  VerticalOptions="End" HorizontalOptions="End" VerticalTextAlignment="End" 
+                                IsVisible="{ Binding Price,Converter={StaticResource DoubleToBoolConverter}}"
+                             FontSize="Default">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Price,Mode=OneWay, StringFormat='{0:N2}'}"  FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:OrderDetailViewModel}}, Path=WalletTag,Mode=OneTime}"  FontAttributes="Bold"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </StackLayout>
+
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="SaleTransactionTamplate">
+                <Frame  x:DataType="models:Transaction" HeightRequest="80" Margin="5,1" BackgroundColor="{Binding StateCode,Converter={StaticResource TransactionStatusColorConverter}}">
+                    <Grid ColumnDefinitions="30,*,*,30" RowDefinitions="*,*,*,*" Padding="0">
+                        <Frame Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="4"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource HeaderBarBackgroundColorLight}, Dark={StaticResource HeaderBarBackgroundColorDark}}"/>
+
+                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding Number,StringFormat='№: {0}'}" FontSize="Medium" FontAttributes="Bold" Margin="5,0"  VerticalOptions="Center"/>
+                        <Label Text="{x:Static res:AppResources.AuthorLabel} " FontSize="Micro"  Grid.Column="1" Grid.Row="1" Margin="5,0" VerticalOptions="End" />
+                        <Label Text="{Binding AutorName}" FontSize="Small" FontAttributes="Bold" Grid.Column="1" Grid.Row="2" Margin="5,0" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                        <Label Grid.Column="1" Grid.Row="3" Text="{Binding CreateDate, StringFormat='{0: d.mm.yyyyy HH:mm}'}" Margin="5,0"  FontSize="Micro"  VerticalOptions="Center"/>
+
+                        <Label Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Margin="5" VerticalOptions="End" HorizontalOptions="End" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static res:AppResources.SummLabel} " FontSize="Micro" />
+                                    <Span Text="{Binding Price, StringFormat='{0:N2}'}" FontSize="Medium" FontAttributes="Bold" />
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=WalletTag}" FontSize="Small" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" HorizontalOptions="Start" LineBreakMode="TailTruncation"
+                                IsVisible="{Binding ContactName, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.User}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactName}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="1"  VerticalOptions="Center" HorizontalOptions="Start"
+                               IsVisible="{Binding ContactPhone, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.Phone}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactPhone}" FontSize="Micro" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=GoToDetailsCommand}"
+                                                CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </DataTemplate>
+            <DataTemplate x:Key="AdmissionTransactionTamplate">
+                <Frame  x:DataType="models:Transaction" HeightRequest="80"  Margin="5,1" BackgroundColor="{Binding StateCode,Converter={StaticResource TransactionStatusColorConverter}}">
+                    <Grid ColumnDefinitions="30,*,*,30" RowDefinitions="*,*,*,*" Padding="0">
+                        <Frame Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource HeaderBarBackgroundColorLight}, Dark={StaticResource HeaderBarBackgroundColorDark}}"/>
+
+                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding Number,StringFormat='№: {0}'}" FontSize="Medium" FontAttributes="Bold" Margin="5,0" VerticalOptions="Center"/>
+                        <Label Text="{x:Static res:AppResources.AuthorLabel}" FontSize="Micro" Grid.Column="1" Grid.Row="1" Margin="5,0" VerticalOptions="End" />
+                        <Label Text="{Binding AutorName}" FontSize="Small" FontAttributes="Bold" Grid.Column="1" Grid.Row="2" Margin="5,0" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                        <Label Grid.Column="1" Grid.Row="3" Text="{Binding CreateDate, StringFormat='{0: d.mm.yyyyy HH:mm}'}" Margin="5,0" FontSize="Micro" VerticalOptions="Center"/>
+
+                        <Label Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Margin="5" VerticalOptions="End" HorizontalOptions="End" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static res:AppResources.SummLabel} " FontSize="Micro" />
+                                    <Span Text="{Binding Price, StringFormat='{0:N2}'}" FontSize="Medium" FontAttributes="Bold" />
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=WalletTag}" FontSize="Small" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" HorizontalOptions="Start" LineBreakMode="TailTruncation"
+                                IsVisible="{Binding ContactName, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.User}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactName}" FontSize="Micro" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="1"  VerticalOptions="Center" HorizontalOptions="Start"
+                               IsVisible="{Binding ContactPhone, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.Phone}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactPhone}" FontSize="Micro" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=GoToDetailsCommand}"
+                                                CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </DataTemplate>
+            <DataTemplate x:Key="ReturnTransactionTamplate">
+                <Frame  x:DataType="models:Transaction" HeightRequest="80" Margin="5,1" BackgroundColor="{Binding StateCode,Converter={StaticResource TransactionStatusColorConverter}}">
+                    <Grid ColumnDefinitions="15,*,*,15" RowDefinitions="*,*,*,*" Padding="0">
+                        <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource HeaderBarBackgroundColorLight}, Dark={StaticResource HeaderBarBackgroundColorDark}}"/>
+                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding Number,StringFormat='№: {0}'}" FontSize="Subtitle" FontAttributes="Bold" Margin="5,0" VerticalOptions="Center"/>
+                        <Label Text="{x:Static res:AppResources.AuthorLabel}" FontSize="Micro" Grid.Column="1" Grid.Row="1" Margin="5,0" VerticalOptions="End" />
+                        <Label Text="{Binding AutorName}" FontSize="Small" FontAttributes="Bold" Grid.Column="1" Grid.Row="2" Margin="5,0" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                        <Label Grid.Column="1" Grid.Row="3" Text="{Binding CreateDate, StringFormat='{0: d.mm.yyyyy HH:mm}'}" Margin="5,0" FontSize="Micro"  VerticalOptions="Center"/>
+
+                        <Label Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Margin="5" VerticalOptions="End" HorizontalOptions="End" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static res:AppResources.SummLabel} " FontSize="Micro" />
+                                    <Span Text="{Binding Price, StringFormat='{0:N2}'}" FontSize="Medium" FontAttributes="Bold" />
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=WalletTag}" FontSize="Small" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" HorizontalOptions="Start" LineBreakMode="TailTruncation"
+                                IsVisible="{Binding ContactName, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.User}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactName}" FontSize="Micro" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="2" Grid.Row="1"  VerticalOptions="Center" HorizontalOptions="Start"
+                               IsVisible="{Binding ContactPhone, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static fa:FontAwesomeIcons.Phone}" FontFamily="FAS" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding ContactPhone}" FontSize="Micro" FontAttributes="Bold" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TransactionsViewModel}}, Path=GoToDetailsCommand}"
+                                                CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </DataTemplate>
+            <helpers:TransactionDataTemplateSelector x:Key="TransactionDataTemplateSelector"
+                                                     SaleTemplate="{StaticResource SaleTransactionTamplate}"
+                                                     AdmissionTemplate="{StaticResource AdmissionTransactionTamplate}"
+                                                     ReturnTemplate="{StaticResource ReturnTransactionTamplate}"
+                                                     EditTemplate="{StaticResource SaleTransactionTamplate}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*,auto">
+        <CollectionView x:Name="ItemsCollection" ItemsSource="{Binding Order.OrdersItems}" Margin="5,10" ItemTemplate="{StaticResource Key=OrderItemTemplate}" >
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"  VerticalItemSpacing="5"  />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+
+        <StackLayout Padding="5,10" Spacing="5" Grid.Row="1" >
+            <Frame Padding="8">
+                <Grid RowDefinitions="auto,auto,auto,auto,auto,auto" ColumnDefinitions=".7*,*" Padding="5,0" RowSpacing="15">
+                    <Label VerticalOptions="End" Text="Сумма" FontAttributes="Bold" FontSize="Subtitle" />
+                    <Label VerticalOptions="End"  Grid.Column="1"  HorizontalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Order.Price, StringFormat='{0:N2}', Mode=OneWay} " FontAttributes="Bold" FontSize="Subtitle"/>
+                                <Span Text=" " />
+                                <Span Text="{Binding  WalletTag, Mode=OneWay}" FontAttributes="Bold" FontSize="Subtitle"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+
+
+
+
+
+                    <Label VerticalOptions="End"  Grid.Row="2" Text="Покупатель" FontAttributes="Bold" FontSize="Subtitle"  />
+                    <Label VerticalOptions="End"  Grid.Row="2" Grid.Column="1" FontAttributes="Bold"  HorizontalOptions="End" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Order.CustomerFullName, Mode=OneWay} " FontAttributes="Bold" FontSize="Subtitle" />
+                                <Span Text=" " />
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label VerticalOptions="End"  Grid.Row="3" Text="Телефон" FontAttributes="Bold" FontSize="Subtitle"  />
+                    <Label VerticalOptions="End"  Grid.Row="3" Grid.Column="1" FontAttributes="Bold"  HorizontalOptions="End" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Order.Phone, Mode=OneWay} " FontAttributes="Bold" FontSize="Subtitle" />
+                                <Span Text=" " />
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label VerticalOptions="End"  Grid.Row="4" Text="Адрес" FontAttributes="Bold" FontSize="Subtitle"  />
+                    <Label VerticalOptions="End"  Grid.Row="4" Grid.Column="1"    HorizontalOptions="End" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Order.Address,Mode=OneWay} "  FontSize="Subtitle" FontAttributes="Bold" />
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+
+
+
+                </Grid>
+
+            </Frame>
+            <Button Margin="20,5,20,5" Text="{Binding NextStatusOrderBtnText,Mode=TwoWay}" IsVisible="{Binding IsNextStatusVisible}" TextTransform="Uppercase" FontAttributes="Bold" FontSize="Medium" BackgroundColor="{StaticResource GreenButton}" HeightRequest="50" Command="{Binding OrderChangeStatusCommand}" />
+
+        </StackLayout>
+
+
+    </Grid>
+
+</ContentPage>
+

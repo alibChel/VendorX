@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+		<LangVersion>10.0</LangVersion>
+		<BuildWithMSBuildOnMono>true</BuildWithMSBuildOnMono>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Resourses\**" />
+		<EmbeddedResource Remove="Resourses\**" />
+		<None Remove="Resourses\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Extemtions\IQueryAttribut.cs" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="8.1.0" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+		<PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="6.1.0" />
+		<PackageReference Include="DevExpress.XamarinForms.CollectionView" Version="22.1.7" />
+		<PackageReference Include="Forms9Patch" Version="2.4.9" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
+		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.6" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Realm" Version="12.4.0" />
+		<PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+		<PackageReference Include="Xamarin.MediaGallery" Version="2.2.1" />
+		<PackageReference Include="Xamarin.MediaGallery.Permision" Version="2.2.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.5" />
+		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.5" />
+		<PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+		<PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+		<PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Fonts\FontAwesome6BrandsRegular400.otf" />
+		<None Remove="Fonts\FontAwesome6FreeRegular400.otf" />
+		<None Remove="Fonts\FontAwesome6FreeSolid900.otf" />
+		<None Remove="Resourses\" />
+		<None Remove="Widgets\" />
+		<None Remove="Models\" />
+		<None Remove="Models\Messages\" />
+		<None Remove="Extemtions\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Extemtions\" />
+		<Folder Include="Models\Messages\" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Fonts\FontAwesome6BrandsRegular400.otf" />
+		<EmbeddedResource Include="Fonts\FontAwesome6FreeRegular400.otf" />
+		<EmbeddedResource Include="Fonts\FontAwesome6FreeSolid900.otf" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Resources\AppResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>AppResources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\AppResources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\OrderPage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Views\Template\View\HeaderViewProfile.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Widgets\CheckView.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Widgets\ChoiceDateView.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Widgets\ReturnItemPage.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Widgets\WarningView.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rg="http://rotorgames.com"
+    xmlns:vm="clr-namespace:Vendor.ViewModels"
+    x:Class="VendorX.Widgets.BusyMopup"
+    CloseWhenBackgroundIsClicked="False">
+    <Frame Padding="10" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center" >
+        <ActivityIndicator IsRunning="True" Scale="2"
+                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+    </Frame>
+</rg:PopupPage>
+

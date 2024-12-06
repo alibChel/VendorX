@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Views.ItemDetail"
+    xmlns:vm="clr-namespace:Vendor.ViewModels"
+    xmlns:model="clr-namespace:Vendor.Models"
+    xmlns:forms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    Title="{Binding Title}"
+    xmlns:fa="clr-namespace:FontAwesome"
+    xmlns:helpers="clr-namespace:Vendor.Helpers"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    Shell.NavBarIsVisible="False"
+    xmlns:res="clr-namespace:VendorX.Resources">
+
+    <ContentPage.BindingContext>
+        <vm:ItemDetailViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ListIsNotNullOrEmptyConverter x:Key="IsListNullOrEmptyConverter"/>
+            <xct:IsNullOrEmptyConverter x:Key="IsStringNullOrWhiteSpaceConverter"/>
+            <helpers:ImageSourceConverter x:Key="ImageSourceConverter"/>
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+            <DataTemplate x:Key="Tagstemplate" >
+                <Frame Padding="8,4"  BackgroundColor="{StaticResource Primary}" VerticalOptions="StartAndExpand" CornerRadius="8">
+                    <StackLayout Orientation="Horizontal" HeightRequest="35"  x:DataType="model:Tags"  >
+                        <Entry  Text="{Binding NameTag}"  FontAttributes="Bold" TextColor="White" VerticalTextAlignment="Center" FontSize="Default" HorizontalTextAlignment="Start" />
+                        <Label  FontFamily="FAS" VerticalTextAlignment="Center" Margin="5,0" FontSize="Body" HorizontalTextAlignment="Center" Text="{x:Static fa:FontAwesomeIcons.Xmark}" TextColor="White"  >
+                            <Label.GestureRecognizers   >
+                                <TapGestureRecognizer
+                                    Command="{Binding  Source={RelativeSource AncestorType={x:Type vm:ItemDetailViewModel}}, Path=DelTagCommand, Mode=OneTime}" CommandParameter="{Binding .}">
+                                    
+                                </TapGestureRecognizer>
+
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid  RowDefinitions="50,*" >
+
+
+        <ScrollView Grid.RowSpan="2">
+
+            <StackLayout Spacing="2" Padding="0" >
+                <Grid HeightRequest="480"  IsEnabled="{Binding IsOwner}" >
+                    <CarouselView ItemsSource="{Binding Photos}" IndicatorView="{x:Reference indicator}" Loop="False"  >
+
+                        <CarouselView.ItemTemplate >
+                            <DataTemplate >
+
+                                <Grid  >
+                                    <Image HeightRequest="480" Source="{Binding . ,Converter={StaticResource ImageSourceConverter}, Mode=OneWay}" x:DataType="x:String" Aspect="AspectFill"/>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding  Source={RelativeSource AncestorType={x:Type vm:ItemDetailViewModel}}, Path=ReplaceImageCommand, Mode=OneTime}"                                                    
+                                                                        CommandParameter="{Binding .}"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                        <CarouselView.EmptyView >
+                            <Grid  >
+                                <!--<Label Text="{x:Static fa:FontAwesomeIcons.Image}" FontFamily="FAS" FontSize="80" Opacity=".5" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+                                <Image  Aspect="AspectFit" Margin="70" Opacity=".1">
+                                    <Image.Source>
+                                        <FontImageSource Glyph="{x:Static fa:FontAwesomeIcons.Image}" FontFamily="FAS"
+                                                            Color="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" />
+                                    </Image.Source>
+
+                                </Image>
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer  Command="{Binding  Source={RelativeSource AncestorType={x:Type vm:ItemDetailViewModel}}, Path=AddImageCommand, Mode=OneTime}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </CarouselView.EmptyView>
+                    </CarouselView>
+                    <IndicatorView x:Name="indicator" VerticalOptions="End" HorizontalOptions="Center" Margin="10"
+                                       IndicatorColor="LightGray" SelectedIndicatorColor="{StaticResource Primary}"  IndicatorSize="10"/>
+
+                    <Button HeightRequest="60" WidthRequest="60" HorizontalOptions="End" VerticalOptions="End" CornerRadius="30" Margin="10"
+                            Text="{x:Static fa:FontAwesomeIcons.Plus}" FontFamily="FAS"  FontSize="Title"
+                            Command="{Binding AddImageCommand}"/>
+
+                </Grid>
+
+                <Frame Padding="10" Margin="5,10,5,5" CornerRadius="22"  IsVisible="false">
+
+                    <Grid RowDefinitions="auto, *" ColumnDefinitions="*,65">
+                        <Label Text="{x:Static res:AppResources.TagsLabel}" FontAttributes="Bold" FontSize="Subtitle" Margin="10,0"/>
+                        <Button Grid.Column="1" Grid.Row="1" HeightRequest="60" WidthRequest="60" CornerRadius="30" VerticalOptions="Center" HorizontalOptions="Center"
+                                Text="{x:Static fa:FontAwesomeIcons.Plus}" Command="{Binding AddTagCommand}" FontFamily="FAS" FontSize="Title"/>
+
+                        <ScrollView Grid.Row="1" Margin="0,0,0,40" VerticalOptions="Start" Orientation="Horizontal" >
+                            <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Tags}" BindableLayout.ItemTemplate="{StaticResource Tagstemplate}" />
+                        </ScrollView>
+                        
+                    </Grid>
+                </Frame>
+
+                <Frame Padding="10" Margin="5" IsVisible="{Binding IsNewItem, Converter={xct:InvertedBoolConverter}}" CornerRadius="22">
+                    <Grid RowDefinitions="auto,*" ColumnDefinitions="*,65,65" ColumnSpacing="2">
+
+                        <Frame Grid.Column="1" Grid.Row="1"  HeightRequest="65" WidthRequest="60" BackgroundColor="{StaticResource Primary}"
+                               xct:CornerRadiusEffect.CornerRadius="32,5,32,5" xct:TouchEffect.NativeAnimation="True"          >
+
+                            <Label Text="{x:Static fa:FontAwesomeIcons.Minus}" TextColor="White" FontFamily="FAS" FontSize="Subtitle" 
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RemoveFromCartCommand,Mode=OneTime}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame Grid.Column="2" Grid.Row="1" HeightRequest="65" WidthRequest="60" BackgroundColor="{StaticResource Primary}"
+                               xct:CornerRadiusEffect.CornerRadius="5,32,5,32" xct:TouchEffect.NativeAnimation="True" >
+
+                            <Label Text="{x:Static fa:FontAwesomeIcons.Plus}" FontFamily="FAS" FontSize="Subtitle" TextColor="White"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddToCartCommand ,Mode=OneTime}"  />
+                            </Frame.GestureRecognizers>
+
+                        </Frame>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center"  Margin="10,0,0,0" Spacing="10">
+
+                            <Label Text="{x:Static res:AppResources.InBasketLabel}" FontSize="Subtitle"  FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Entry Text="{Binding InCart}" Unfocused="Entry_Unfocused"  VerticalOptions="Center" Keyboard="Numeric" HorizontalOptions="FillAndExpand" Placeholder="0" VerticalTextAlignment="Center" FontSize="Title" Margin="10,0" FontAttributes="Bold" />
+
+
+                        </StackLayout>
+                    </Grid>
+
+                </Frame>
+
+
+                <Frame Padding="10" Margin="5" IsVisible="{Binding IsNewItem}" CornerRadius="22">
+                    <Grid RowDefinitions="auto,*" ColumnDefinitions="*,65,65" ColumnSpacing="2">
+                        
+                        <Frame Grid.Column="1" Grid.Row="1"  HeightRequest="65" WidthRequest="60" BackgroundColor="{StaticResource Primary}"
+                               xct:CornerRadiusEffect.CornerRadius="32,5,32,5" xct:TouchEffect.NativeAnimation="True">
+
+                            <Label Text="{x:Static fa:FontAwesomeIcons.Minus}" FontFamily="FAS" FontSize="Subtitle" TextColor="White"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RemoveFromStockCountCommand,Mode=OneTime}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame Grid.Column="2" Grid.Row="1" HeightRequest="65" WidthRequest="60" BackgroundColor="{StaticResource Primary}"
+                               xct:CornerRadiusEffect.CornerRadius="5,32,5,32" xct:TouchEffect.NativeAnimation="True" >
+
+                            <Label Text="{x:Static fa:FontAwesomeIcons.Plus}" FontFamily="FAS" FontSize="Subtitle" TextColor="White"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddToStockCountCommand ,Mode=OneTime}"  />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="10,0,0,0" Spacing="10"  >
+
+                            <Label  FontSize="Subtitle" FontAttributes="Bold" VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static res:AppResources.CountLabel}" />
+                                        <Span Text=" " />
+                                        <Span Text=":" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Entry  Text="{Binding InStockCount, StringFormat='{0:N2}'}" VerticalOptions="Center" Placeholder="0" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" FontSize="Title" Margin="10,0" FontAttributes="Bold" />
+
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+
+
+                <Frame Margin="5" Padding="10,10,10,0" CornerRadius="22">
+                    <StackLayout Spacing="5">
+
+                        <Entry x:Name="nameEntry" IsEnabled="{Binding IsOwner}" Text="{Binding Name}" IsReadOnly="{Binding IsReedonly}" Margin="10,0,0,-5" FontSize="Title" FontAttributes="Bold" MinimumHeightRequest="0" 
+                               Placeholder="{x:Static res:AppResources.NamESLabel}"  />
+                        <Editor IsEnabled="{Binding IsOwner}"  Text="{Binding Description}" IsReadOnly="{Binding IsReedonly}" Margin="10,0,0,-5" FontSize="16" 
+                                Placeholder="{x:Static res:AppResources.DescriptionLabel}" TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray500}}"/>
+
+                        <Grid   Padding="10,0" ColumnDefinitions="auto,*,auto" RowSpacing="0" Margin="0,-10" >
+                            <Label   VerticalOptions="Center" FontSize="Subtitle" FontAttributes="Bold">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static res:AppResources.PriceLabel}" />
+                                        <Span Text=" " />
+                                        <Span Text=":" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Entry x:Name="priceEntry" IsEnabled="{Binding IsOwner}"  Grid.Column="1" Text="{Binding Price, StringFormat='{0:N2}'}" IsReadOnly="{Binding IsReedonly}"
+
+                                    FontSize="Title" Keyboard="Numeric"  HorizontalTextAlignment="End"
+                               Placeholder="0" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Label  Grid.Column="2" Text="{Binding WalletTag}"  FontSize="Title" FontAttributes="Bold" VerticalOptions="Center"/>
+                        </Grid>
+
+
+                        <Grid   IsVisible="{Binding IsOwner}" Padding="10,0" ColumnDefinitions="auto,*,auto" RowSpacing="0" Margin="0,-10" >
+                            <Label   VerticalOptions="Center" FontSize="Subtitle" FontAttributes="Bold" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static res:AppResources.CostPriceLabel}" />
+                                        <Span Text=" " />
+                                        <Span Text=":" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Entry  x:Name="costEntry" IsEnabled="{Binding IsOwner}" Grid.Column="1" Text="{Binding Cost, StringFormat='{0:N2}'}" IsReadOnly="{Binding IsReedonly}"
+
+                                   FontSize="Title" Keyboard="Numeric" HorizontalTextAlignment="End"
+                                   Placeholder="0" FontAttributes="Bold" VerticalOptions="Center" />
+                            <Label Grid.Column="2" Text="{Binding WalletTag}"  FontSize="Title" FontAttributes="Bold" VerticalOptions="Center"/>
+                        </Grid>
+
+
+                        <Grid IsEnabled="{Binding IsOwner}"    Padding="10,0" ColumnDefinitions="auto,*,auto,auto" RowSpacing="0" Margin="0,-5" >
+                            <Label  VerticalOptions="Center" FontSize="Subtitle" FontAttributes="Bold" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static res:AppResources.BarcodeLabel}" />
+                                        <Span Text=" " />
+                                        <Span Text=":" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Entry  Grid.Column="1" Text="{Binding Barcode}" IsReadOnly="{Binding IsReedonly}"
+                                   FontSize="Subtitle" Keyboard="Url"
+                                   Placeholder="0" FontAttributes="Bold" VerticalOptions="Center" />
+                            <Button Grid.Column="2" HorizontalOptions="End" Text="{x:Static fa:FontAwesomeIcons.Barcode}" Padding="2.5,0" WidthRequest="50" FontSize="Small" FontFamily="FAS" Margin="0,0"
+                                IsVisible="{Binding Barcode, Converter={StaticResource IsStringNullOrWhiteSpaceConverter}}"
+                                IsEnabled="{Binding IsReedonly, Converter={StaticResource InvertedBoolConverter}}"
+                                Command="{Binding GenerateBarcodeCommand}"/>
+                            <Button Grid.Column="3" HorizontalOptions="End" Text="{x:Static fa:FontAwesomeIcons.Camera}" Padding="2.5,0" WidthRequest="50" FontSize="Small" FontFamily="FAS" Margin="0,0"
+                                
+                                IsEnabled="{Binding IsReedonly, Converter={StaticResource InvertedBoolConverter}}"
+                                Command="{Binding HideShowScanCommand}"/>
+                        </Grid>
+
+                        <Button Text="{x:Static res:AppResources.SaveLabel}" BackgroundColor="{StaticResource GreenButton}" FontAttributes="Bold" TextTransform="Uppercase"
+                    MinimumWidthRequest="150" VerticalOptions="End" HorizontalOptions="Center" Margin="20,0,20,10"
+                    Command="{Binding SaveItemCommand}" IsVisible="{Binding IsReedonly,Converter={StaticResource InvertedBoolConverter}}" />
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+
+
+        <!-- barcode -->
+        <Frame  Grid.Row="1" BackgroundColor="{StaticResource TransperentDark}" x:Name="CatalogCameraScan" CornerRadius="25"  >
+            <Grid  RowDefinitions="80,*"  RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" xct:CornerRadiusEffect.CornerRadius="20" >
+
+                <Label  Text="{x:Static res:AppResources.BarcodeScanerLabel}" TextColor="White" FontSize="Body" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Grid x:Name="gridScanner"  Grid.Row="1" BackgroundColor="Transparent" >
+                    <forms:ZXingScannerView x:Name="barcodeScanner"   IsScanning="{Binding IsScannerVisible}" IsAnalyzing="True"  OnScanResult="ZXingScannerView_OnScanResult" />
+                </Grid>
+
+                <Image Source="TransperetScanWin.png" Grid.Row="1" Aspect="AspectFill"  />
+
+                <Frame HeightRequest="50" Grid.Row="0" WidthRequest="50" Margin="20,4" HorizontalOptions="Start" VerticalOptions="Center"  CornerRadius="25" BackgroundColor="{StaticResource Primary}" >
+                    <Label FontFamily="FAS" Text="{x:Static fa:FontAwesomeIcons.Xmark}" TextColor="White" FontSize="Title" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HideShowScanCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+            </Grid>
+        </Frame>
+        <!-- barcode -->
+
+        <BoxView Color="#90000000" >
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CancelCommand}" />
+            </BoxView.GestureRecognizers>
+
+        </BoxView>
+        <Label Text="{Binding Title}" TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="35,0" VerticalOptions="Center" FontSize="Subtitle" LineBreakMode="TailTruncation" InputTransparent="True"/>
+        <Label Text="{x:Static fa:FontAwesomeIcons.AngleLeft}" TextColor="White"  FontFamily="FAS" HorizontalOptions="Start" VerticalOptions="Center" FontSize="Title" Margin="20,0" InputTransparent="True"/>
+
+        <xct:Expander Grid.RowSpan="2" HorizontalOptions="End" VerticalOptions="Start" Margin="0,0,20,0" Direction="Down" IsExpanded="{Binding IsDopExpandet}"
+                          IsVisible="{Binding IsDopCommandVisible}">
+            <xct:Expander.Header>
+                <Button HeightRequest="40" WidthRequest="40"  CornerRadius="20" Margin="5" Command="{Binding ToggleIsDopExpandetCommand}"
+                        Text="{x:Static fa:FontAwesomeIcons.EllipsisVertical}" FontFamily="FAS"  FontSize="20"/>
+            </xct:Expander.Header>
+            <StackLayout Spacing="5">
+
+                <Button HeightRequest="50" WidthRequest="50"  CornerRadius="24" BackgroundColor="{StaticResource RedButton}"
+                        Text="{x:Static fa:FontAwesomeIcons.Trash}" FontFamily="FAS"  FontSize="Title"
+                        IsVisible="{Binding IsOwner}" Command="{Binding ChangeIsMarkToDeleteCommand}"/>
+                <Button HeightRequest="50" WidthRequest="50"  CornerRadius="24" BackgroundColor="{StaticResource Yellow100Accent}"
+                        Text="{x:Static fa:FontAwesomeIcons.BoxArchive}" FontFamily="FAS"  FontSize="Title"
+                        Command="{Binding ChangeIsArchiveCommand}"/>
+            </StackLayout>
+        </xct:Expander>
+
+        <Frame Grid.Row="1" BackgroundColor="Red" VerticalOptions="Start" HorizontalOptions="Center" Margin="5" Padding="2" Opacity="7" IsVisible="false" >
+            <Label  TextColor="White" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Name}" />
+                        <Span Text=" " />
+                        <Span Text="{x:Static res:AppResources.DeleteItem}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Frame>
+        <Frame Grid.Row="1" BackgroundColor="Red" VerticalOptions="Start" HorizontalOptions="Center" Margin="5" Padding="2,0" CornerRadius="8" Opacity="7" IsVisible="{Binding IsArchive}" >
+            <Label Text="{x:Static res:AppResources.InArchiveError} " TextColor="White" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        </Frame>
+    </Grid>
+</ContentPage>
+

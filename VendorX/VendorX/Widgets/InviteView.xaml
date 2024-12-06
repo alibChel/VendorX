@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Widgets.InviteView"
+    xmlns:rg="http://rotorgames.com"
+    xmlns:vm="clr-namespace:Vendor.ViewModels"    
+    xmlns:fa="clr-namespace:FontAwesome"
+    xmlns:res="clr-namespace:VendorX.Resources"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:helpers="clr-namespace:Vendor.Helpers"
+    xmlns:local="clr-namespace:Vendor.Models"
+    x:DataType="vm:InviteViewModel"
+    BackgroundInputTransparent="False"
+    CloseWhenBackgroundIsClicked="True">
+
+    <rg:PopupPage.BindingContext>
+        <vm:InviteViewModel/>
+    </rg:PopupPage.BindingContext>
+
+    <rg:PopupPage.Animation>
+        <rg:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+             ScaleIn="1"
+             ScaleOut="1.2"
+            DurationIn="400"
+            DurationOut="100"
+            EasingIn="SinOut"
+            EasingOut="SinIn" 
+            HasBackgroundAnimation="True" />
+    </rg:PopupPage.Animation>
+
+    <rg:PopupPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertBool" />
+            <helpers:ProfileImageSourceConverter x:Key="ProfileImageSourceConverter"/>
+            <helpers:ShopImageSourceConverter x:Key="ShopImageSourceConverter"/>
+            <helpers:UserRoleToTextConverter x:Key="UserRoleToTextConverter"/>
+        </ResourceDictionary>
+    </rg:PopupPage.Resources>
+
+    <StackLayout>
+        <Frame Margin="40" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                MinimumHeightRequest="100" MinimumWidthRequest="200" 
+                CornerRadius="22">
+            <StackLayout   Padding="20"  VerticalOptions="Center" Spacing="5" >
+
+
+                <!--<Frame  Padding="14" BackgroundColor="Transparent" >
+                    <Label  Text="{Binding CurrentTitle}"  FontAttributes="Bold" FontSize="Subtitle" HorizontalTextAlignment="Center" VerticalOptions="Center" >
+
+                    </Label>
+                    <Frame.GestureRecognizers >
+                        <TapGestureRecognizer   Command="{Binding ChangeRegistrationCommand}" CommandParameter="{Binding NextRegister}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>-->
+
+                <!-- Select login methot -->
+                <!--<Grid ColumnDefinitions="*,*"  >
+
+                    <StackLayout VerticalOptions="FillAndExpand"  BackgroundColor="Transparent" >
+                        <Label Margin="5" Text="Приглашение по номеру телефона"  FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="Center"  />
+                        <BoxView HeightRequest="4" CornerRadius="2"  Background="{StaticResource Primary}" IsVisible="{Binding IsPhone}" HorizontalOptions="FillAndExpand" >
+                            <BoxView.Triggers>
+                                <DataTrigger TargetType="BoxView" Binding="{Binding IsPhone}" Value="false" >
+                                    <Setter Property="Background" Value="Transparent" />
+                                </DataTrigger>
+                            </BoxView.Triggers>
+                        </BoxView>
+                        <StackLayout.GestureRecognizers >
+                            <TapGestureRecognizer   Command="{Binding ChangeRegistrationCommand}" CommandParameter="{Binding IsPhoneLogin}" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+
+
+                    <StackLayout VerticalOptions="FillAndExpand" Grid.Column="1" BackgroundColor="Transparent" >
+                        <Label Margin="5" Text="Приглашение по электронной почте"  FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="Center" />
+                        <BoxView HeightRequest="4" CornerRadius="2" Background="{StaticResource Primary}" IsVisible="{Binding IsEmail}" HorizontalOptions="FillAndExpand" >
+                            <BoxView.Triggers>
+                                <DataTrigger TargetType="BoxView" Binding="{Binding IsEmail}" Value="false" >
+                                    <Setter Property="Background" Value="Transparent" />
+                                </DataTrigger>
+                            </BoxView.Triggers>
+                        </BoxView>
+                        <StackLayout.GestureRecognizers >
+                            <TapGestureRecognizer   Command="{Binding ChangeRegistrationCommand}" CommandParameter="{Binding IsEmailLogin}"/>
+                        </StackLayout.GestureRecognizers>
+
+                    </StackLayout>
+
+                </Grid>-->
+                <!-- Select login methot -->
+
+
+                <!--<Label  Text="Логин" FontSize="Micro" FontAttributes="Bold" Margin="10,0"/>-->
+                <Frame  >
+                     <Grid Padding="20,0,0,0" ColumnDefinitions="*,auto">
+                            <Grid ColumnDefinitions="auto,*"  HorizontalOptions="Start" >
+                                <Label  FontSize="Default"  HorizontalOptions="EndAndExpand"  VerticalTextAlignment="Center"  IsVisible="{Binding IsPhone ,Mode=OneWay}" >+7</Label>
+                                <Entry Grid.Column="1" x:Name="LoginEntry" FontSize="Default" Text="{Binding Targetlogin}"  VerticalTextAlignment="Center" HorizontalOptions="Fill"  HorizontalTextAlignment="Start" Placeholder="{x:Static res:AppResources.NameUserLabel}"  >
+
+                                </Entry>
+
+                            </Grid>
+
+                            <Label Grid.Column="1" Text="{x:Static fa:FontAwesomeIcons.Mobile}" Margin="15,0" FontSize="Subtitle"
+                                FontFamily="FAS" HorizontalOptions="End" VerticalOptions="Center">
+
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"  Binding="{Binding IsEmail}" Value="True">
+                                        <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.Envelope}"/>
+                                        <Setter Property="FontFamily" Value="FAS"/>
+                                    </DataTrigger>
+
+                                </Label.Triggers>
+
+                            </Label>
+
+                        </Grid>
+                    <!--<Entry Text="{Binding Targetlogin}" Keyboard="Email" TextTransform="Lowercase"  Placeholder="email" HorizontalTextAlignment="Center"/>-->
+
+                </Frame>
+                <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Center" IsVisible="{Binding IsPhone ,Mode=OneWay}">
+                    <Label FontSize="Medium" Margin="10,0,0,0" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center"  >+7</Label>
+                    <Entry Text="{Binding TargetPhone}" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"  FontSize="Default" Keyboard="Telephone" HorizontalTextAlignment="Start" Placeholder=" 777 777 7777  " >
+                        <Entry.Behaviors>
+                            <xct:MaskedBehavior   Mask="XXX XXX XXXX"  UnMaskedCharacter="X" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                </StackLayout>-->
+                <!-- Выбор роли -->
+
+                <Frame  HeightRequest="50" BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},Light={StaticResource BackgroundColorLight}}"  >
+                    <Label Text="{x:Static res:AppResources.SalesmanLabel}"   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="Small" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectRoleCommand}" CommandParameter="{x:Static local:UserRole.User}"/>
+                    </Frame.GestureRecognizers>
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame" Binding="{ Binding Ismanager}" Value="false">
+                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                        </DataTrigger>
+                    </Frame.Triggers>
+                </Frame>
+                <Frame  HeightRequest="50" BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},Light={StaticResource BackgroundColorLight}}" IsVisible="{Binding IsManger, Converter={StaticResource InvertBool}}">
+                    <Label Text="{x:Static res:AppResources.ManagerLabel}"   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="Small" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer  Command="{Binding SelectRoleCommand}" CommandParameter="{x:Static local:UserRole.Manager}"/>
+                    </Frame.GestureRecognizers>
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame" Binding="{ Binding Ismanager}" Value="true">
+                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                        </DataTrigger>
+                    </Frame.Triggers>
+                </Frame>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="5" Margin="15" >
+
+                    <Button Text="{x:Static res:AppResources.CancelLabel}" Command="{Binding CloseCommand}"/>
+                    <Button Text="{x:Static res:AppResources.SendLabel}" Command="{Binding SendCommand}" Grid.Column="1" BackgroundColor="{StaticResource GreenButton}"  />
+
+                </Grid>
+
+                <!--<Grid ColumnDefinitions="120,120" ColumnSpacing="5" Margin="0,15" HorizontalOptions="Center">
+                    <Button Text="Отмена" Command="{Binding CloseCommand}"/>
+                    <Button Text="Отправить" Command="{Binding SendCommand}" Grid.Column="1" BackgroundColor="{StaticResource GreenButton}"  />
+                </Grid>-->
+            </StackLayout>
+        </Frame>
+
+    </StackLayout>
+
+</rg:PopupPage>
+

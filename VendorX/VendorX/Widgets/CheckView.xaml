@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VendorX.Widgets.CheckView"
+             xmlns:fa="clr-namespace:FontAwesome"
+                xmlns:vm="clr-namespace:Vendor.ViewModels"
+                x:DataType="vm:CheckViewModel"
+                
+                BackgroundInputTransparent="False"
+                CloseWhenBackgroundIsClicked="True"
+             xmlns:rg="http://rotorgames.com">
+    <rg:PopupPage.BindingContext>
+        <vm:CheckViewModel/>
+    </rg:PopupPage.BindingContext>
+
+    <Frame VerticalOptions="FillAndExpand"  BackgroundColor="{StaticResource TransperentDark}" Margin="0,50" CornerRadius="0" >
+        <Grid  RowDefinitions=".1*,*"  RowSpacing="0">
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                <Frame Padding="20,0" BackgroundColor="Transparent">
+                    <Label TextColor="White" Text="{x:Static fa:FontAwesomeIcons.Xmark}"
+                           FontFamily="FAS" VerticalTextAlignment="Center" HorizontalOptions="Start" 
+                           FontSize="Title" >
+
+                    </Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CloseCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Label x:Name="shareButton" TextColor="White" 
+                           FontFamily="FAS" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" 
+                           Margin="20,0" FontSize="Title">
+                    <Label.Text>
+                        <OnPlatform x:TypeArguments="x:String"
+                                    Android="{x:Static fa:FontAwesomeIcons.ShareNodes}"
+                                    iOS="{x:Static fa:FontAwesomeIcons.ArrowUpFromBracket}"/>
+                    </Label.Text>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="Share_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <Frame Padding="10" Grid.Row="1" BackgroundColor="White" CornerRadius="0">
+                <WebView x:Name="webView"  Source="{Binding HtmlWebViewSource}"   />
+            </Frame>
+
+        </Grid>
+    </Frame>
+</rg:PopupPage>

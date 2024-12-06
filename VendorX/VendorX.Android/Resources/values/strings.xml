@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="facebook_app_name">Vendor</string>
+    <string name="facebook_app_id">951044189554725</string>
+    <string name="facebook_client_token">e967272f0786eedf3a7e16d27f40b3a6</string>
+    <string name="fb_login_protocol_scheme">fb951044189554725</string>
+</resources>

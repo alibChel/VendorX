@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VendorX.Views.Template.HeaderViewProfile"
+             
+    xmlns:fa="clr-namespace:FontAwesome"
+             xmlns:vm  ="clr-namespace:Vendor.ViewModels"
+             xmlns:vm_temp="clr-namespace:VendorX.Views.Template.ViewModels"
+       xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit">
+
+
+    <ContentView.Resources>
+        <toolkit:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter"/>
+    </ContentView.Resources>
+
+
+
+    <ContentView.Content>
+
+        <Grid ColumnDefinitions=".25*,*,auto" Margin="20,0"  >
+
+            <StackLayout Orientation="Horizontal" Grid.Column="2"  HeightRequest="40" Spacing="25">
+
+
+                <Frame  BackgroundColor="Transparent">
+                    <Label  Text="{x:Static fa:FontAwesomeIcons.Gear}" FontFamily="FAS" HorizontalOptions="EndAndExpand" TextColor="{StaticResource Primary}" VerticalOptions="Center" FontSize="24" Margin="0,0,5,0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BaseViewModel}}, Path=OpenSettingCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Frame>
+
+                <Frame  HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="15"
+                    toolkit:TouchEffect.NativeAnimation="True">
+                    <Label  Text="{x:Static fa:FontAwesomeIcons.Bell}"  FontFamily="FAR" TextColor="{StaticResource Primary}"
+                   VerticalOptions="Center" HorizontalOptions="Center"  >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BaseViewModel}}, Path=ShowNotificationsCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BaseViewModel}}, Path=ShowNotificationsCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame BackgroundColor="Red" HeightRequest="12" WidthRequest="12" HorizontalOptions="End" VerticalOptions="Start" TranslationY="6" IsVisible="{Binding Source={RelativeSource AncestorType={x:Type vm:BaseViewModel}}, Path=IsNotification}" CornerRadius="6"
+               >
+
+                </Frame>
+             
+            </StackLayout>
+
+            <Frame  HeightRequest="46" WidthRequest="46" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="22"
+                toolkit:TouchEffect.NativeAnimation="True">
+
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BaseViewModel}}, Path=ShowProfileCommand}"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <Image x:Name="ProfileImage"  toolkit:TouchEffect.NativeAnimation="True"
+             
+               HeightRequest="40" WidthRequest="40" Aspect="AspectFill" Margin="0" HorizontalOptions="Center" VerticalOptions="Center" >
+                <Image.Clip>
+                    <EllipseGeometry RadiusX="20" RadiusY="20" Center="20,20"/>
+                </Image.Clip>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BaseViewModel}}, Path=ShowProfileCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+
+            <Label  x:Name="IconUser" Text="{x:Static fa:FontAwesomeIcons.User}" FontSize="Title" FontFamily="FAS" TextColor="{StaticResource Primary}"
+      VerticalOptions="Center" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BaseViewModel}}, Path=ShowProfileCommand}"/>
+                </Label.GestureRecognizers>
+
+            </Label>
+
+            <Label x:Name="ShopNameLabel" Grid.Column="1"  HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0"
+              FontSize="Title" FontAttributes="Bold" TextColor="{StaticResource Primary}" LineBreakMode="TailTruncation"
+              toolkit:TouchEffect.LongPressCommand="{Binding Source={RelativeSource AncestorType={x:Type vm:BaseViewModel}}, Path=EditShopCommand}"/>
+
+    
+        </Grid>
+
+
+    </ContentView.Content>
+</ContentView>

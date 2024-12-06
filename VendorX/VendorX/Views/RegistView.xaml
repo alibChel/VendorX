@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Views.RegistView"
+     xmlns:rg="http://rotorgames.com"
+    xmlns:vm="clr-namespace:Vendor.ViewModels"
+    x:DataType="vm:RegistViewModel"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBarBackgroundColorDark}, Light={StaticResource TransperentDark}}"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:fa="clr-namespace:FontAwesome"
+     xmlns:res="clr-namespace:VendorX.Resources"
+    xmlns:helpers="clr-namespace:Vendor.Helpers">
+
+    <ContentPage.BindingContext>
+        <vm:RegistViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:ShopImageSourceConverter x:Key="ShopImageSourceConverter"/>
+            <helpers:ProfileImageSourceConverter x:Key="ProfileImageSourceConverter"/>
+            <helpers:ImageSourceConverter x:Key="ImageSourceConverter"/>
+            <xct:IsNotNullOrEmptyConverter x:Key="IsStringNotNullOrWhiteSpaceConverter"/>
+            <xct:InvertedBoolConverter x:Key="InvertBool" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid >
+            <Frame Margin="20" MinimumHeightRequest="100" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" MinimumWidthRequest="200" CornerRadius="22"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},Light={StaticResource BackgroundColorLight}}">
+
+                <ScrollView>
+                    <StackLayout   Padding="10"  >
+
+                        <!-- крестик отмены -->
+                        <Grid RowDefinitions="50" ColumnDefinitions=".25*,*,.25*">
+
+                            <Frame  BackgroundColor="Transparent" IsVisible="{Binding CodeSend,Mode=OneWay}">
+                                <Label  Text="{x:Static fa:FontAwesomeIcons.AngleLeft}" FontFamily="FAS" InputTransparent="True" FontAttributes="Bold" TextColor="#648bbb"
+                                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  FontSize="Subtitle"/>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Label  Text="{x:Static res:AppResources.BackLabel}"  FontSize="Micro" HorizontalOptions="Center" VerticalOptions="End" IsVisible="{Binding CodeSend,Mode=OneWay}"/>
+
+
+
+                            <Frame Grid.Column="2"   BackgroundColor="Transparent"  >
+                                <Label  Text="{x:Static fa:FontAwesomeIcons.Xmark}" FontFamily="FAS" InputTransparent="True" FontAttributes="Bold" TextColor="#648bbb"
+                                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  FontSize="Subtitle"/>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CloseTappedCommand}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Label Grid.Column="2"  Text="{x:Static res:AppResources.CancelLabel}"  FontSize="Micro" HorizontalOptions="Center" VerticalOptions="End"/>
+                        </Grid>
+                        <!-- крестик отмены -->
+
+                        <!--<Label Text="{Binding Title}" Margin="10" FontAttributes="Bold" FontSize="Subtitle" HorizontalTextAlignment="Center" VerticalOptions="Center" />-->
+
+
+                        <!-- Блок регистрации -->
+                        <!-- фото профиля -->
+                        <Grid ColumnDefinitions="150" RowDefinitions="150,auto"  HorizontalOptions="Center" IsVisible="{Binding CodeSend,Mode=OneWay,Converter={StaticResource InvertBool}}" >
+                            <Frame  HeightRequest="150" WidthRequest="150" VerticalOptions="End"  CornerRadius="75"   >
+
+                            </Frame>
+                            <Image  Aspect="AspectFill" Source="{Binding Photo,Converter={ helpers:ImageSourceConverter} , Mode=OneWay}"  
+                                        HeightRequest="140" WidthRequest="140" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Image.Clip>
+                                    <EllipseGeometry RadiusX="70" RadiusY="70" Center="70,70"/>
+                                </Image.Clip>
+                            </Image>
+
+                            <Frame CornerRadius="20" HeightRequest="40" WidthRequest="40" Margin="5" BackgroundColor="{StaticResource Primary}"
+                                            VerticalOptions="End" HorizontalOptions="End" TranslationY="0">
+                                <Label Margin="10"  Text="{x:Static fa:FontAwesomeIcons.Pen}" TextColor="White" FontFamily="FAS"   FontSize="Subtitle"
+                                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </Frame>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TakePhotoCommand}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <Frame Margin="0,10"  Padding="5" CornerRadius="22" IsVisible="{Binding CodeSend,Mode=OneWay,Converter={StaticResource InvertBool}}">
+                            <StackLayout>
+                                <Entry Text="{Binding Fname}" Keyboard="Chat" Margin="10,0" FontSize="Default" HorizontalTextAlignment="Center" Placeholder="{x:Static res:AppResources.FirstNameLabel}"   />
+                                <BoxView HeightRequest="1" Margin="10,0" Opacity=".3"/>
+                                <Entry Text="{Binding Lname}" Keyboard="Chat" Margin="10,0" FontSize="Default" HorizontalTextAlignment="Center" Placeholder="{x:Static res:AppResources.LastNameLabel}"  />
+                            </StackLayout>
+                        </Frame>
+                        <Frame Margin="0,10"  Padding="5" CornerRadius="22" IsVisible="{Binding CodeSend,Mode=OneWay,Converter={StaticResource InvertBool}}">
+                            <StackLayout>
+                                <!--<Entry IsVisible="{Binding IsEmail ,Mode=OneWay}"  Text="{Binding UserName}" Margin="10,0" FontSize="Default" Keyboard="Email" TextTransform="Lowercase" HorizontalTextAlignment="Center" Placeholder="{x:Static res:AppResources.EmailLabel}"  />
+
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand"  IsVisible="{Binding IsPhone ,Mode=OneWay}">
+                                    <Label Text="+7" FontSize="Medium" Margin="10,0,0,0" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center"  />
+                                    <Entry Text="{Binding Phone}" VerticalTextAlignment="Center" HorizontalOptions="Fill" FontSize="Default" Keyboard="Telephone" HorizontalTextAlignment="Start" Placeholder=" 777 777 7777  " >
+                                        <Entry.Behaviors>
+                                            <xct:MaskedBehavior   Mask="XXX XXX XXXX"  UnMaskedCharacter="X" />
+                                        </Entry.Behaviors>
+                                    </Entry>
+
+                                </StackLayout>
+                                <BoxView HeightRequest="1" Margin="10,0" Opacity=".3"/>
+                                <Grid>
+                                    <Entry x:Name="PassEntry" Text="{Binding Password}"  FontSize="Default" Placeholder="{x:Static res:AppResources.PasswordLabel}" IsPassword="True"  
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Text="{x:Static fa:FontAwesomeIcons.Eye}" Margin="15,0" FontSize="Subtitle"  
+                                            FontFamily="FAS" HorizontalOptions="End" VerticalOptions="Center">
+
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Source={x:Reference PassEntry},Path=IsPassword}"
+                                                         Value="False">
+                                                <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.EyeSlash}"/>
+
+                                            </DataTrigger>
+
+                                        </Label.Triggers>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="SwichPassVisible"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                                </Grid>-->
+                                <Grid Padding="20,0,0,0" ColumnDefinitions="*,Auto" >
+                                    <Grid ColumnDefinitions="Auto,*"  HorizontalOptions="Start" >
+                                        <Label  FontSize="Default"  HorizontalTextAlignment="End"  VerticalTextAlignment="Center"  IsVisible="{Binding IsPhone ,Mode=OneWay}" >+7</Label>
+                                        <Entry Grid.Column="1" x:Name="LoginEntry" FontSize="Default" Text="{Binding UserName}"  VerticalTextAlignment="Center" HorizontalOptions="Fill" HorizontalTextAlignment="Start" Placeholder="{x:Static res:AppResources.NameUserLabel}"  >
+
+                                        </Entry>
+
+                                    </Grid>
+
+                                    <Label Grid.Column="1" Text="{x:Static fa:FontAwesomeIcons.Mobile}" Margin="15,0" FontSize="Subtitle"
+                                FontFamily="FAS" HorizontalOptions="End" VerticalOptions="Center">
+
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label"  Binding="{Binding IsEmail}" Value="True">
+                                                <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.Envelope}"/>
+                                                <Setter Property="FontFamily" Value="FAS"/>
+                                            </DataTrigger>
+
+                                        </Label.Triggers>
+
+                                    </Label>
+
+                                </Grid>
+
+
+                                <BoxView HeightRequest="1" Margin="10,0" Opacity=".3"/>
+                                <Grid>
+
+                                    <Entry x:Name="PassEntry" Margin="20,0,0,0" HorizontalTextAlignment="Start" Text="{Binding Password}" FontSize="Default" Placeholder="{x:Static  res:AppResources.PasswordLabel}" IsPassword="True"  />
+                                    <Label Text="{x:Static fa:FontAwesomeIcons.Eye}" Margin="15,0" FontSize="Subtitle"
+                                FontFamily="FAS" HorizontalOptions="End" VerticalOptions="Center">
+
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                             Binding="{Binding Source={x:Reference PassEntry},Path=IsPassword}"
+                                             Value="False">
+                                                <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.EyeSlash}"/>
+
+                                            </DataTrigger>
+
+                                        </Label.Triggers>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="SwichPassVisible"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                                </Grid>
+                                <!--<BoxView HeightRequest="1" Margin="10,0" Opacity=".3"/>
+                                <Grid>
+                                    <Entry x:Name="RePassEntry" Text="{Binding RePassword}" FontSize="Default" Placeholder="Повторите пароль" IsPassword="True"  
+
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Text="{x:Static fa:FontAwesomeIcons.Eye}" Margin="15,0" FontSize="Subtitle"  
+                                            FontFamily="FAS" HorizontalOptions="End" VerticalOptions="Center">
+
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Source={x:Reference RePassEntry},Path=IsPassword}"
+                                                         Value="False">
+                                                <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.EyeSlash}"/>
+
+                                            </DataTrigger>
+
+                                        </Label.Triggers>
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="SwichRePassVisible" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                                </Grid>-->
+                            </StackLayout>
+                        </Frame>
+                        <!-- Блок регистрации -->
+
+                        <!-- Блок потверждения -->
+
+                        <StackLayout BackgroundColor="Transparent" IsVisible="{Binding CodeSend,Mode=OneWay}">
+                            <Label Text="{x:Static res:AppResources.SendCodeEmailLabel}" IsVisible="{Binding IsEmail}"  FontSize="Default" Margin="10" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                            <Label Text="{x:Static res:AppResources.SendSMSCodeLabel}" IsVisible="{Binding IsPhone}" FontSize="Default" Margin="10" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                        <Frame Margin="0,20,0,0"  Padding="5"  CornerRadius="22" IsVisible="{Binding CodeSend,Mode=OneWay}">
+                            <StackLayout>
+                                <Entry Text="{Binding Code}" Keyboard="Numeric" Margin="10,0" FontSize="Default" HorizontalTextAlignment="Center" Placeholder="{x:Static res:AppResources.CodeConfirmLabel}"   >
+                                    <Entry.Behaviors>
+                                        <xct:MaskedBehavior   Mask="X X X X X X"  UnMaskedCharacter="X" />
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </StackLayout>
+                        </Frame>
+
+                        <Label Text="{x:Static res:AppResources.RepeatCodeLabel}" TextColor="{StaticResource Primary}" FontSize="Default" Margin="10" FontAttributes="Bold" HorizontalTextAlignment="Center" IsVisible="{Binding CodeSend,Mode=OneWay}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ReSendCodeCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+
+                        <!-- Блок потверждения -->
+
+
+                        <Button Text="{Binding BtnText}" Command="{Binding SaveChangeCommand}"  Margin="30"
+                                        BackgroundColor="{StaticResource Primary}"  FontAttributes="Bold" Padding="7,10"    />
+
+                    </StackLayout>
+                </ScrollView>
+
+            </Frame>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+

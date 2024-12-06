@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VendorX.Widgets.ReturnItemPage"
+             xmlns:vm = "clr-namespace:Vendor.ViewModels"
+             xmlns:models="clr-namespace:Vendor.Models"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:rg="http://rotorgames.com"
+             xmlns:fa ="clr-namespace:FontAwesome"
+             xmlns:helpers="clr-namespace:Vendor.Helpers"
+             x:DataType="vm:ReturnItemViewModel"   
+             xmlns:res="clr-namespace:VendorX.Resources"
+             Title="{Binding Title}">
+
+    <rg:PopupPage.Animation>
+        <rg:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="250"
+            DurationOut="150"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </rg:PopupPage.Animation>
+
+    <rg:PopupPage.BindingContext>
+        <vm:ReturnItemViewModel/>
+    </rg:PopupPage.BindingContext>
+
+    <rg:PopupPage.Resources>
+        <ResourceDictionary>
+            <toolkit:ListIsNullOrEmptyConverter x:Key="IsListNullOrEmptyConverter"/>
+            <toolkit:IsNullOrEmptyConverter x:Key="IsStringNullOrWhiteSpaceConverter"/>
+            <toolkit:IsNotNullOrEmptyConverter x:Key="IsStringNotNullOrWhiteSpaceConverter"/>
+            <toolkit:IntToBoolConverter x:Key="IntToBoolConverter"/>
+            <toolkit:DoubleToIntConverter x:Key="DoubleToIntConverter"/>
+            <helpers:ProfileImageSourceConverter x:Key="ProfileImageSourceConverter"/>
+            <helpers:ImageSourceConverter x:Key="ImageSourceConverter"/>
+            <helpers:UsedPriceNotEqualPriceConverter x:Key="UsedPriceNotEqualPriceConverter"/>
+            <DataTemplate x:Key="TransactionItemTamplate">
+                <SwipeView  x:DataType="models:TransactionItem" BackgroundColor="Transparent" toolkit:CornerRadiusEffect.CornerRadius="12">
+                    <SwipeView.RightItems >
+                        <SwipeItems Mode="Execute">
+                            <SwipeItem BackgroundColor="{StaticResource RedButton}"
+                                       Command="{Binding Source={ RelativeSource AncestorType={x:Type vm:ReturnItemViewModel}}, Path=RemoveItemsFromCartCommand}" CommandParameter="{Binding .}"/>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <!--<Frame BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBarBackgroundColorDark}, Light={StaticResource HeaderBarBackgroundColorLight}}">-->
+                        <Grid ColumnDefinitions="75,*,.2*,.33*,.33*" x:DataType="models:TransactionItem" Padding="2" ColumnSpacing="1"
+                          BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBarBackgroundColorDark}, Light={StaticResource HeaderBarBackgroundColorLight}}"
+                          toolkit:CornerRadiusEffect.CornerRadius="18">
+
+                            <Image HeightRequest="75" Aspect="AspectFill" Source="{Binding PhotoUrl, Converter={StaticResource ImageSourceConverter}, Mode=OneTime}"
+                                   BackgroundColor="{StaticResource TransperentDark}">
+                                <Image.Clip>
+                                    <RoundRectangleGeometry CornerRadius="12" Rect="0,0,75,75"   />
+
+                                </Image.Clip>
+
+                            </Image>
+
+                            <StackLayout  Grid.Column="1" Padding="10,0"   Spacing="0">
+                            <Label IsVisible="False" >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{x:Static res:AppResources.DiscountLabel}" FontSize="Micro"/>
+                                            <Span Text="{Binding Discount, StringFormat=' {0}% ',Mode=OneWay}"  FontSize="Micro"  FontAttributes="Bold" TextColor="White" BackgroundColor="Red" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label IsVisible="False" >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{x:Static res:AppResources.MarkupLabel}" FontSize="Micro"/>
+                                            <Span Text="{Binding Markup, StringFormat=' {0}% ',Mode=OneWay}"  FontSize="Micro"  FontAttributes="Bold"
+                                                  TextColor="White" BackgroundColor="{StaticResource GreenButton}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label   Text="{Binding ItemName,Mode=OneTime}" LineBreakMode="TailTruncation"  FontSize="Default"  />
+                                <Label   Opacity="0.3"
+                                       IsVisible="{Binding IsItemPriceNotEqualsPrice,Mode=OneWay}"
+                                       FontSize="Default" FontAttributes="Bold">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding ItemPrice,Mode=OneWay}" TextDecorations="Strikethrough"/>
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:ReturnItemViewModel}}, Path=WalletTag,Mode=OneWay}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label FontSize="Default" FontAttributes="Bold" IsVisible="False" >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Price,Mode=OneWay}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=WalletTag,Mode=OneWay}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+
+                                </Label>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="1" Grid.ColumnSpan="2"  Margin="120,0,0,0"  Spacing="5" HorizontalOptions="FillAndExpand" >
+                                <Entry Text="{Binding Count,Mode=TwoWay}" TextColor="{StaticResource Primary}" 
+                                     HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand"
+                             FontSize="Medium" FontAttributes="Bold" Keyboard="Numeric"  TextChanged="Entry_TextChanged" >
+                                    <Entry.Behaviors>
+                                        <toolkit:MaskedBehavior   Mask="XXXXXX" UnMaskedCharacter="X"  />
+                                    </Entry.Behaviors>
+
+                                </Entry>
+                                <Label IsVisible="False"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"  VerticalTextAlignment="End" 
+                                     FontSize="Default" FontAttributes="Bold">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding FinalPrice,Mode=OneWay}"/>
+                                            <Span Text=" "/>
+                                            <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=WalletTag,Mode=OneTime}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+
+                                </Label>
+                            </StackLayout>
+
+
+                            <Frame Grid.Column="3"  Margin="0,5" toolkit:CornerRadiusEffect.CornerRadius="32,5,32,5"
+                                    BackgroundColor="{StaticResource Primary}" >
+                                <Label Text="{x:Static fa:FontAwesomeIcons.Minus}" FontFamily="FAS" FontSize="Subtitle" TextColor="White"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ReturnItemViewModel}}, Path=RemoveItemFromCartCommand,Mode=OneTime}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+
+                            </Frame>
+                            <Frame Grid.Column="4" Margin="0,5"  toolkit:CornerRadiusEffect.CornerRadius="5,32,5,32"
+                                    BackgroundColor="{StaticResource Primary}">
+                                <Label Text="{x:Static fa:FontAwesomeIcons.Plus}" FontFamily="FAS" FontSize="Subtitle" TextColor="White"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ReturnItemViewModel}}, Path=AddTransactionItemToCartCommand,Mode=OneTime}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+
+                            </Frame>
+                        </Grid>
+                    <!--</Frame>-->
+                </SwipeView>
+
+            </DataTemplate>
+        </ResourceDictionary>
+    </rg:PopupPage.Resources>
+
+    <Frame Padding="10,20" Margin="20" BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" CornerRadius="22">
+        <Grid RowDefinitions="auto,*,auto">
+            <Label Text="{Binding Title}" FontSize="Subtitle" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="10" />
+            <CollectionView Grid.Row="1" ItemsSource="{Binding ReturnedItems}" ItemTemplate="{StaticResource TransactionItemTamplate}" >
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"  HorizontalItemSpacing="5" VerticalItemSpacing="5"  />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="5" Grid.Row="2">
+                <Button Text="{x:Static res:AppResources.CancelLabel}" Command="{Binding CencelCommand}"  TextTransform="Uppercase" FontAttributes="Bold" FontSize="Medium"/>
+                <Button Grid.Column="1" Text="{x:Static res:AppResources.ReturnLabel}" Command="{Binding ReturnItemsCommand}" BackgroundColor="{StaticResource GreenButton}"  TextTransform="Uppercase" FontAttributes="Bold" FontSize="Medium"/>
+            </Grid>
+        </Grid>
+    </Frame>
+    
+</rg:PopupPage>

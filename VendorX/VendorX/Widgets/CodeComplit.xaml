@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Widgets.CodeComplit"
+     xmlns:rg="http://rotorgames.com"
+    xmlns:vm="clr-namespace:Vendor.ViewModels"
+    x:DataType="vm:RegistViewModel"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderBarBackgroundColorDark}, Light={StaticResource TransperentDark}}"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:fa="clr-namespace:FontAwesome"
+     xmlns:res="clr-namespace:VendorX.Resources">
+
+    <rg:PopupPage.BindingContext>
+        <vm:RegistViewModel/>
+    </rg:PopupPage.BindingContext>
+
+    <rg:PopupPage.Animation>
+        <rg:MoveAnimation PositionIn="Center" PositionOut="Center" />
+    </rg:PopupPage.Animation>
+
+
+    <Grid >
+            <Frame Margin="20" MinimumHeightRequest="100" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" MinimumWidthRequest="200" CornerRadius="22"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},Light={StaticResource BackgroundColorLight}}">
+            
+                <ScrollView>
+                        <StackLayout   Padding="10"  >
+
+                            <!-- крестик отмены -->
+                            <Grid RowDefinitions="50" ColumnDefinitions=".25*,*,.25*">
+                   
+                               <!--<Frame  BackgroundColor="Transparent" IsVisible="{Binding EmailSend,Mode=OneWay}">
+                                    <Label  Text="{x:Static fa:FontAwesomeIcons.AngleLeft}" FontFamily="FAS" InputTransparent="True" FontAttributes="Bold" TextColor="#648bbb"
+                                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  FontSize="Subtitle"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            <Label  Text="{x:Static res:AppResources.BackLabel}"  FontSize="Micro" HorizontalOptions="Center" VerticalOptions="End" IsVisible="{Binding EmailSend,Mode=OneWay}"/>-->
+
+                       
+
+                                <Frame Grid.Column="2"   BackgroundColor="Transparent"  >
+                                    <Label  Text="{x:Static fa:FontAwesomeIcons.Xmark}" FontFamily="FAS" InputTransparent="True" FontAttributes="Bold" TextColor="#648bbb"
+                                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  FontSize="Subtitle"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CancelCodeCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            <Label Grid.Column="2"  Text="{x:Static res:AppResources.CancelLabel}"  FontSize="Micro" HorizontalOptions="Center" VerticalOptions="End"/>
+                            </Grid>
+                            <!-- крестик отмены -->
+
+                            <Label Text="{x:Static res:AppResources.NewCodeSendError}" Margin="10" FontAttributes="Bold" FontSize="Subtitle" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                    
+
+                        <!-- Блок потверждения -->
+
+
+                        <Label Text="{x:Static res:AppResources.SendCodeEmailLabel}"  FontSize="Default" Margin="10" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+
+                            <Frame Margin="0,20,0,0"  Padding="5"  CornerRadius="22" >
+                                <StackLayout>
+                                <Entry Text="{Binding Code}" Keyboard="Numeric" Margin="10,0" FontSize="Default" HorizontalTextAlignment="Center" Placeholder="{x:Static res:AppResources.CodeConfirmLabel}"   >
+                                        <Entry.Behaviors>
+                                            <xct:MaskedBehavior   Mask="X X X X X X"  UnMaskedCharacter="X" />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </StackLayout>
+                            </Frame>
+
+                        <Label Text="{x:Static res:AppResources.RepeatCodeLabel}" TextColor="{StaticResource Primary}" FontSize="Default" Margin="10" FontAttributes="Bold" HorizontalTextAlignment="Center" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ReSendCodeCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+
+
+                        <!-- Блок потверждения -->
+
+
+                    <Button Text="{x:Static res:AppResources.SendCodeConfirmLabel}" Command="{Binding ConfirmCodeeCommand}"  Margin="30"
+                                        BackgroundColor="{StaticResource Primary}"  FontAttributes="Bold" Padding="7,10"    />
+
+                        </StackLayout>
+               </ScrollView>
+
+            </Frame>
+
+        </Grid>
+
+</rg:PopupPage>
+

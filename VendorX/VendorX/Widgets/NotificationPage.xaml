@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Widgets.NotificationPage"
+    xmlns:models="clr-namespace:Vendor.Models"
+    xmlns:vm ="clr-namespace:Vendor.ViewModels"
+       xmlns:res="clr-namespace:VendorX.Resources"
+    Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="InviteNotification">
+                <Frame x:DataType="models:Notification">
+                    <StackLayout MinimumHeightRequest="50" Padding="10">
+                        <Label Text="{Binding Title}" FontSize="Subtitle" FontAttributes="Bold"/>
+                        <Label Text="{Binding Description}"/>
+                        <Grid ColumnDefinitions="*,*" Margin="10">
+                            <Label Grid.Column="1" Text="{x:Static res:AppResources.AccesLabel}" TextColor="{StaticResource GreenButton}" HorizontalOptions="Center"
+                                   FontSize="Subtitle" FontAttributes="Bold">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotificationViewModel}}, Path=AcceptInvitesCommand}" 
+                                                          CommandParameter="{Binding .}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label  Text="{x:Static res:AppResources.NoAccesLabel}" TextColor="{StaticResource Primary}" HorizontalOptions="Center"
+                                   FontSize="Subtitle" FontAttributes="Bold">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotificationViewModel}}, Path=DenyInvitesCommand}" 
+                                                          CommandParameter="{Binding .}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <vm:NotificationViewModel/>
+    </ContentPage.BindingContext>
+    <Frame BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLight}, Dark={StaticResource BackgroundColorDark}}">
+        <StackLayout Padding="10">
+            <!--<Label Text="{Binding Title}" HorizontalOptions="Center" FontSize="Subtitle" FontAttributes="Bold" Margin="10"/>-->
+            <CollectionView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource InviteNotification}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout  Orientation="Vertical" VerticalItemSpacing="5"   />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </StackLayout>
+    </Frame>
+</ContentPage>
+

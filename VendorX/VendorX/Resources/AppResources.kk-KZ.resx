@@ -1,0 +1,822 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccesContactError" xml:space="preserve">
+    <value>Контактілерге кіруге тыйым салынады</value>
+  </data>
+  <data name="AccesLabel" xml:space="preserve">
+    <value>Қабылдау</value>
+  </data>
+  <data name="AddCreditError" xml:space="preserve">
+    <value>Контактіні қосу керек</value>
+  </data>
+  <data name="AddLabel" xml:space="preserve">
+    <value>Қосу</value>
+  </data>
+  <data name="AddMaxCountPhotoError" xml:space="preserve">
+    <value>Фотосуреттердің максималды саны қосылды</value>
+  </data>
+  <data name="AdmissionItemLabel" xml:space="preserve">
+    <value>Тауардың түсімі</value>
+  </data>
+  <data name="AdmissionLabel" xml:space="preserve">
+    <value>Қабылдау</value>
+  </data>
+  <data name="AllPriceLabel" xml:space="preserve">
+    <value>Барлық бағасы:</value>
+  </data>
+  <data name="AllSebesLabel" xml:space="preserve">
+    <value>Барлық құны:</value>
+  </data>
+  <data name="AnaliticLabel" xml:space="preserve">
+    <value>Аналитика</value>
+  </data>
+  <data name="ArchiveLabel" xml:space="preserve">
+    <value>Мұрағат</value>
+  </data>
+  <data name="AscendingLabel" xml:space="preserve">
+    <value>Өсу бойынша</value>
+  </data>
+  <data name="AttentionLabel" xml:space="preserve">
+    <value>Назар аударыңыз</value>
+  </data>
+  <data name="AuthorLabel" xml:space="preserve">
+    <value>Автор:</value>
+  </data>
+  <data name="AverageCheck" xml:space="preserve">
+    <value>Орташа чек:</value>
+  </data>
+  <data name="AverageCheckLabel" xml:space="preserve">
+    <value>Орташа чек</value>
+  </data>
+  <data name="AverageCountOfItems" xml:space="preserve">
+    <value>Даналардың орташа саны:</value>
+  </data>
+  <data name="AverageCountOfItemsLabel" xml:space="preserve">
+    <value>Даналардың орташа саны</value>
+  </data>
+  <data name="AveragePriceOfItem" xml:space="preserve">
+    <value>Дананың орташа бағасы:</value>
+  </data>
+  <data name="AveragePriceOfItemLabel" xml:space="preserve">
+    <value>Дананың орташа бағасы</value>
+  </data>
+  <data name="BackLabel" xml:space="preserve">
+    <value>Артқа</value>
+  </data>
+  <data name="BarcodeLabel" xml:space="preserve">
+    <value>Штрих код</value>
+  </data>
+  <data name="BarcodeScanerLabel" xml:space="preserve">
+    <value>Штрих кодты сканерлеңіз</value>
+  </data>
+  <data name="CameraLabel" xml:space="preserve">
+    <value>Камера</value>
+  </data>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>Бас тарту</value>
+  </data>
+  <data name="CantAddError" xml:space="preserve">
+    <value>қосу мүмкін емес</value>
+  </data>
+  <data name="CatalogLabel" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
+  <data name="ChangeLabel" xml:space="preserve">
+    <value>Тапсыру</value>
+  </data>
+  <data name="ChangeLocationLabel" xml:space="preserve">
+    <value>Жылжыту</value>
+  </data>
+  <data name="CheckCount" xml:space="preserve">
+    <value>Чектер саны:</value>
+  </data>
+  <data name="CheckCountLabel" xml:space="preserve">
+    <value>Чектер саны</value>
+  </data>
+  <data name="CheckLabel" xml:space="preserve">
+    <value>Чек</value>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <value>Клиент</value>
+  </data>
+  <data name="CloseLabel" xml:space="preserve">
+    <value>Жабу</value>
+  </data>
+  <data name="CodeConfirmLabel" xml:space="preserve">
+    <value>Растау коды</value>
+  </data>
+  <data name="CompleteLabel" xml:space="preserve">
+    <value>Аяқтау</value>
+  </data>
+  <data name="ConfirmEmailLabel" xml:space="preserve">
+    <value>Электрондық пошта мекенжайын растау</value>
+  </data>
+  <data name="CONFIRMLABEL" xml:space="preserve">
+    <value>Растау</value>
+  </data>
+  <data name="ContributedLabel" xml:space="preserve">
+    <value>Енгізілді:</value>
+  </data>
+  <data name="ControlLeftoversStockLabel" xml:space="preserve">
+    <value>Қоймадағы қалдықтарды бақылау</value>
+  </data>
+  <data name="CostError" xml:space="preserve">
+    <value>Құны бағадан артық болуы мүмкін емес</value>
+  </data>
+  <data name="CostPrice" xml:space="preserve">
+    <value>Құны:</value>
+  </data>
+  <data name="CostPriceLabel" xml:space="preserve">
+    <value>Құны</value>
+  </data>
+  <data name="CountLabel" xml:space="preserve">
+    <value>Саны</value>
+  </data>
+  <data name="CountLabel_" xml:space="preserve">
+    <value>Саны</value>
+  </data>
+  <data name="CreateLabel" xml:space="preserve">
+    <value>Құру</value>
+  </data>
+  <data name="CurrencyStoreLabel" xml:space="preserve">
+    <value>Дүкен валютасы</value>
+  </data>
+  <data name="DarkLabel" xml:space="preserve">
+    <value>Қараңғы</value>
+  </data>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Күні</value>
+  </data>
+  <data name="DescendingLabel" xml:space="preserve">
+    <value>Кему бойынша</value>
+  </data>
+  <data name="DescriptionLabel" xml:space="preserve">
+    <value>Сипаттама</value>
+  </data>
+  <data name="DiscountLabel" xml:space="preserve">
+    <value>Жеңілдік</value>
+  </data>
+  <data name="DuringPeriod" xml:space="preserve">
+    <value>Кезең ішінде</value>
+  </data>
+  <data name="DutyLabel" xml:space="preserve">
+    <value>Қарыз:</value>
+  </data>
+  <data name="EditLabel" xml:space="preserve">
+    <value>Түзету</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailUncorrectError" xml:space="preserve">
+    <value>Электрондық пошта мекенжайы дұрыс емес</value>
+  </data>
+  <data name="EmployersLabel" xml:space="preserve">
+    <value>Қызметкерлер</value>
+  </data>
+  <data name="EnterDescriptionLabel" xml:space="preserve">
+    <value>Сипаттаманы енгізіңіз</value>
+  </data>
+  <data name="EnterError" xml:space="preserve">
+    <value>Кіру қатесі</value>
+  </data>
+  <data name="ENTERLabel" xml:space="preserve">
+    <value>Кіру</value>
+  </data>
+  <data name="EnterPeriodLabel" xml:space="preserve">
+    <value>Есеп беру мерзімін таңдаңыз</value>
+  </data>
+  <data name="eriodLabel" xml:space="preserve">
+    <value>Кезең:</value>
+  </data>
+  <data name="ErrorLabel" xml:space="preserve">
+    <value>Қате</value>
+  </data>
+  <data name="ExitLabel" xml:space="preserve">
+    <value>Шығу</value>
+  </data>
+  <data name="FieldsEmptyError" xml:space="preserve">
+    <value>барлық міндетті өрістерді толтырыңыз және әрекетті қайталаңыз</value>
+  </data>
+  <data name="FiltrLabel" xml:space="preserve">
+    <value>Сүзу</value>
+  </data>
+  <data name="FirstNameLabel" xml:space="preserve">
+    <value>Аты</value>
+  </data>
+  <data name="ForgetPasswordLabel" xml:space="preserve">
+    <value>Құпия сөзді ұмытып қалдыңыз ба?</value>
+  </data>
+  <data name="FromArchiveLabel" xml:space="preserve">
+    <value>мұрағаттан</value>
+  </data>
+  <data name="GaleryLabel" xml:space="preserve">
+    <value>Галерея</value>
+  </data>
+  <data name="GroupContactLabel" xml:space="preserve">
+    <value>Байланыс нөмірі бойынша</value>
+  </data>
+  <data name="GroupDateLabel" xml:space="preserve">
+    <value>Құрылған күні бойынша</value>
+  </data>
+  <data name="GroupLabel" xml:space="preserve">
+    <value>Топтастыру</value>
+  </data>
+  <data name="GroupNameContactLabel" xml:space="preserve">
+    <value>Байланыс атауы бойынша</value>
+  </data>
+  <data name="HasInviteInLabel" xml:space="preserve">
+    <value>сізді шақырды</value>
+  </data>
+  <data name="InArchiveError" xml:space="preserve">
+    <value>мұрағатта орналасқан</value>
+  </data>
+  <data name="InBasketLabel" xml:space="preserve">
+    <value>Себетте :</value>
+  </data>
+  <data name="InPayLabel" xml:space="preserve">
+    <value>Төлеуге:</value>
+  </data>
+  <data name="InStock" xml:space="preserve">
+    <value>Қоймада:</value>
+  </data>
+  <data name="InStockLabel" xml:space="preserve">
+    <value>Қоймада</value>
+  </data>
+  <data name="InvitationLabel" xml:space="preserve">
+    <value>Шақырулар</value>
+  </data>
+  <data name="InviteLabel" xml:space="preserve">
+    <value>Шақыру</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Тауар</value>
+  </data>
+  <data name="ItemDeleteAttention" xml:space="preserve">
+    <value>жойылады, бұл әрекет қайтымсыз. Жалғастыру керек пе?</value>
+  </data>
+  <data name="KgSom" xml:space="preserve">
+    <value>KGS</value>
+  </data>
+  <data name="KzTengeLabel" xml:space="preserve">
+    <value>KZT</value>
+  </data>
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Тіл</value>
+  </data>
+  <data name="LastNameLabel" xml:space="preserve">
+    <value>Тегі</value>
+  </data>
+  <data name="LightLabel" xml:space="preserve">
+    <value>Жарық</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Дұрыс емес логин немесе құпия сөз</value>
+  </data>
+  <data name="Loss" xml:space="preserve">
+    <value>Шығын:</value>
+  </data>
+  <data name="LossLabel" xml:space="preserve">
+    <value>Шығын</value>
+  </data>
+  <data name="ManagerLabel" xml:space="preserve">
+    <value>Менеджер</value>
+  </data>
+  <data name="MarkupLabel" xml:space="preserve">
+    <value>Үстеме</value>
+  </data>
+  <data name="MediumCheckLabel" xml:space="preserve">
+    <value>Орташа чек:</value>
+  </data>
+  <data name="MediumPriceEdLabel" xml:space="preserve">
+    <value>Бірліктің орташа бағасы:</value>
+  </data>
+  <data name="NameError" xml:space="preserve">
+    <value>Тақырып міндетті түрде толтырылады</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Атауы</value>
+  </data>
+  <data name="NamESLabel" xml:space="preserve">
+    <value>Атауы</value>
+  </data>
+  <data name="NameUserLabel" xml:space="preserve">
+    <value>Поштаны немесе телефон нөмірін енгізіңіз</value>
+  </data>
+  <data name="NewCodeSendError" xml:space="preserve">
+    <value>Көрсетілген электрондық пошта мекенжайына жаңа растау коды жіберілді.</value>
+  </data>
+  <data name="NoAccesLabel" xml:space="preserve">
+    <value>Бас тарту</value>
+  </data>
+  <data name="NoBarcodeInListError" xml:space="preserve">
+    <value>тізімде штрих код элементі жоқ</value>
+  </data>
+  <data name="NoCountError" xml:space="preserve">
+    <value>жеткілікті мөлшерде жоқ</value>
+  </data>
+  <data name="NoItemsInStore" xml:space="preserve">
+    <value>Бұл дүкенде тауарлар жоқ</value>
+  </data>
+  <data name="NoLabel" xml:space="preserve">
+    <value>Жоқ</value>
+  </data>
+  <data name="NoSortLabel" xml:space="preserve">
+    <value>Сұрыптамау</value>
+  </data>
+  <data name="NotCorrectCodeError" xml:space="preserve">
+    <value>Сіз енгізген растау коды дұрыс емес немесе ескірген. Сізге берілген соңғы растау кодын енгізгеніңізге көз жеткізіңіз және әрекетті қайталаңыз.</value>
+  </data>
+  <data name="NoteLabel" xml:space="preserve">
+    <value>Ескерту :</value>
+  </data>
+  <data name="NotificationsLabels" xml:space="preserve">
+    <value>Хабарламалар</value>
+  </data>
+  <data name="NotInStockLabel" xml:space="preserve">
+    <value>жеткілікті емес.</value>
+  </data>
+  <data name="NotSuccesRestorePwdError" xml:space="preserve">
+    <value>Құпия сөзді өзгерту мүмкін болмады. Енгізілген деректердің дұрыстығын тексеріп, интернетке қосылғаныңызға көз жеткізіңіз.</value>
+  </data>
+  <data name="NumberCheckLabel" xml:space="preserve">
+    <value>Түбіртек нөмірі</value>
+  </data>
+  <data name="OnlyActualLabel" xml:space="preserve">
+    <value>Тек өзекті</value>
+  </data>
+  <data name="OnlyAdmissionLabel" xml:space="preserve">
+    <value>Тек қабылдау</value>
+  </data>
+  <data name="OnlyArchiveLabel" xml:space="preserve">
+    <value>Тек мұрағаттар</value>
+  </data>
+  <data name="OnlyPaidLabel" xml:space="preserve">
+    <value>Тек төленгендер</value>
+  </data>
+  <data name="OnlyReaderError" xml:space="preserve">
+    <value>тек оқуға арналған</value>
+  </data>
+  <data name="OnlyReturnLabel" xml:space="preserve">
+    <value>Тек қайтарулар</value>
+  </data>
+  <data name="OnlySalesLabel" xml:space="preserve">
+    <value>Тек сату</value>
+  </data>
+  <data name="OnlyUnPaidLabel" xml:space="preserve">
+    <value>Тек төленбеген</value>
+  </data>
+  <data name="OnRoleLabel" xml:space="preserve">
+    <value>лауазымға :</value>
+  </data>
+  <data name="OperationLabel" xml:space="preserve">
+    <value>Операция</value>
+  </data>
+  <data name="OverDiscountLabel" xml:space="preserve">
+    <value>Қосымша жеңілдік :</value>
+  </data>
+  <data name="OwnerLabel" xml:space="preserve">
+    <value>Иесі</value>
+  </data>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Құпия сөз</value>
+  </data>
+  <data name="PaymentsLabel" xml:space="preserve">
+    <value>Төлемдер</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Кезең</value>
+  </data>
+  <data name="PeriodLabel" xml:space="preserve">
+    <value>Кезең:</value>
+  </data>
+  <data name="Po" xml:space="preserve">
+    <value>бойынша</value>
+  </data>
+  <data name="PriceError" xml:space="preserve">
+    <value>Баға нөлден төмен немесе оған тең болуы мүмкін емес</value>
+  </data>
+  <data name="PriceLabel" xml:space="preserve">
+    <value>Бағасы</value>
+  </data>
+  <data name="PriceListLabel" xml:space="preserve">
+    <value>Бағалар тізімі</value>
+  </data>
+  <data name="Profit" xml:space="preserve">
+    <value>Пайда:</value>
+  </data>
+  <data name="ProfitabilityLabel" xml:space="preserve">
+    <value>Рентабельділік:</value>
+  </data>
+  <data name="ProfitLabel" xml:space="preserve">
+    <value>Пайда</value>
+  </data>
+  <data name="PwdChangeLabel" xml:space="preserve">
+    <value>Құпия сөз өзгертілді</value>
+  </data>
+  <data name="PwdLess8Error" xml:space="preserve">
+    <value>Құпия сөз тым қысқа. Құпия сөзде кемінде 8 таңба және кем дегенде бір бас әріп болуы керек.</value>
+  </data>
+  <data name="PwdNotEqualError" xml:space="preserve">
+    <value>Енгізілген құпия сөздер бірдей емес. Құпия сөзді дұрыс енгізгеніңізге көз жеткізіңіз және әрекетті қайталаңыз.</value>
+  </data>
+  <data name="Refund" xml:space="preserve">
+    <value>Қайтару:</value>
+  </data>
+  <data name="RefundLabel" xml:space="preserve">
+    <value>Қайтару</value>
+  </data>
+  <data name="RegisterError" xml:space="preserve">
+    <value>Тіркеу қатесі:</value>
+  </data>
+  <data name="RegistrationLabel" xml:space="preserve">
+    <value>Тіркеу</value>
+  </data>
+  <data name="RelatedTransactionLabel" xml:space="preserve">
+    <value>Байланысты транзакциялар</value>
+  </data>
+  <data name="RepeatCodeLabel" xml:space="preserve">
+    <value>Кодты қайта жіберіңіз</value>
+  </data>
+  <data name="RepeatPasswordLabel" xml:space="preserve">
+    <value>Құпия сөзді қайталаңыз</value>
+  </data>
+  <data name="RepeatSendCodeError" xml:space="preserve">
+    <value>Кодты қайта жіберу арқылы қол жетімді болады</value>
+  </data>
+  <data name="ReportComercialLabel" xml:space="preserve">
+    <value>Коммерциялық есеп</value>
+  </data>
+  <data name="ReportRefundsLabel" xml:space="preserve">
+    <value>Қайтару туралы есеп</value>
+  </data>
+  <data name="ReportSalesLabel" xml:space="preserve">
+    <value>Сату туралы есеп</value>
+  </data>
+  <data name="ReportStockLabel" xml:space="preserve">
+    <value>Қойма туралы есеп</value>
+  </data>
+  <data name="ResetPwdLabel" xml:space="preserve">
+    <value>Құпия сөзді қалпына келтіру</value>
+  </data>
+  <data name="RestorePwdError" xml:space="preserve">
+    <value>Құпия сөзді өзгерту қатесі:</value>
+  </data>
+  <data name="RestorePwdLabel" xml:space="preserve">
+    <value>Құпия сөзді қалпына келтіру</value>
+  </data>
+  <data name="ReturnLabel" xml:space="preserve">
+    <value>Қайтару</value>
+  </data>
+  <data name="Revenue" xml:space="preserve">
+    <value>Кіріс:</value>
+  </data>
+  <data name="RevenueLabel" xml:space="preserve">
+    <value>Кіріс</value>
+  </data>
+  <data name="RuRubLabel" xml:space="preserve">
+    <value>RUB</value>
+  </data>
+  <data name="S" xml:space="preserve">
+    <value>с</value>
+  </data>
+  <data name="SaleLabel" xml:space="preserve">
+    <value>Сату</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>Сатулар:</value>
+  </data>
+  <data name="SalesLabel" xml:space="preserve">
+    <value>Сатулар</value>
+  </data>
+  <data name="SalesmanLabel" xml:space="preserve">
+    <value>Сатушы</value>
+  </data>
+  <data name="SaveLabel" xml:space="preserve">
+    <value>Сақтау</value>
+  </data>
+  <data name="SebesLabel" xml:space="preserve">
+    <value>Құны</value>
+  </data>
+  <data name="SecondLabel" xml:space="preserve">
+    <value>секунд.</value>
+  </data>
+  <data name="SelectLabel" xml:space="preserve">
+    <value>Таңдалған</value>
+  </data>
+  <data name="SendCodeConfirmLabel" xml:space="preserve">
+    <value>Растау кодын жіберу</value>
+  </data>
+  <data name="SendCodeEmailLabel" xml:space="preserve">
+    <value>Көрсетілген электрондық пошта мекенжайына тіркелгеніңіз үшін растау коды бар хат жіберілді.</value>
+  </data>
+  <data name="SendLabel" xml:space="preserve">
+    <value>Жіберу</value>
+  </data>
+  <data name="SettingLabel" xml:space="preserve">
+    <value>Баптау</value>
+  </data>
+  <data name="ShowAllLabel" xml:space="preserve">
+    <value>Барлығын көрсету</value>
+  </data>
+  <data name="ShtLabel" xml:space="preserve">
+    <value>дана</value>
+  </data>
+  <data name="SortLabel" xml:space="preserve">
+    <value>Сұрыптау</value>
+  </data>
+  <data name="SoundEffects" xml:space="preserve">
+    <value>Дыбыстық эффекттер</value>
+  </data>
+  <data name="SoundScanning" xml:space="preserve">
+    <value>Сканерлеу кезінде дыбыс</value>
+  </data>
+  <data name="StartCountLessLabel" xml:space="preserve">
+    <value>Аз саннан</value>
+  </data>
+  <data name="StartCountMoreLabel" xml:space="preserve">
+    <value>Үлкен саннан</value>
+  </data>
+  <data name="StartLessLabel" xml:space="preserve">
+    <value>Алдымен арзан</value>
+  </data>
+  <data name="StartNewLabel" xml:space="preserve">
+    <value>Алдымен жаңа</value>
+  </data>
+  <data name="StartRichLabel" xml:space="preserve">
+    <value>Алдымен қымбат</value>
+  </data>
+  <data name="StockLabel" xml:space="preserve">
+    <value>Қойма</value>
+  </data>
+  <data name="SuccesRegisterLabel" xml:space="preserve">
+    <value>Тіркеу аяқталды</value>
+  </data>
+  <data name="SuccesRestorePwdLabel" xml:space="preserve">
+    <value>Құпия сөз өзгертілді</value>
+  </data>
+  <data name="SuccessRegisterError" xml:space="preserve">
+    <value>тіркеуді аяқтау мүмкін болмады. Енгізілген деректердің дұрыстығын тексеріп, интернетке қосылғаныңызға көз жеткізіңіз.</value>
+  </data>
+  <data name="SummLabel" xml:space="preserve">
+    <value>Сомасы:</value>
+  </data>
+  <data name="SwitchShopError" xml:space="preserve">
+    <value>Интернетке қол жеткізбестен дүкендерді ауыстыра алмайсыз</value>
+  </data>
+  <data name="SystemLabel" xml:space="preserve">
+    <value>Жүйелік</value>
+  </data>
+  <data name="TagsLabel" xml:space="preserve">
+    <value>#Тегтер</value>
+  </data>
+  <data name="ThanksPayLabel" xml:space="preserve">
+    <value>Сатып алғаныңызға рахмет!</value>
+  </data>
+  <data name="ThemeLabel" xml:space="preserve">
+    <value>Тақырып</value>
+  </data>
+  <data name="TotalLabel" xml:space="preserve">
+    <value>Барлығы:</value>
+  </data>
+  <data name="TransactionLabel" xml:space="preserve">
+    <value>Транзакциялар</value>
+  </data>
+  <data name="TransactionNumberLabel" xml:space="preserve">
+    <value>Түбіртек нөмірі:</value>
+  </data>
+  <data name="UsDollarLabel" xml:space="preserve">
+    <value>USD</value>
+  </data>
+  <data name="UserInvitedInStoreError" xml:space="preserve">
+    <value>Пайдаланушы дүкенге шақырылған немесе тізімге енгізілген</value>
+  </data>
+  <data name="UzSumLabel" xml:space="preserve">
+    <value>UZS</value>
+  </data>
+  <data name="VibrationScanning" xml:space="preserve">
+    <value>Сканерлеу кезінде діріл</value>
+  </data>
+  <data name="WorthLabel" xml:space="preserve">
+    <value>Құны</value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Иә</value>
+  </data>
+  <data name="YouHaveNotAccesError" xml:space="preserve">
+    <value>Сіздің құқықтарыңыз жеткіліксіз</value>
+  </data>
+  <data name="YouLabel" xml:space="preserve">
+    <value>Сіз</value>
+  </data>
+  <data name="AkkLabel" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="LinkMailLabel" xml:space="preserve">
+    <value>Поштаны қосыңыз</value>
+  </data>
+  <data name="LinkPhoneLabel" xml:space="preserve">
+    <value>Телефон қосыңыз</value>
+  </data>
+  <data name="DeleteAkkLabel" xml:space="preserve">
+    <value>Есептік жазбаны жою</value>
+  </data>
+  <data name="DataLoginErrorLabel" xml:space="preserve">
+    <value>Сіздің деректеріңіз ескірген, құпия сөзді қалпына келтіріңіз</value>
+  </data>
+  <data name="TryLaterLabel" xml:space="preserve">
+    <value>Бірдеңе дұрыс болмады. кейінірек көріңіз</value>
+  </data>
+  <data name="ChangePasswordError" xml:space="preserve">
+    <value>Құпия сөзді өзгерту қатесі:</value>
+  </data>
+  <data name="ConfirmCodeVendorLabel" xml:space="preserve">
+    <value>Vendor үшін растау коды</value>
+  </data>
+  <data name="ConfirmPhoneLabel" xml:space="preserve">
+    <value>Телефон нөмірін растау</value>
+  </data>
+  <data name="InviteByPhoneNumberLabel" xml:space="preserve">
+    <value>Телефон нөмірі бойынша шақыру</value>
+  </data>
+  <data name="NewPhoneCodeSend" xml:space="preserve">
+    <value>Көрсетілген телефон нөміріне жаңа растау коды жіберілді.</value>
+  </data>
+  <data name="ProfileEnterError" xml:space="preserve">
+    <value>Профильге кіру мүмкін болмады</value>
+  </data>
+  <data name="ResetPwdByPhoneLabel" xml:space="preserve">
+    <value>Құпия сөзді телефон нөмірі арқылы қалпына келтіріңіз</value>
+  </data>
+  <data name="UserAlreadyExist" xml:space="preserve">
+    <value>Пайдаланушы қазірдің өзінде тіркелген</value>
+  </data>
+  <data name="ValidityError" xml:space="preserve">
+    <value>Енгізілген деректердің дұрыстығын тексеріп, Интернетке қосылғаныңызға көз жеткізіңіз.</value>
+  </data>
+  <data name="WrongEmail" xml:space="preserve">
+    <value>Электрондық пошта мекенжайы дұрыс емес</value>
+  </data>
+  <data name="WrongNumber" xml:space="preserve">
+    <value>Дұрыс емес телефон нөмірі</value>
+  </data>
+  <data name="SendSMSCodeLabel" xml:space="preserve">
+    <value>Сіздің аккаунтыңызды растау кодымен SMS жолданды деп айту телефон нөміріне.</value>
+  </data>
+  <data name="DeleteUserAttention" xml:space="preserve">
+    <value>Есептік жазбаны жойған кезде оған қатысты барлық деректер жойылады</value>
+  </data>
+  <data name="EnterEmailLabel" xml:space="preserve">
+    <value>Поштаны енгізіңіз</value>
+  </data>
+  <data name="EnterNumberLabel" xml:space="preserve">
+    <value>Телефон нөмірін енгізіңіз</value>
+  </data>
+  <data name="CameraExtError" xml:space="preserve">
+    <value>Қолданбаның дұрыс жұмыс істеуі үшін камераға кіруге рұқсат етіңіз</value>
+  </data>
+  <data name="DeleteItem" xml:space="preserve">
+    <value>Тауар жою</value>
+  </data>
+  <data name="InArchiveLabel" xml:space="preserve">
+    <value>мұрағатқа</value>
+  </data>
+  <data name="BindingError" xml:space="preserve">
+    <value>Байланыстыру қатесі:</value>
+  </data>
+  <data name="BindingLabel" xml:space="preserve">
+    <value>Байланыстыру</value>
+  </data>
+  <data name="EnterСonfirmationСode" xml:space="preserve">
+    <value>Растау кодын енгізіңіз</value>
+  </data>
+  <data name="OrderLabel" xml:space="preserve">
+    <value>Тапсырыс беру</value>
+  </data>
+  <data name="ShowCancelOrder" xml:space="preserve">
+    <value>Көрсетуден бас тартылды</value>
+  </data>
+  <data name="ShowProccesOrder" xml:space="preserve">
+    <value>Орындалуда</value>
+  </data>
+  <data name="ShowShippedOrder" xml:space="preserve">
+    <value>Көрсету жіберілді</value>
+  </data>
+</root>

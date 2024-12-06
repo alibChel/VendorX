@@ -1,0 +1,825 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccesContactError" xml:space="preserve">
+    <value>доступ к контактам запрещен</value>
+  </data>
+  <data name="AccesLabel" xml:space="preserve">
+    <value>Принять</value>
+  </data>
+  <data name="AddCreditError" xml:space="preserve">
+    <value>Необходимо добавить контакт</value>
+  </data>
+  <data name="AddLabel" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddMaxCountPhotoError" xml:space="preserve">
+    <value>Добавлено максимальное количество фотографий</value>
+  </data>
+  <data name="AdmissionItemLabel" xml:space="preserve">
+    <value>Поступление товара</value>
+  </data>
+  <data name="AdmissionLabel" xml:space="preserve">
+    <value>Прием</value>
+  </data>
+  <data name="AllPriceLabel" xml:space="preserve">
+    <value>Цена всего:</value>
+  </data>
+  <data name="AllSebesLabel" xml:space="preserve">
+    <value>Себестоимость всего:</value>
+  </data>
+  <data name="AnaliticLabel" xml:space="preserve">
+    <value>Аналитика</value>
+  </data>
+  <data name="ArchiveLabel" xml:space="preserve">
+    <value>Архив</value>
+  </data>
+  <data name="AscendingLabel" xml:space="preserve">
+    <value>По возрастанию</value>
+  </data>
+  <data name="AttentionLabel" xml:space="preserve">
+    <value>Внимание</value>
+  </data>
+  <data name="AuthorLabel" xml:space="preserve">
+    <value>Автор:</value>
+  </data>
+  <data name="BackLabel" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="BarcodeLabel" xml:space="preserve">
+    <value>Шк</value>
+  </data>
+  <data name="BarcodeScanerLabel" xml:space="preserve">
+    <value>Отсканируйте штрих код</value>
+  </data>
+  <data name="CameraLabel" xml:space="preserve">
+    <value>Камера</value>
+  </data>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="CantAddError" xml:space="preserve">
+    <value>невозможно добавить</value>
+  </data>
+  <data name="CatalogLabel" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
+  <data name="ChangeLabel" xml:space="preserve">
+    <value>Сдача :</value>
+  </data>
+  <data name="ChangeLocationLabel" xml:space="preserve">
+    <value>Переместить</value>
+  </data>
+  <data name="CheckLabel" xml:space="preserve">
+    <value>Чек</value>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <value>Клиент</value>
+  </data>
+  <data name="CloseLabel" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="CodeConfirmLabel" xml:space="preserve">
+    <value>Код подтверждения</value>
+  </data>
+  <data name="CompleteLabel" xml:space="preserve">
+    <value>Завершить</value>
+  </data>
+  <data name="ConfirmEmailLabel" xml:space="preserve">
+    <value>Подтверждение адреса электронной почты</value>
+  </data>
+  <data name="CONFIRMLABEL" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="ContributedLabel" xml:space="preserve">
+    <value>Внесенно:</value>
+  </data>
+  <data name="ControlLeftoversStockLabel" xml:space="preserve">
+    <value>Контроль остатков на складе</value>
+  </data>
+  <data name="CostError" xml:space="preserve">
+    <value>Себестоимость не может быть больше цены</value>
+  </data>
+  <data name="CostPriceLabel" xml:space="preserve">
+    <value>Себестоимость</value>
+  </data>
+  <data name="CountLabel" xml:space="preserve">
+    <value>Кол-во</value>
+  </data>
+  <data name="CountLabel_" xml:space="preserve">
+    <value>Кол.</value>
+  </data>
+  <data name="CreateLabel" xml:space="preserve">
+    <value>Создание</value>
+  </data>
+  <data name="CurrencyStoreLabel" xml:space="preserve">
+    <value>Валюта магазина</value>
+  </data>
+  <data name="DarkLabel" xml:space="preserve">
+    <value>Темная</value>
+  </data>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="DescendingLabel" xml:space="preserve">
+    <value>По убыванию</value>
+  </data>
+  <data name="DescriptionLabel" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="DiscountLabel" xml:space="preserve">
+    <value>Скидка</value>
+  </data>
+  <data name="DutyLabel" xml:space="preserve">
+    <value>Долг :</value>
+  </data>
+  <data name="EditLabel" xml:space="preserve">
+    <value>Коректировка</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailUncorrectError" xml:space="preserve">
+    <value>Неверный адрес электронной почты</value>
+  </data>
+  <data name="EmployersLabel" xml:space="preserve">
+    <value>Сотрудники</value>
+  </data>
+  <data name="EnterDescriptionLabel" xml:space="preserve">
+    <value>Введите описание</value>
+  </data>
+  <data name="EnterError" xml:space="preserve">
+    <value>Ошибка входа</value>
+  </data>
+  <data name="ENTERLabel" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="EnterPeriodLabel" xml:space="preserve">
+    <value>Выберите период отчета</value>
+  </data>
+  <data name="ErrorLabel" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="ExitLabel" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="FieldsEmptyError" xml:space="preserve">
+    <value>Заполните все обязательные поля и повторите попытку</value>
+  </data>
+  <data name="FiltrLabel" xml:space="preserve">
+    <value>Фильтрация</value>
+  </data>
+  <data name="FirstNameLabel" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="ForgetPasswordLabel" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="FromArchiveLabel" xml:space="preserve">
+    <value>из архива</value>
+  </data>
+  <data name="GaleryLabel" xml:space="preserve">
+    <value>Галерия</value>
+  </data>
+  <data name="GroupContactLabel" xml:space="preserve">
+    <value>По номеру контакта</value>
+  </data>
+  <data name="GroupDateLabel" xml:space="preserve">
+    <value>По дате создания</value>
+  </data>
+  <data name="GroupLabel" xml:space="preserve">
+    <value>Группировка</value>
+  </data>
+  <data name="GroupNameContactLabel" xml:space="preserve">
+    <value>По имени контакта</value>
+  </data>
+  <data name="HasInviteInLabel" xml:space="preserve">
+    <value>пригласил вас в</value>
+  </data>
+  <data name="InArchiveError" xml:space="preserve">
+    <value>находится в архиве</value>
+  </data>
+  <data name="InArchiveLabel" xml:space="preserve">
+    <value>в архив</value>
+  </data>
+  <data name="InBasketLabel" xml:space="preserve">
+    <value>В корзине : </value>
+  </data>
+  <data name="InPayLabel" xml:space="preserve">
+    <value>К оплате:</value>
+  </data>
+  <data name="InvitationLabel" xml:space="preserve">
+    <value>Приглашение</value>
+  </data>
+  <data name="InvitationsLabel" xml:space="preserve">
+    <value>Приглашения</value>
+  </data>
+  <data name="InviteLabel" xml:space="preserve">
+    <value>Пригласить</value>
+  </data>
+  <data name="ItemDeleteAttention" xml:space="preserve">
+    <value>будет удален, это действие необратимо. Продолжить?</value>
+  </data>
+  <data name="KgSom" xml:space="preserve">
+    <value>KGS</value>
+  </data>
+  <data name="KzTengeLabel" xml:space="preserve">
+    <value>KZT</value>
+  </data>
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="LastNameLabel" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="LightLabel" xml:space="preserve">
+    <value>Светлая</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Неверный логин или пароль</value>
+  </data>
+  <data name="ManagerLabel" xml:space="preserve">
+    <value>Менеджер</value>
+  </data>
+  <data name="MarkupLabel" xml:space="preserve">
+    <value>Наценка</value>
+  </data>
+  <data name="MediumCheckLabel" xml:space="preserve">
+    <value>Средний чек:</value>
+  </data>
+  <data name="MediumPriceEdLabel" xml:space="preserve">
+    <value>Средняя цена за единицу:</value>
+  </data>
+  <data name="NameError" xml:space="preserve">
+    <value>Название обязательно для заполнения</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="NamESLabel" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="NameUserLabel" xml:space="preserve">
+    <value>Введите почту или номер телефона</value>
+  </data>
+  <data name="NewCodeSendError" xml:space="preserve">
+    <value>На указанный адрес электронной почты был отправлен новый код подтверждения.</value>
+  </data>
+  <data name="NoAccesLabel" xml:space="preserve">
+    <value>Отклонить</value>
+  </data>
+  <data name="NoBarcodeInListError" xml:space="preserve">
+    <value>в списке нет товара с штрихкодом</value>
+  </data>
+  <data name="NoCountError" xml:space="preserve">
+    <value>нет в достаточном количествe</value>
+  </data>
+  <data name="NoItemsInStore" xml:space="preserve">
+    <value>В этом магазине нет товаров</value>
+  </data>
+  <data name="NoSortLabel" xml:space="preserve">
+    <value>Не сортировать</value>
+  </data>
+  <data name="NotCorrectCodeError" xml:space="preserve">
+    <value>Введенный вами код подтверждения неверный или устарел. Убедитесь, что вы вводите последний выданный вам код подтверждения, и повторите попытку.</value>
+  </data>
+  <data name="NoteLabel" xml:space="preserve">
+    <value>Примечание :</value>
+  </data>
+  <data name="NotificationsLabels" xml:space="preserve">
+    <value>Уведомления</value>
+  </data>
+  <data name="NotInStockLabel" xml:space="preserve">
+    <value>нет в достаточном  количестве.</value>
+  </data>
+  <data name="NotSuccesRestorePwdError" xml:space="preserve">
+    <value>Не удалось сменить пароль. Проверьте правильность введенных данных и убедитесь, что вы подключены к интернету.</value>
+  </data>
+  <data name="NumberCheckLabel" xml:space="preserve">
+    <value>Номер квитанции</value>
+  </data>
+  <data name="OnlyActualLabel" xml:space="preserve">
+    <value>Только актуальные</value>
+  </data>
+  <data name="OnlyAdmissionLabel" xml:space="preserve">
+    <value>Только поступление</value>
+  </data>
+  <data name="OnlyArchiveLabel" xml:space="preserve">
+    <value>Только архивные</value>
+  </data>
+  <data name="OnlyPaidLabel" xml:space="preserve">
+    <value>Только оплаченные</value>
+  </data>
+  <data name="OnlyReaderError" xml:space="preserve">
+    <value>доступен только для чтения</value>
+  </data>
+  <data name="OnlyReturnLabel" xml:space="preserve">
+    <value>Только возвраты</value>
+  </data>
+  <data name="OnlySalesLabel" xml:space="preserve">
+    <value>Только продажи</value>
+  </data>
+  <data name="OnlyUnPaidLabel" xml:space="preserve">
+    <value>Только не оплаченные</value>
+  </data>
+  <data name="OnRoleLabel" xml:space="preserve">
+    <value>на должность :</value>
+  </data>
+  <data name="OperationLabel" xml:space="preserve">
+    <value>Операция</value>
+  </data>
+  <data name="OverDiscountLabel" xml:space="preserve">
+    <value>Доп. скидка :</value>
+  </data>
+  <data name="OwnerLabel" xml:space="preserve">
+    <value>Владелец</value>
+  </data>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="PaymentsLabel" xml:space="preserve">
+    <value>Платежи</value>
+  </data>
+  <data name="PeriodLabel" xml:space="preserve">
+    <value>Период:</value>
+  </data>
+  <data name="Po" xml:space="preserve">
+    <value>по</value>
+  </data>
+  <data name="PriceError" xml:space="preserve">
+    <value>Цена не может быть меньше или равна нулю</value>
+  </data>
+  <data name="PriceLabel" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="PriceListLabel" xml:space="preserve">
+    <value>Прайс-лист</value>
+  </data>
+  <data name="ProfitabilityLabel" xml:space="preserve">
+    <value>Рентабельность:</value>
+  </data>
+  <data name="PwdChangeLabel" xml:space="preserve">
+    <value>Пароль изменен</value>
+  </data>
+  <data name="PwdLess8Error" xml:space="preserve">
+    <value>Слишком короткий пароль. Пароль должен содержать не менее 8 символов и хотя бы одну заглавную букву.</value>
+  </data>
+  <data name="PwdNotEqualError" xml:space="preserve">
+    <value>Введенные пароли не совпадают. Убедитесь, что вы правильно ввели пароль и повторите попытку.</value>
+  </data>
+  <data name="RegisterError" xml:space="preserve">
+    <value>Ошибка регистрации:</value>
+  </data>
+  <data name="RegistrationLabel" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="RelatedTransactionLabel" xml:space="preserve">
+    <value>Связанные транзакции</value>
+  </data>
+  <data name="RepeatCodeLabel" xml:space="preserve">
+    <value>Отправить код повторно</value>
+  </data>
+  <data name="RepeatPasswordLabel" xml:space="preserve">
+    <value>Повторите пароль</value>
+  </data>
+  <data name="RepeatSendCodeError" xml:space="preserve">
+    <value>Повторная отправка кода будет доступна через </value>
+  </data>
+  <data name="ReportComercialLabel" xml:space="preserve">
+    <value>Коммерческий отчет</value>
+  </data>
+  <data name="ReportSalesLabel" xml:space="preserve">
+    <value>Отчет по продажам</value>
+  </data>
+  <data name="ReportRefundsLabel" xml:space="preserve">
+    <value>Отчет по Возвратам</value>
+  </data>
+  <data name="ReportStockLabel" xml:space="preserve">
+    <value>Отчет по складу</value>
+  </data>
+  <data name="ResetPwdLabel" xml:space="preserve">
+    <value>Сбросить пароль</value>
+  </data>
+  <data name="RestorePwdError" xml:space="preserve">
+    <value>Ошибка смены пароля:</value>
+  </data>
+  <data name="RestorePwdLabel" xml:space="preserve">
+    <value>Восстановление пароля</value>
+  </data>
+  <data name="ReturnLabel" xml:space="preserve">
+    <value>Возврат</value>
+  </data>
+  <data name="RuRubLabel" xml:space="preserve">
+    <value>RUB</value>
+  </data>
+  <data name="S" xml:space="preserve">
+    <value>с</value>
+  </data>
+  <data name="SaleLabel" xml:space="preserve">
+    <value>Продажа</value>
+  </data>
+  <data name="SalesmanLabel" xml:space="preserve">
+    <value>Продавец</value>
+  </data>
+  <data name="SaveLabel" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="SebesLabel" xml:space="preserve">
+    <value>Себес</value>
+  </data>
+  <data name="SecondLabel" xml:space="preserve">
+    <value>секунд.</value>
+  </data>
+  <data name="SelectLabel" xml:space="preserve">
+    <value>Выбран</value>
+  </data>
+  <data name="SendCodeConfirmLabel" xml:space="preserve">
+    <value>Отправить код подтверждения</value>
+  </data>
+  <data name="SendCodeEmailLabel" xml:space="preserve">
+    <value>На указанный адрес электронной почты было отправлено письмо с кодом подтверждения для вашего аккаунта.</value>
+  </data>
+  <data name="SendLabel" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="SettingLabel" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="ShowAllLabel" xml:space="preserve">
+    <value>Отображать все</value>
+  </data>
+  <data name="ShtLabel" xml:space="preserve">
+    <value>шт</value>
+  </data>
+  <data name="SortLabel" xml:space="preserve">
+    <value>Сортировка</value>
+  </data>
+  <data name="StartCountLessLabel" xml:space="preserve">
+    <value>От меньшего кол-ва</value>
+  </data>
+  <data name="StartCountMoreLabel" xml:space="preserve">
+    <value>От большего кол-ва</value>
+  </data>
+  <data name="StartLessLabel" xml:space="preserve">
+    <value>Сначала дешевые</value>
+  </data>
+  <data name="StartNewLabel" xml:space="preserve">
+    <value>Сначала новые</value>
+  </data>
+  <data name="StartRichLabel" xml:space="preserve">
+    <value>Сначала дорогие</value>
+  </data>
+  <data name="StockLabel" xml:space="preserve">
+    <value>Склад</value>
+  </data>
+  <data name="SuccesRegisterLabel" xml:space="preserve">
+    <value>Регистрация завершина</value>
+  </data>
+  <data name="SuccesRestorePwdLabel" xml:space="preserve">
+    <value>Пароль изменен</value>
+  </data>
+  <data name="SuccessRegisterError" xml:space="preserve">
+    <value>не удалось завершить регистрацию. Пожалуйста, проверьте правильность введенных данных и убедитесь, что вы подключены к интернету.</value>
+  </data>
+  <data name="SummLabel" xml:space="preserve">
+    <value>Сумма:</value>
+  </data>
+  <data name="SystemLabel" xml:space="preserve">
+    <value>Системная</value>
+  </data>
+  <data name="TagsLabel" xml:space="preserve">
+    <value>#Теги</value>
+  </data>
+  <data name="ThanksPayLabel" xml:space="preserve">
+    <value>Спасибо за покупку!</value>
+  </data>
+  <data name="ThemeLabel" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="TotalLabel" xml:space="preserve">
+    <value>Итого:</value>
+  </data>
+  <data name="TransactionLabel" xml:space="preserve">
+    <value>Транзакции</value>
+  </data>
+  <data name="TransactionNumberLabel" xml:space="preserve">
+    <value>Номер квитанции:</value>
+  </data>
+  <data name="UsDollarLabel" xml:space="preserve">
+    <value>USD </value>
+  </data>
+  <data name="UserInvitedInStoreError" xml:space="preserve">
+    <value>Пользователь уже был приглашен или числиться в магазине</value>
+  </data>
+  <data name="UzSumLabel" xml:space="preserve">
+    <value>UZS</value>
+  </data>
+  <data name="WorthLabel" xml:space="preserve">
+    <value>Стоимость</value>
+  </data>
+  <data name="YouHaveNotAccesError" xml:space="preserve">
+    <value>У вас недостаточно прав</value>
+  </data>
+  <data name="YouLabel" xml:space="preserve">
+    <value>Вы</value>
+  </data>
+  <data name="NoLabel" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="AverageCheck" xml:space="preserve">
+    <value>Средний чек:</value>
+  </data>
+  <data name="AverageCheckLabel" xml:space="preserve">
+    <value>Средний чек</value>
+  </data>
+  <data name="AverageCountOfItems" xml:space="preserve">
+    <value>Среднее кол-во шт:</value>
+  </data>
+  <data name="AverageCountOfItemsLabel" xml:space="preserve">
+    <value>Среднее кол-во шт</value>
+  </data>
+  <data name="AveragePriceOfItem" xml:space="preserve">
+    <value>Средняя цена за шт:</value>
+  </data>
+  <data name="AveragePriceOfItemLabel" xml:space="preserve">
+    <value>Средняя цена за шт</value>
+  </data>
+  <data name="CheckCount" xml:space="preserve">
+    <value>Кол-во чеков:</value>
+  </data>
+  <data name="CheckCountLabel" xml:space="preserve">
+    <value>Кол-во чеков</value>
+  </data>
+  <data name="CostPrice" xml:space="preserve">
+    <value>Себестоимость:</value>
+  </data>
+  <data name="DuringPeriod" xml:space="preserve">
+    <value>За период</value>
+  </data>
+  <data name="InStock" xml:space="preserve">
+    <value>На складе:</value>
+  </data>
+  <data name="InStockLabel" xml:space="preserve">
+    <value>На складе</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Товар</value>
+  </data>
+  <data name="Loss" xml:space="preserve">
+    <value>Убыток:</value>
+  </data>
+  <data name="LossLabel" xml:space="preserve">
+    <value>Убыток</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Период</value>
+  </data>
+  <data name="Profit" xml:space="preserve">
+    <value>Прибыль:</value>
+  </data>
+  <data name="ProfitLabel" xml:space="preserve">
+    <value>Прибыль</value>
+  </data>
+  <data name="Refund" xml:space="preserve">
+    <value>Возвраты:</value>
+  </data>
+  <data name="RefundLabel" xml:space="preserve">
+    <value>Возвраты</value>
+  </data>
+  <data name="Revenue" xml:space="preserve">
+    <value>Выручка:</value>
+  </data>
+  <data name="RevenueLabel" xml:space="preserve">
+    <value>Выручка</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>Продажи:</value>
+  </data>
+  <data name="SalesLabel" xml:space="preserve">
+    <value>Продажи</value>
+  </data>
+  <data name="SoundEffects" xml:space="preserve">
+    <value>Звуковые эффекты</value>
+  </data>
+  <data name="SoundScanning" xml:space="preserve">
+    <value>Звук при сканировании</value>
+  </data>
+  <data name="SwitchShopError" xml:space="preserve">
+    <value>Вы не можете переключать магазины без доступа к интернету</value>
+  </data>
+  <data name="VibrationScanning" xml:space="preserve">
+    <value>Вибрация при сканировании</value>
+  </data>
+  <data name="AkkLabel" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="LinkMailLabel" xml:space="preserve">
+    <value>Привязать почту</value>
+  </data>
+  <data name="LinkPhoneLabel" xml:space="preserve">
+    <value>Привязать телефон</value>
+  </data>
+  <data name="DeleteAkkLabel" xml:space="preserve">
+    <value>Удалить аккаунт </value>
+  </data>
+  <data name="DataLoginErrorLabel" xml:space="preserve">
+    <value>Ваши данные устарели, сбросьте пароль</value>
+  </data>
+  <data name="TryLaterLabel" xml:space="preserve">
+    <value>Что-то пошло не так. пожалуйста попробуйте позже</value>
+  </data>
+  <data name="ChangePasswordError" xml:space="preserve">
+    <value>Ошибка смены пароля:</value>
+  </data>
+  <data name="ConfirmCodeVendorLabel" xml:space="preserve">
+    <value>Код подтверждения для Vendor</value>
+  </data>
+  <data name="ConfirmPhoneLabel" xml:space="preserve">
+    <value>Подтверждение номера телефона</value>
+  </data>
+  <data name="InviteByPhoneNumberLabel" xml:space="preserve">
+    <value>Пригласить по номеру телефону</value>
+  </data>
+  <data name="NewPhoneCodeSend" xml:space="preserve">
+    <value>На указанный номер телефона был отправлен новый код подтверждения.</value>
+  </data>
+  <data name="ProfileEnterError" xml:space="preserve">
+    <value>Не получилось войти в профиль</value>
+  </data>
+  <data name="ResetPwdByPhoneLabel" xml:space="preserve">
+    <value>Cбросить пароль по номеру телефону</value>
+  </data>
+  <data name="UserAlreadyExist" xml:space="preserve">
+    <value>Пользователь уже зарегистрирован</value>
+  </data>
+  <data name="ValidityError" xml:space="preserve">
+    <value>Проверьте правильность введенных данных и убедитесь, что вы подключены к интернету.</value>
+  </data>
+  <data name="WrongEmail" xml:space="preserve">
+    <value>Некорректный адрес электронной почты</value>
+  </data>
+  <data name="WrongNumber" xml:space="preserve">
+    <value>Некорректный номер телефона</value>
+  </data>
+  <data name="SendSMSCodeLabel" xml:space="preserve">
+    <value>На указанный номер телефона было отправлено SMS с кодом подтверждения для вашего аккаунта.</value>
+  </data>
+  <data name="DeleteUserAttention" xml:space="preserve">
+    <value>При удалении аккаунта все связанные с ним данные удалятся</value>
+  </data>
+  <data name="EnterEmailLabel" xml:space="preserve">
+    <value>Введите почту</value>
+  </data>
+  <data name="EnterNumberLabel" xml:space="preserve">
+    <value>Введите номер телефона</value>
+  </data>
+  <data name="CameraExtError" xml:space="preserve">
+    <value>Для корректной работы приложения, разрешите  доступ к камере</value>
+  </data>
+  <data name="DeleteItem" xml:space="preserve">
+    <value>Удалить товар</value>
+  </data>
+  <data name="BindingError" xml:space="preserve">
+    <value>Ошибка привязки:</value>
+  </data>
+  <data name="BindingLabel" xml:space="preserve">
+    <value>Привязка</value>
+  </data>
+  <data name="EnterСonfirmationСode" xml:space="preserve">
+    <value>Введите код подтверждения</value>
+  </data>
+  <data name="OrderLabel" xml:space="preserve">
+    <value>Заказ</value>
+  </data>
+  <data name="ShowCancelOrder" xml:space="preserve">
+    <value>Показать отмененные</value>
+  </data>
+  <data name="ShowDeliveredOrder" xml:space="preserve">
+    <value>Показать доставленные</value>
+  </data>
+  <data name="ShowProccesOrder" xml:space="preserve">
+    <value>Показать в процессе</value>
+  </data>
+  <data name="ShowShippedOrder" xml:space="preserve">
+    <value>Показать отправленные</value>
+  </data>
+</root>

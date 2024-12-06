@@ -1,0 +1,825 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccesContactError" xml:space="preserve">
+    <value>Access to contacts is prohibited</value>
+  </data>
+  <data name="AccesLabel" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="AddCreditError" xml:space="preserve">
+    <value>Add a contact</value>
+  </data>
+  <data name="AddLabel" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddMaxCountPhotoError" xml:space="preserve">
+    <value>Added the maximum number of photos</value>
+  </data>
+  <data name="AdmissionItemLabel" xml:space="preserve">
+    <value>Receipt of goods</value>
+  </data>
+  <data name="AdmissionLabel" xml:space="preserve">
+    <value>Reception</value>
+  </data>
+  <data name="AllPriceLabel" xml:space="preserve">
+    <value>The price of everything:</value>
+  </data>
+  <data name="AllSebesLabel" xml:space="preserve">
+    <value>Cost of total:</value>
+  </data>
+  <data name="AnaliticLabel" xml:space="preserve">
+    <value>Analytics</value>
+  </data>
+  <data name="ArchiveLabel" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="AscendingLabel" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="AttentionLabel" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="AuthorLabel" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="AverageCheck" xml:space="preserve">
+    <value>Average cheque:</value>
+  </data>
+  <data name="AverageCheckLabel" xml:space="preserve">
+    <value>Average cheque</value>
+  </data>
+  <data name="AverageCountOfItems" xml:space="preserve">
+    <value>Average number of items:</value>
+  </data>
+  <data name="AverageCountOfItemsLabel" xml:space="preserve">
+    <value>Average number of items</value>
+  </data>
+  <data name="AveragePriceOfItem" xml:space="preserve">
+    <value>Average item price:</value>
+  </data>
+  <data name="AveragePriceOfItemLabel" xml:space="preserve">
+    <value>Average item price</value>
+  </data>
+  <data name="BackLabel" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BarcodeLabel" xml:space="preserve">
+    <value>Barcode</value>
+  </data>
+  <data name="BarcodeScanerLabel" xml:space="preserve">
+    <value>Scan barcode</value>
+  </data>
+  <data name="CameraLabel" xml:space="preserve">
+    <value>Camera</value>
+  </data>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CantAddError" xml:space="preserve">
+    <value>cannot be added</value>
+  </data>
+  <data name="CatalogLabel" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="ChangeLabel" xml:space="preserve">
+    <value>Change :</value>
+  </data>
+  <data name="ChangeLocationLabel" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="CheckCount" xml:space="preserve">
+    <value>Number of cheques:</value>
+  </data>
+  <data name="CheckCountLabel" xml:space="preserve">
+    <value>Number of cheques</value>
+  </data>
+  <data name="CheckLabel" xml:space="preserve">
+    <value>Cheque</value>
+  </data>
+  <data name="ClientLabel" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="CloseLabel" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CodeConfirmLabel" xml:space="preserve">
+    <value>Confirmation code</value>
+  </data>
+  <data name="CompleteLabel" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="ConfirmEmailLabel" xml:space="preserve">
+    <value>Email Address Confirmation</value>
+  </data>
+  <data name="CONFIRMLABEL" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ContributedLabel" xml:space="preserve">
+    <value>Introduced:</value>
+  </data>
+  <data name="ControlLeftoversStockLabel" xml:space="preserve">
+    <value>Control of stock balances</value>
+  </data>
+  <data name="CostError" xml:space="preserve">
+    <value>The cost price cannot be more than the price</value>
+  </data>
+  <data name="CostPrice" xml:space="preserve">
+    <value>Cost price:</value>
+  </data>
+  <data name="CostPriceLabel" xml:space="preserve">
+    <value>Cost price</value>
+  </data>
+  <data name="CountLabel" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="CountLabel_" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="CreateLabel" xml:space="preserve">
+    <value>Creation</value>
+  </data>
+  <data name="CurrencyStoreLabel" xml:space="preserve">
+    <value>Store currency</value>
+  </data>
+  <data name="DarkLabel" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DescendingLabel" xml:space="preserve">
+    <value>Descending order</value>
+  </data>
+  <data name="DescriptionLabel" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DiscountLabel" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="DuringPeriod" xml:space="preserve">
+    <value>During period</value>
+  </data>
+  <data name="DutyLabel" xml:space="preserve">
+    <value>Debt :</value>
+  </data>
+  <data name="EditLabel" xml:space="preserve">
+    <value>Correction</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailUncorrectError" xml:space="preserve">
+    <value>Invalid email address</value>
+  </data>
+  <data name="EmployersLabel" xml:space="preserve">
+    <value>Staff</value>
+  </data>
+  <data name="EnterDescriptionLabel" xml:space="preserve">
+    <value>Enter a description</value>
+  </data>
+  <data name="EnterError" xml:space="preserve">
+    <value>Login error</value>
+  </data>
+  <data name="ENTERLabel" xml:space="preserve">
+    <value>Entrance</value>
+  </data>
+  <data name="EnterPeriodLabel" xml:space="preserve">
+    <value>Select the report period</value>
+  </data>
+  <data name="ErrorLabel" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ExitLabel" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="FieldsEmptyError" xml:space="preserve">
+    <value>fill in all required fields and try again</value>
+  </data>
+  <data name="FiltrLabel" xml:space="preserve">
+    <value>Filtering</value>
+  </data>
+  <data name="FirstNameLabel" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ForgetPasswordLabel" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="FromArchiveLabel" xml:space="preserve">
+    <value>from the archive</value>
+  </data>
+  <data name="GaleryLabel" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="GroupContactLabel" xml:space="preserve">
+    <value>By contact number</value>
+  </data>
+  <data name="GroupDateLabel" xml:space="preserve">
+    <value>By creation date</value>
+  </data>
+  <data name="GroupLabel" xml:space="preserve">
+    <value>Grouping</value>
+  </data>
+  <data name="GroupNameContactLabel" xml:space="preserve">
+    <value>By contact name</value>
+  </data>
+  <data name="HasInviteInLabel" xml:space="preserve">
+    <value>invited you to</value>
+  </data>
+  <data name="InArchiveError" xml:space="preserve">
+    <value>is in the archive</value>
+  </data>
+  <data name="InArchiveLabel" xml:space="preserve">
+    <value>in the archive</value>
+  </data>
+  <data name="InBasketLabel" xml:space="preserve">
+    <value>In the basket :</value>
+  </data>
+  <data name="InPayLabel" xml:space="preserve">
+    <value>To be paid:</value>
+  </data>
+  <data name="InStock" xml:space="preserve">
+    <value>In stock:</value>
+  </data>
+  <data name="InStockLabel" xml:space="preserve">
+    <value>In stock</value>
+  </data>
+  <data name="InvitationLabel" xml:space="preserve">
+    <value>Invitation</value>
+  </data>
+  <data name="InvitationsLabel" xml:space="preserve">
+    <value>Invitations</value>
+  </data>
+  <data name="InviteLabel" xml:space="preserve">
+    <value>Invite</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="ItemDeleteAttention" xml:space="preserve">
+    <value>will be deleted, this action is irreversible. Continue?</value>
+  </data>
+  <data name="KgSom" xml:space="preserve">
+    <value>KGS</value>
+  </data>
+  <data name="KzTengeLabel" xml:space="preserve">
+    <value>KZT</value>
+  </data>
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LastNameLabel" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="LightLabel" xml:space="preserve">
+    <value>Bright</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>However, we cannot log in with these credentials. Make sure you enter the correct username and password and try again</value>
+  </data>
+  <data name="Loss" xml:space="preserve">
+    <value>Loss:</value>
+  </data>
+  <data name="LossLabel" xml:space="preserve">
+    <value>Loss</value>
+  </data>
+  <data name="ManagerLabel" xml:space="preserve">
+    <value>Manager</value>
+  </data>
+  <data name="MarkupLabel" xml:space="preserve">
+    <value>Extra charge</value>
+  </data>
+  <data name="MediumCheckLabel" xml:space="preserve">
+    <value>Average check:</value>
+  </data>
+  <data name="MediumPriceEdLabel" xml:space="preserve">
+    <value>Average price per unit:</value>
+  </data>
+  <data name="NameError" xml:space="preserve">
+    <value>The name is required to fill in</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="NamESLabel" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameUserLabel" xml:space="preserve">
+    <value>Enter your email or phone number</value>
+  </data>
+  <data name="NewCodeSendError" xml:space="preserve">
+    <value>A new confirmation code has been sent to the specified email address.</value>
+  </data>
+  <data name="NoAccesLabel" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="NoBarcodeInListError" xml:space="preserve">
+    <value>in the list there is no product with a barcode</value>
+  </data>
+  <data name="NoCountError" xml:space="preserve">
+    <value>not in sufficient quantity</value>
+  </data>
+  <data name="NoItemsInStore" xml:space="preserve">
+    <value>There are no products in this store</value>
+  </data>
+  <data name="NoLabel" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoSortLabel" xml:space="preserve">
+    <value>Don't sort</value>
+  </data>
+  <data name="NotCorrectCodeError" xml:space="preserve">
+    <value>The confirmation code you entered is incorrect or outdated. Make sure you enter the last confirmation code issued to you and try again.</value>
+  </data>
+  <data name="NoteLabel" xml:space="preserve">
+    <value>Note :</value>
+  </data>
+  <data name="NotificationsLabels" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="NotInStockLabel" xml:space="preserve">
+    <value>There are not enough notifications.</value>
+  </data>
+  <data name="NotSuccesRestorePwdError" xml:space="preserve">
+    <value>Failed to change password. Check the correctness of the entered data and make sure that you are connected to the Internet.</value>
+  </data>
+  <data name="NumberCheckLabel" xml:space="preserve">
+    <value>Receipt number</value>
+  </data>
+  <data name="OnlyActualLabel" xml:space="preserve">
+    <value>Only relevant</value>
+  </data>
+  <data name="OnlyAdmissionLabel" xml:space="preserve">
+    <value>Admission only</value>
+  </data>
+  <data name="OnlyArchiveLabel" xml:space="preserve">
+    <value>Archived only</value>
+  </data>
+  <data name="OnlyPaidLabel" xml:space="preserve">
+    <value>Only paid</value>
+  </data>
+  <data name="OnlyReaderError" xml:space="preserve">
+    <value>read-only available read-</value>
+  </data>
+  <data name="OnlyReturnLabel" xml:space="preserve">
+    <value>Refunds only</value>
+  </data>
+  <data name="OnlySalesLabel" xml:space="preserve">
+    <value>Sales only</value>
+  </data>
+  <data name="OnlyUnPaidLabel" xml:space="preserve">
+    <value>Unpaid only</value>
+  </data>
+  <data name="OnRoleLabel" xml:space="preserve">
+    <value>for the position :</value>
+  </data>
+  <data name="OperationLabel" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="OverDiscountLabel" xml:space="preserve">
+    <value>Additional discount :</value>
+  </data>
+  <data name="OwnerLabel" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PaymentsLabel" xml:space="preserve">
+    <value>Payments</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="PeriodLabel" xml:space="preserve">
+    <value>Period:</value>
+  </data>
+  <data name="Po" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="PriceError" xml:space="preserve">
+    <value>The price cannot be less than or equal to zero</value>
+  </data>
+  <data name="PriceLabel" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PriceListLabel" xml:space="preserve">
+    <value>List of prices</value>
+  </data>
+  <data name="Profit" xml:space="preserve">
+    <value>Profit:</value>
+  </data>
+  <data name="ProfitabilityLabel" xml:space="preserve">
+    <value>Profitability:</value>
+  </data>
+  <data name="ProfitLabel" xml:space="preserve">
+    <value>Profit</value>
+  </data>
+  <data name="PwdChangeLabel" xml:space="preserve">
+    <value>Password changed</value>
+  </data>
+  <data name="PwdLess8Error" xml:space="preserve">
+    <value>The password is too short. The password must contain at least 8 characters and at least one capital letter.</value>
+  </data>
+  <data name="PwdNotEqualError" xml:space="preserve">
+    <value>The entered passwords do not match. Make sure you entered your password correctly and try again.</value>
+  </data>
+  <data name="Refund" xml:space="preserve">
+    <value>Refunds:</value>
+  </data>
+  <data name="RefundLabel" xml:space="preserve">
+    <value>Refunds</value>
+  </data>
+  <data name="RegisterError" xml:space="preserve">
+    <value>Registration Error:</value>
+  </data>
+  <data name="RegistrationLabel" xml:space="preserve">
+    <value>Registration</value>
+  </data>
+  <data name="RelatedTransactionLabel" xml:space="preserve">
+    <value>Related transactions</value>
+  </data>
+  <data name="RepeatCodeLabel" xml:space="preserve">
+    <value>Send the code again</value>
+  </data>
+  <data name="RepeatPasswordLabel" xml:space="preserve">
+    <value>Repeat the password</value>
+  </data>
+  <data name="RepeatSendCodeError" xml:space="preserve">
+    <value>Resending the code will be available via</value>
+  </data>
+  <data name="ReportComercialLabel" xml:space="preserve">
+    <value>Commercial report</value>
+  </data>
+  <data name="ReportRefundsLabel" xml:space="preserve">
+    <value>Refunds report</value>
+  </data>
+  <data name="ReportSalesLabel" xml:space="preserve">
+    <value>Sales Report</value>
+  </data>
+  <data name="ReportStockLabel" xml:space="preserve">
+    <value>Warehouse Report</value>
+  </data>
+  <data name="ResetPwdLabel" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="RestorePwdError" xml:space="preserve">
+    <value>Password Change Error: Password change</value>
+  </data>
+  <data name="RestorePwdLabel" xml:space="preserve">
+    <value>Password Recovery</value>
+  </data>
+  <data name="ReturnLabel" xml:space="preserve">
+    <value>Refund</value>
+  </data>
+  <data name="Revenue" xml:space="preserve">
+    <value>Revenue:</value>
+  </data>
+  <data name="RevenueLabel" xml:space="preserve">
+    <value>Revenue</value>
+  </data>
+  <data name="RuRubLabel" xml:space="preserve">
+    <value>RUB</value>
+  </data>
+  <data name="S" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="SaleLabel" xml:space="preserve">
+    <value>Sale</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>Sales:</value>
+  </data>
+  <data name="SalesLabel" xml:space="preserve">
+    <value>Sales</value>
+  </data>
+  <data name="SalesmanLabel" xml:space="preserve">
+    <value>Seller</value>
+  </data>
+  <data name="SaveLabel" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SebesLabel" xml:space="preserve">
+    <value>Sebes</value>
+  </data>
+  <data name="SecondLabel" xml:space="preserve">
+    <value>seconds.</value>
+  </data>
+  <data name="SelectLabel" xml:space="preserve">
+    <value>Selected</value>
+  </data>
+  <data name="SendCodeConfirmLabel" xml:space="preserve">
+    <value>Send confirmation code</value>
+  </data>
+  <data name="SendCodeEmailLabel" xml:space="preserve">
+    <value>An email with a confirmation code for your account has been sent to the specified email address.</value>
+  </data>
+  <data name="SendLabel" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SettingLabel" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ShowAllLabel" xml:space="preserve">
+    <value>Display all</value>
+  </data>
+  <data name="ShtLabel" xml:space="preserve">
+    <value>pcs</value>
+  </data>
+  <data name="SortLabel" xml:space="preserve">
+    <value>Sorting</value>
+  </data>
+  <data name="SoundEffects" xml:space="preserve">
+    <value>Sound effects</value>
+  </data>
+  <data name="SoundScanning" xml:space="preserve">
+    <value>Sound when scanning</value>
+  </data>
+  <data name="StartCountLessLabel" xml:space="preserve">
+    <value>From a smaller number</value>
+  </data>
+  <data name="StartCountMoreLabel" xml:space="preserve">
+    <value>From a larger number</value>
+  </data>
+  <data name="StartLessLabel" xml:space="preserve">
+    <value>Cheap ones first</value>
+  </data>
+  <data name="StartNewLabel" xml:space="preserve">
+    <value>New ones first</value>
+  </data>
+  <data name="StartRichLabel" xml:space="preserve">
+    <value>Dear ones first</value>
+  </data>
+  <data name="StockLabel" xml:space="preserve">
+    <value>Warehouse</value>
+  </data>
+  <data name="SuccesRegisterLabel" xml:space="preserve">
+    <value>Registration is completed</value>
+  </data>
+  <data name="SuccesRestorePwdLabel" xml:space="preserve">
+    <value>Password changed</value>
+  </data>
+  <data name="SuccessRegisterError" xml:space="preserve">
+    <value>failed to complete registration. Please check the correctness of the entered data and make sure that you are connected to the Internet.</value>
+  </data>
+  <data name="SummLabel" xml:space="preserve">
+    <value>Amount:</value>
+  </data>
+  <data name="SwitchShopError" xml:space="preserve">
+    <value>You cannot switch stores without internet access</value>
+  </data>
+  <data name="SystemLabel" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="TagsLabel" xml:space="preserve">
+    <value>#Tags</value>
+  </data>
+  <data name="ThanksPayLabel" xml:space="preserve">
+    <value>Thank you for your purchase!</value>
+  </data>
+  <data name="ThemeLabel" xml:space="preserve">
+    <value>Topic</value>
+  </data>
+  <data name="TotalLabel" xml:space="preserve">
+    <value>Total:</value>
+  </data>
+  <data name="TransactionLabel" xml:space="preserve">
+    <value>Transactions</value>
+  </data>
+  <data name="TransactionNumberLabel" xml:space="preserve">
+    <value>Receipt Number:</value>
+  </data>
+  <data name="UsDollarLabel" xml:space="preserve">
+    <value>USD</value>
+  </data>
+  <data name="UserInvitedInStoreError" xml:space="preserve">
+    <value>The user has already been invited or is listed in the store</value>
+  </data>
+  <data name="UzSumLabel" xml:space="preserve">
+    <value>UZS</value>
+  </data>
+  <data name="VibrationScanning" xml:space="preserve">
+    <value>Vibration when scaning</value>
+  </data>
+  <data name="WorthLabel" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="YouHaveNotAccesError" xml:space="preserve">
+    <value>You don't have enough rights</value>
+  </data>
+  <data name="YouLabel" xml:space="preserve">
+    <value>You</value>
+  </data>
+  <data name="AkkLabel" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="LinkMailLabel" xml:space="preserve">
+    <value>bind mail</value>
+  </data>
+  <data name="LinkPhoneLabel" xml:space="preserve">
+    <value>Bind phone</value>
+  </data>
+  <data name="DeleteAkkLabel" xml:space="preserve">
+    <value>Delete account</value>
+  </data>
+  <data name="DataLoginErrorLabel" xml:space="preserve">
+    <value>Your data is outdated, reset your password</value>
+  </data>
+  <data name="TryLaterLabel" xml:space="preserve">
+    <value>Something went wrong. please try again later</value>
+  </data>
+  <data name="ChangePasswordError" xml:space="preserve">
+    <value>Password change error:</value>
+  </data>
+  <data name="ConfirmCodeVendorLabel" xml:space="preserve">
+    <value>Confirmation code for Vendor</value>
+  </data>
+  <data name="ConfirmPhoneLabel" xml:space="preserve">
+    <value>Phone Number confirmation</value>
+  </data>
+  <data name="InviteByPhoneNumberLabel" xml:space="preserve">
+    <value>Invite by phone number</value>
+  </data>
+  <data name="NewPhoneCodeSend" xml:space="preserve">
+    <value>A new confirmation code has been sent to the specified phone number.</value>
+  </data>
+  <data name="ProfileEnterError" xml:space="preserve">
+    <value>Couldn't log in to profile</value>
+  </data>
+  <data name="ResetPwdByPhoneLabel" xml:space="preserve">
+    <value>Reset password by phone number</value>
+  </data>
+  <data name="UserAlreadyExist" xml:space="preserve">
+    <value>The user is already registered</value>
+  </data>
+  <data name="ValidityError" xml:space="preserve">
+    <value>Check the correctness of the entered data and make sure that you are connected to the Internet.</value>
+  </data>
+  <data name="WrongEmail" xml:space="preserve">
+    <value>Incorrect email address</value>
+  </data>
+  <data name="WrongNumber" xml:space="preserve">
+    <value>Incorrect phone number</value>
+  </data>
+  <data name="SendSMSCodeLabel" xml:space="preserve">
+    <value>An SMS with a confirmation code has been sent to the provided phone number for your account.</value>
+  </data>
+  <data name="DeleteUserAttention" xml:space="preserve">
+    <value>When an account is deleted, all data associated with it will be deleted.</value>
+  </data>
+  <data name="EnterEmailLabel" xml:space="preserve">
+    <value>Enter your email</value>
+  </data>
+  <data name="EnterNumberLabel" xml:space="preserve">
+    <value>Enter your phone number</value>
+  </data>
+  <data name="CameraExtError" xml:space="preserve">
+    <value>For the application to work correctly, allow access to the camera</value>
+  </data>
+  <data name="DeleteItem" xml:space="preserve">
+    <value>Delete a product</value>
+  </data>
+  <data name="BindingError" xml:space="preserve">
+    <value>Binding error:</value>
+  </data>
+  <data name="BindingLabel" xml:space="preserve">
+    <value>Binding</value>
+  </data>
+  <data name="EnterСonfirmationСode" xml:space="preserve">
+    <value>Enter confirmation code</value>
+  </data>
+  <data name="OrderLabel" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="ShowCancelOrder" xml:space="preserve">
+    <value>Show cancels</value>
+  </data>
+  <data name="ShowDeliveredOrder" xml:space="preserve">
+    <value>Show delivered</value>
+  </data>
+  <data name="ShowProccesOrder" xml:space="preserve">
+    <value>Show in procces</value>
+  </data>
+  <data name="ShowShippedOrder" xml:space="preserve">
+    <value>Show shipped</value>
+  </data>
+</root>

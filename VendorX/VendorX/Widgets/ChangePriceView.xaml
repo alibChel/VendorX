@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Widgets.ChangePriceView"
+    xmlns:rg="http://rotorgames.com"
+    xmlns:vm="clr-namespace:Vendor.ViewModels"
+    x:DataType="vm:ChangePriceViewModel"
+         xmlns:res="clr-namespace:VendorX.Resources"
+
+    xmlns:fa="clr-namespace:FontAwesome"
+    BackgroundClickedCommand="{Binding CencelTappedCommand}">
+
+    <rg:PopupPage.Animation>
+        <rg:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="250"
+            DurationOut="150"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </rg:PopupPage.Animation>
+
+    <rg:PopupPage.BindingContext>
+        <vm:ChangePriceViewModel/>
+    </rg:PopupPage.BindingContext>
+
+    <Frame  Padding="15"  VerticalOptions="Center" HorizontalOptions="Center"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}">
+        <StackLayout Spacing="10" IsClippedToBounds="True" >
+            <Frame Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}">
+                <StackLayout Spacing="0" Padding="10">
+                    <Label Text="{Binding Fnum}" HorizontalTextAlignment="End" FontSize="Title"/>
+                    <Label Text="{Binding Oper}" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding Snum}" HorizontalTextAlignment="End" />
+                </StackLayout>
+
+            </Frame>
+
+            <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*,*,*" RowSpacing="15" ColumnSpacing="15" HeightRequest="{Binding NumGreedH}" WidthRequest="{Binding NumGreedW}">
+                <Frame x:Name="PercentButton" CornerRadius="{Binding NumButtonRadius}" Grid.Column="2" BackgroundColor="{AppThemeBinding Light={StaticResource GrayButtonLight}, Dark={StaticResource GrayButtonDark}}" >
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Percent}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="%"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame CornerRadius="{Binding NumButtonRadius}" BackgroundColor="{AppThemeBinding Light={StaticResource GrayButtonLight}, Dark={StaticResource GrayButtonDark}}" Grid.Column="1" >
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="clear" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.C}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </Frame>
+                <Frame Grid.Row="1" CornerRadius="{Binding NumButtonRadius}">
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Seven}" FontFamily="FAS"  VerticalOptions="Center" HorizontalOptions="Center" InputTransparent="True"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="7" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame Grid.Column="1" Grid.Row="1" CornerRadius="{Binding NumButtonRadius}">
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Eight}" FontFamily="FAS"  VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="8" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame  Grid.Row="1" Grid.Column="2" CornerRadius="{Binding NumButtonRadius}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="9" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Nine}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                </Frame>
+                <Frame  Grid.Row="1" Grid.Column="3" CornerRadius="{Binding NumButtonRadius}" BackgroundColor="{AppThemeBinding Light={StaticResource ButtonBackgroundColorLight}, Dark={StaticResource ButtonBackgroundColorDark}}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="*" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Xmark}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                </Frame>
+                <Frame Grid.Column="2" Grid.Row="2" CornerRadius="{Binding NumButtonRadius}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="6" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Six}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                </Frame>
+                <Frame Grid.Column="1" Grid.Row="2" CornerRadius="{Binding NumButtonRadius}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="5" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Five}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                </Frame>
+                <Frame Grid.Row="2" CornerRadius="{Binding NumButtonRadius}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="4" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Four}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                </Frame>
+                <Frame  Grid.Column="3" CornerRadius="{Binding NumButtonRadius}" BackgroundColor="{AppThemeBinding Light={StaticResource ButtonBackgroundColorLight}, Dark={StaticResource ButtonBackgroundColorDark}}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="/" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Divide}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                </Frame>
+                <Frame Grid.Row="3" CornerRadius="{Binding NumButtonRadius}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="1" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.One}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                </Frame>
+                <Frame Grid.Column="1" Grid.Row="3" CornerRadius="{Binding NumButtonRadius}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="2"/>
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Two}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                </Frame>
+                <Frame  Grid.Column="2" Grid.Row="3" CornerRadius="{Binding NumButtonRadius}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="3"/>
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Three}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                </Frame>
+                <Frame  Grid.Column="3" Grid.Row="2" CornerRadius="{Binding NumButtonRadius}" BackgroundColor="{AppThemeBinding Light={StaticResource ButtonBackgroundColorLight}, Dark={StaticResource ButtonBackgroundColorDark}}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="-" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Minus}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                </Frame>
+                <Frame CornerRadius="{Binding NumButtonRadius}" BackgroundColor="{AppThemeBinding Light={StaticResource GrayButtonLight}, Dark={StaticResource GrayButtonDark}}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="back" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.DeleteLeft}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True" FontSize="20"/>
+                </Frame>
+                <Frame Grid.Row="4" Grid.ColumnSpan="2" CornerRadius="{Binding NumButtonRadius}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="0" />
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Zero}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                </Frame>
+                <Frame Grid.Column="3" Grid.Row="4" CornerRadius="{Binding NumButtonRadius}" BackgroundColor="{AppThemeBinding Light={StaticResource ButtonBackgroundColorLight}, Dark={StaticResource ButtonBackgroundColorDark}}">
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Equal}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"  InputTransparent="True"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="=" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame  Grid.Column="3" Grid.Row="3" CornerRadius="{Binding NumButtonRadius}" BackgroundColor="{AppThemeBinding Light={StaticResource ButtonBackgroundColorLight}, Dark={StaticResource ButtonBackgroundColorDark}}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter="+"/>
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Plus}" FontFamily="FAS" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </Frame>
+                <Frame  Grid.Column="2" Grid.Row="4" CornerRadius="{Binding NumButtonRadius}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyInputCommand}" CommandParameter=","/>
+                    </Frame.GestureRecognizers>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.Comma}" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </Frame>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Button Text="{x:Static res:AppResources.CancelLabel}" Command="{Binding CencelTappedCommand}" Padding="10,15" TextTransform="Uppercase" FontAttributes="Bold" FontSize="Medium"/>
+                <Button Grid.Column="1" Text="ОК" Command="{Binding OkTappedCommand}" BackgroundColor="{StaticResource GreenButton}" Padding="10,15"
+                        TextTransform="Uppercase" FontAttributes="Bold" FontSize="Medium"/>
+            </Grid>
+        </StackLayout>
+
+        <!--<Frame.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CencelTappedCommand}"/>
+        </Frame.GestureRecognizers>-->
+
+    </Frame>
+</rg:PopupPage>

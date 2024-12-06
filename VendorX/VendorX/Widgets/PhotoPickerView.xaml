@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VendorX.Widgets.PhotoPickerView"
+    xmlns:rg="http://rotorgames.com"
+    xmlns:vm="clr-namespace:Vendor.ViewModels"
+      xmlns:res="clr-namespace:VendorX.Resources"
+    xmlns:fa="clr-namespace:FontAwesome">
+    <rg:PopupPage.BindingContext>
+        <vm:PhotoPickerViewModel/>
+    </rg:PopupPage.BindingContext>
+
+    <rg:PopupPage.Animation>
+        <rg:MoveAnimation PositionIn="Center" PositionOut="Center" DurationIn="250" DurationOut="250" />
+    </rg:PopupPage.Animation>
+    <Frame  Padding="20,20,20,10" Margin="20,50" VerticalOptions="Center" HorizontalOptions="Center"
+             CornerRadius="22"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark},Light={StaticResource BackgroundColorLight}}">
+        <Grid ColumnDefinitions="*,*" RowDefinitions="*,auto" Padding="10" ColumnSpacing="10" IsClippedToBounds="True" VerticalOptions="Center"
+              HeightRequest="150">
+
+            <Button Text="{x:Static fa:FontAwesomeIcons.Camera}" FontFamily="FAS" FontSize="80" Command="{Binding CameraTappedCommand}"
+                    Padding="20"/>
+            <Label Grid.Row="1" Text="{x:Static res:AppResources.CameraLabel}" Margin="4" FontAttributes="Bold" TextColor="{StaticResource Tertiary}"  VerticalOptions="End" HorizontalOptions="Center"/>
+            <Button Text="{x:Static fa:FontAwesomeIcons.Images}" FontFamily="FAS" FontSize="80" Command="{Binding GaleryTappedCommand}" 
+                    Padding="20" Grid.Column="1"/>
+            <Label Grid.Row="1"  Text="{x:Static res:AppResources.GaleryLabel}" Margin="4" FontAttributes="Bold" TextColor="{StaticResource Tertiary}" Grid.Column="1" VerticalOptions="End" HorizontalOptions="Center"/>
+
+        </Grid>
+    </Frame>
+</rg:PopupPage>
+

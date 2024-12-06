@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxc="http://schemas.devexpress.com/xamarin/2014/forms/collectionview"
+    x:Class="VendorX.Views.OrderPage"
+    xmlns:fa="clr-namespace:FontAwesome"
+    xmlns:toolkit ="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:helpers="clr-namespace:Vendor.Helpers"
+    xmlns:models="clr-namespace:Vendor.Models"
+    xmlns:vm="clr-namespace:Vendor.ViewModels"
+     xmlns:res="clr-namespace:VendorX.Resources" 
+    x:DataType="vm:OrderPageViewModel"
+     xmlns:tempate="clr-namespace:VendorX.Views.Template"
+    xmlns:models1="clr-namespace:VendorX.Models"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:ListIsNullOrEmptyConverter x:Key="IsListNullOrEmptyConverter"/>
+            <toolkit:IsNullOrEmptyConverter x:Key="IsStringNullOrWhiteSpaceConverter"/>
+            <toolkit:IsNotNullOrEmptyConverter x:Key="IsStringNotNullOrWhiteSpaceConverter"/>
+            <toolkit:IntToBoolConverter x:Key="IntToBoolConverter"/>
+            <toolkit:DoubleToIntConverter x:Key="DoubleToIntConverter"/>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+            <helpers:ProfileImageSourceConverter x:Key="ProfileImageSourceConverter"/>
+            <helpers:ImageSourceConverter x:Key="ImageSourceConverter"/>
+            <helpers:DateTimeConverter x:Key="DateTimeConverter" />
+            <helpers:UsedPriceNotEqualPriceConverter x:Key="UsedPriceNotEqualPriceConverter"/>
+
+            <DataTemplate x:Key="OrderTempate" x:DataType="models1:Order" >
+                <Frame Margin="5"  Padding="10"  BackgroundColor="{AppThemeBinding Light={StaticResource HeaderBarBackgroundColorLight}, Dark={StaticResource HeaderBarBackgroundColorDark}}">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Fill" Spacing="2" >
+                        <StackLayout Orientation="Horizontal" Margin="0,0,0,2" >
+
+                            <Label FontSize="18" FontAttributes="Bold" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static res:AppResources.OrderLabel}"/>
+                                        <Span Text="# "/>
+                                        <Span Text="{Binding Number}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label FontSize="Small" FontAttributes="Bold" Margin="18,0"  VerticalOptions="Center" HorizontalOptions="EndAndExpand" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=""/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding ServiceTypeToString}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                        </StackLayout>
+
+
+                        <Label FontSize="12" FontAttributes="Bold"   TextColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray100}}" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text=""/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding CreatedDateToString}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="0,3">
+                            <Label Text="{Binding OrderStatusToString}" FontSize="14" FontAttributes="Bold" TextColor="{Binding OrderStatusColor}"/>
+                            <Label   Margin="15,0" HorizontalOptions="EndAndExpand" FontSize="Small" FontAttributes="Bold">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static res:AppResources.SummLabel} "/>
+                                        <Span Text="{Binding  Price} "/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:OrderPageViewModel}}, Path=WalletTag}"  FontAttributes="Bold" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OrderPageViewModel}}, Path=GoToOrderDetailCommand}"
+                         CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
+
+
+    <Grid RowDefinitions="50,60,30,*" Padding="0,5,0,0" RowSpacing="0" >
+
+        <tempate:HeaderViewProfile ShopName="{Binding Shop.Name, Mode=OneWay}" ProfileUrl="{Binding Profile.PhotoUrl,Mode=OneWay}"/>
+
+
+
+
+        <Grid ColumnDefinitions=".05*,*,.22*" Grid.Row="1" Margin="10,0" ColumnSpacing="5" >
+            <Frame Grid.Column="1" Margin="0,5" >
+                <Grid>
+                    <Label Text="{x:Static fa:FontAwesomeIcons.MagnifyingGlass}" FontFamily="FAS" FontSize="Subtitle"
+                           TextColor="{StaticResource Primary}" Opacity="0.5"  VerticalOptions="Center" HorizontalOptions="End" Margin="15,0"
+                           >
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding Searchtext, Converter={StaticResource IsStringNullOrWhiteSpaceConverter}}" Value="false">
+                                <Setter Property="IsVisible" Value="false"/>
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Entry x:Name="SearchEntry" Text="{Binding Searchtext}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10,0"
+                           ClearButtonVisibility="WhileEditing" VerticalTextAlignment="Center"/>
+                </Grid>
+            </Frame>
+            <Frame  Grid.Column="2" Margin="5">
+                <Label Grid.Column="2" Text="{x:Static fa:FontAwesomeIcons.Sliders}" FontSize="Subtitle" FontFamily="FAS"
+                   TextColor="{StaticResource Primary}" VerticalOptions="Center" HorizontalOptions="Center">
+
+                </Label>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding HideShowFiltersCommand}"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+
+
+        </Grid>
+
+
+
+
+        <dxc:DXCollectionView x:Name="dxcollectionOrder"
+            Grid.Row="3"
+            FilterExpression="{Binding SearchOrderFilter}" 
+            AllowGroupCollapse="True"
+           
+            ItemTemplate="{StaticResource OrderTempate}" ItemsSource="{Binding Orders}">
+
+
+            <dxc:DXCollectionView.GroupDescription>
+                <dxc:GroupDescription FieldName="CreatedTicks"  GroupInterval="Date" SortOrder="Descending" />
+            </dxc:DXCollectionView.GroupDescription>
+            <dxc:DXCollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" MinimumHeightRequest="20" x:DataType="dxc:GroupInfo" >
+                        <Label Text="{x:Static fa:FontAwesomeIcons.AngleUp}" FontFamily="FAS"  VerticalOptions="Center" Margin="20,15">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsCollapsed}" Value="true">
+                                    <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.AngleDown}"/>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <Label  VerticalOptions="Center"                           
+                               FontAttributes="Bold" FontSize="{OnPlatform iOS=Subtitle, Android=Medium}"
+                               Text="{Binding Value,Converter={StaticResource DateTimeConverter}}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </dxc:DXCollectionView.GroupHeaderTemplate>
+
+            <dxc:DXCollectionView.Triggers>
+                <DataTrigger TargetType="dxc:DXCollectionView" Binding="{Binding IsTransaction}" Value="True">
+                    <Setter Property="IsVisible" Value="False"/>
+                </DataTrigger>
+            </dxc:DXCollectionView.Triggers>
+
+        </dxc:DXCollectionView>
+
+
+
+
+        <!--сортировка-->
+        <Grid x:Name="FilterBG" BackgroundColor="{StaticResource TransperentDark}" Grid.RowSpan="4" InputTransparent="False">
+
+            <Frame x:Name="FilterBar" VerticalOptions="End" InputTransparent="False" toolkit:CornerRadiusEffect.CornerRadius="22,22,0,0" CornerRadius="0" >
+
+
+                <Grid x:Name="FilterOrder" RowDefinitions="20,*" Margin="0,0,0,20"  >
+                    <BoxView HeightRequest="5" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="120" Opacity=".3" CornerRadius="2" TranslationY="2.5"/>
+                    <ScrollView Grid.Row="1" HeightRequest="550" >
+
+                        <Grid RowDefinitions="40,50,50,40,40,50,50,50,50,50" ColumnDefinitions="*,.2*"  Padding="20,20,10,10">
+
+
+
+
+
+                            <Label Grid.Row="0" Text="{x:Static res:AppResources.SortLabel}" FontSize="{OnPlatform iOS=Subtitle, Android=Title}" FontAttributes="Bold" VerticalOptions="Center" />
+                            <Grid Grid.Row="1" Grid.ColumnSpan="2" Padding="10,0,0,0" ColumnDefinitions="*,.2*" BackgroundColor="Transparent">
+                                <Label Text="{x:Static res:AppResources.DescendingLabel}" FontSize="Medium" FontAttributes="None" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" Text="{x:Static fa:FontAwesomeIcons.Circle}" FontFamily="FAR"
+                                       HorizontalOptions="Center" VerticalOptions="Center" FontSize="Title" TextColor="{StaticResource Primary}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsSortDesc}" Value="true">
+                                            <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.CircleCheck}" />
+                                            <Setter Property="TextColor" Value="{StaticResource GreenButton}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SortChangedCommand}" CommandParameter="{x:Static models:TransactionSort.Descending}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
+
+                            <Grid Grid.Row="2" Grid.ColumnSpan="2" Padding="10,0,0,0" ColumnDefinitions="*,.2*" BackgroundColor="Transparent">
+                                <Label Text="{x:Static res:AppResources.AscendingLabel}" FontSize="Medium" FontAttributes="None" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" Text="{x:Static fa:FontAwesomeIcons.Circle}" FontFamily="FAR"
+                                       HorizontalOptions="Center" VerticalOptions="Center" FontSize="Title" TextColor="{StaticResource Primary}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsSortDesc}" Value="false">
+                                            <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.CircleCheck}" />
+                                            <Setter Property="TextColor" Value="{StaticResource GreenButton}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SortChangedCommand}" CommandParameter="{x:Static models:TransactionSort.Ascending}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
+
+
+                            <Label  Grid.Row="4" Text="{x:Static res:AppResources.FiltrLabel}" FontSize="{OnPlatform iOS=Subtitle, Android=Title}" FontAttributes="Bold" VerticalOptions="Center" />
+
+
+
+
+                            <Grid Grid.Row="5" Grid.ColumnSpan="2" Padding="10,0,0,0" ColumnDefinitions="*,.2*" BackgroundColor="Transparent">
+                                <Label Text="{x:Static res:AppResources.ShowAllLabel}" FontSize="Medium" FontAttributes="None" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" Text="{x:Static fa:FontAwesomeIcons.Circle}" FontFamily="FAR"
+                                       HorizontalOptions="Center" VerticalOptions="Center" FontSize="Title" TextColor="{StaticResource Primary}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding FilterAllOrders}" Value="true">
+                                            <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.CircleCheck}" />
+                                            <Setter Property="TextColor" Value="{StaticResource GreenButton}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding FilterChangedOrderCommand}" CommandParameter="{x:Static models:OrderFilter.All}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
+                            <Grid Grid.Row="6" Grid.ColumnSpan="2" RowDefinitions="*,Auto" Padding="10,0,0,0"  >
+                                <Grid ColumnDefinitions="*,.2*"  >
+                                    <Label Text="{x:Static res:AppResources.ShowProccesOrder}" FontSize="Medium" FontAttributes="None" VerticalOptions="Center"/>
+                                    <Label Grid.Column="1" Text="{x:Static fa:FontAwesomeIcons.Circle}" FontFamily="FAR"
+               HorizontalOptions="Center" VerticalOptions="Center" FontSize="Title" TextColor="{StaticResource Primary}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding FilterProcessOrder}" Value="true">
+                                                <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.CircleCheck}" />
+                                                <Setter Property="TextColor" Value="{StaticResource GreenButton}"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding FilterChangedOrderCommand}" CommandParameter="{x:Static models:OrderFilter.InProcess}"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+
+
+
+                            </Grid>
+
+                            <Grid Grid.Row="7" Grid.ColumnSpan="2" RowDefinitions="*,Auto" Padding="10,0,0,0"  >
+                                <Grid ColumnDefinitions="*,.2*"  >
+                                    <Label Text="{x:Static res:AppResources.ShowDeliveredOrder}" FontSize="Medium" FontAttributes="None" VerticalOptions="Center"/>
+                                    <Label Grid.Column="1" Text="{x:Static fa:FontAwesomeIcons.Circle}" FontFamily="FAR"
+               HorizontalOptions="Center" VerticalOptions="Center" FontSize="Title" TextColor="{StaticResource Primary}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding FilterDeliveredOrder}" Value="true">
+                                                <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.CircleCheck}" />
+                                                <Setter Property="TextColor" Value="{StaticResource GreenButton}"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding FilterChangedOrderCommand}" CommandParameter="{x:Static models:OrderFilter.Delivered}"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+
+
+
+                            </Grid>
+                            <Grid Grid.Row="8" Grid.ColumnSpan="2" RowDefinitions="*,Auto" Padding="10,0,0,0"  >
+                                <Grid ColumnDefinitions="*,.2*"  >
+                                    <Label Text="{x:Static res:AppResources.ShowShippedOrder}" FontSize="Medium" FontAttributes="None" VerticalOptions="Center"/>
+                                    <Label Grid.Column="1" Text="{x:Static fa:FontAwesomeIcons.Circle}" FontFamily="FAR"
+               HorizontalOptions="Center" VerticalOptions="Center" FontSize="Title" TextColor="{StaticResource Primary}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding FilterShippedOrder}" Value="true">
+                                                <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.CircleCheck}" />
+                                                <Setter Property="TextColor" Value="{StaticResource GreenButton}"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding FilterChangedOrderCommand}" CommandParameter="{x:Static models:OrderFilter.Shipped}"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+
+
+
+                            </Grid>
+
+
+                            <Grid Grid.Row="9" Grid.ColumnSpan="2" RowDefinitions="*,Auto" Padding="10,0,0,0"  >
+                                <Grid ColumnDefinitions="*,.2*"  >
+                                    <Label Text="{x:Static res:AppResources.ShowCancelOrder}" FontSize="Medium" FontAttributes="None" VerticalOptions="Center"/>
+                                    <Label Grid.Column="1" Text="{x:Static fa:FontAwesomeIcons.Circle}" FontFamily="FAR"
+HorizontalOptions="Center" VerticalOptions="Center" FontSize="Title" TextColor="{StaticResource Primary}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding FilterCancelOrder}" Value="true">
+                                                <Setter Property="Text" Value="{x:Static fa:FontAwesomeIcons.CircleCheck}" />
+                                                <Setter Property="TextColor" Value="{StaticResource GreenButton}"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding FilterChangedOrderCommand}" CommandParameter="{x:Static models:OrderFilter.Canceled}"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+
+
+
+                            </Grid>
+
+
+                        </Grid>
+                    </ScrollView>
+
+
+                </Grid>
+
+
+
+
+
+
+
+
+                <Frame.GestureRecognizers>
+                    <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding HideShowFiltersCommand}"/>
+            </Grid.GestureRecognizers>
+        </Grid>
+    </Grid>
+</ContentPage>
+
