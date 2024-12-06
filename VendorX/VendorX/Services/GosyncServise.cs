@@ -12,14 +12,8 @@ namespace VendorX.Services
     public static class GosyncServise
     {
 
-        //private static string Host = @"https://gosync.gosu.kz/"; //test
-       private static string Host = @"https://test.gosync.5dev.kz/"; //test
-        //private static string Host = @"https://gosync.4dev.kz/";
-        //static string Host = @"http://192.168.31.207:5224/";
-        /// <summary>
-        ///  private static  string Host= @"http://192.168.31.205:5224/";
-        /// </summary>
-
+        private static string Host = @"https://gosync.gosu.kz/"; //test
+     
 
 
         private static string ServiceName = "Vendor";
